@@ -1,7 +1,6 @@
-require core-image-minimal.bb
+require core-image-base.bb
 
-DESCRIPTION = "A small image just capable of allowing a device to boot and \
-is suitable for development work."
+DESCRIPTION = "The base image for all L1Calo embedded OS work providing python at a minimum."
 
-IMAGE_FEATURES += "dev-pkgs"
+IMAGE_FEATURES += "python-lang python-core python-twisted"
 
