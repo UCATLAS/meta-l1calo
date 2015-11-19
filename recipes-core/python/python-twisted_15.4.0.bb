@@ -36,6 +36,9 @@ PACKAGES += "\
     ${PN}-flow \
     ${PN}-pair \
     ${PN}-core \
+    ${PN}-_threads \
+    ${PN}-logger \
+    ${PN}-positioning \
 "
 
 PACKAGES =+ "\
@@ -53,6 +56,9 @@ RDEPENDS_${PN} = "\
     ${PN}-runner \
     ${PN}-web \
     ${PN}-words \
+    ${PN}-_threads \
+    ${PN}-logger \
+    ${PN}-positioning \
 "
 
 RDEPENDS_${PN}-core = "python-core python-zopeinterface python-contextlib"
@@ -68,6 +74,9 @@ RDEPENDS_${PN}-words += "${PN}-core"
 RDEPENDS_${PN}-flow += "${PN}-core"
 RDEPENDS_${PN}-pair += "${PN}-core"
 RDEPENDS_${PN}-dbg = "${PN}"
+RDEPENDS_${PN}-_threads = "${PN}-core"
+RDEPENDS_${PN}-logger = "${PN}-core"
+RDEPENDS_${PN}-positioning = "${PN}-core"
 
 ALLOW_EMPTY_${PN} = "1"
 FILES_${PN} = ""
@@ -238,6 +247,19 @@ FILES_${PN}-dbg += " \
 ${libdir}/${PYTHON_DIR}/site-packages/twisted/*/.debug \
 ${libdir}/${PYTHON_DIR}/site-packages/twisted/*/*/.debug \
 "
+
+FILES_${PN}-_threads = " \
+    ${libdir}/${PYTHON_DIR}/site-packages/twisted/_threads/*.py* \
+"
+
+FILES_${PN}-logger = " \
+    ${libdir}/${PYTHON_DIR}/site-packages/twisted/logger/*.py* \
+"
+
+FILES_${PN}-positioning = " \
+    ${libdir}/${PYTHON_DIR}/site-packages/twisted/positioning/*.py* \
+"
+
 
 RDEPENDS_{PN}-src = "${PN}"
 FILES_${PN}-src = " \
