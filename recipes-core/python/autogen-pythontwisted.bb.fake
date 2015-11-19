@@ -1,0 +1,116 @@
+# Recipe created by recipetool
+# This is the basis of a recipe and may need further editing in order to be fully functional.
+# (Feel free to remove these comments when editing.)
+#
+# WARNING: the following LICENSE and LIC_FILES_CHKSUM values are best guesses - it is
+# your responsibility to verify that the values are complete and correct.
+#
+# NOTE: multiple licenses have been detected; if that is correct you should separate
+# these in the LICENSE value using & if the multiple licenses all apply, or | if there
+# is a choice between the multiple licenses. If in doubt, check the accompanying
+# documentation to determine which situation is applicable.
+LICENSE = "Unknown"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=1f3b211e44b7dae1674fb1e252fc556a \
+                    file://twisted/copyright.py;md5=430dad28741c3b3eb351dbdf316b4fc2"
+
+SRC_URI = "https://pypi.python.org/packages/source/T/Twisted/Twisted-15.4.0.tar.bz2"
+SRC_URI[md5sum] = "5337ffb6aeeff3790981a2cd56db9655"
+SRC_URI[sha256sum] = "78862662fa9ae29654bc2b9d349c3f1d887e6b2ed978512c4442d53ea861f05c"
+
+S = "${WORKDIR}/Twisted-15.4.0"
+
+inherit setuptools
+
+# WARNING: the following rdepends are determined through basic analysis of the
+# python sources, and might not be 100% accurate.
+RDEPENDS_${PN} += "python-codecs python-compile python-compression python-contextlib python-core python-crypt python-ctypes python-curses python-datetime python-debugger python-distutils python-doctest python-email python-importlib python-io python-json python-lang python-logging python-math python-mime python-misc python-netclient python-netserver python-numbers python-pickle python-pprint python-profile python-pygobject python-re python-resource python-shell python-stringold python-subprocess python-terminal python-textutils python-threading python-twisted-core python-unittest python-unixadmin python-xml python-xmlrpc python-zopeinterface"
+
+# WARNING: We were unable to map the following python package/module
+# dependencies to the bitbake packages which include them:
+#    CFNetwork
+#    CoreFoundation
+#    Crypto
+#    Crypto.Cipher
+#    Crypto.Cipher.AES
+#    Crypto.Cipher.DES3
+#    Crypto.PublicKey
+#    MySQLdb
+#    OpenSSL
+#    OpenSSL.SSL
+#    OpenSSL._util
+#    OpenSSL.crypto
+#    SOAPpy
+#    Tkinter
+#    copyreg
+#    dummy.plugins
+#    email.Generator
+#    email.Message
+#    email.Parser
+#    email.Utils
+#    email.base64MIME
+#    gadfly
+#    gi.pygtkcompat
+#    gi.repository
+#    gmpy
+#    gnome
+#    goodpackage
+#    gtk
+#    gtk.glade
+#    html
+#    idna
+#    importlib.machinery
+#    kinterbasdb
+#    msvcrt
+#    mypackage
+#    mypackage.testplugin
+#    package
+#    pkg_resources
+#    plugindummy.plugins
+#    portmap
+#    psycopg
+#    pyPgSQL
+#    pyasn1
+#    pyasn1.codec.ber
+#    pyasn1.error
+#    pyasn1.type
+#    pydoctor.driver
+#    pythoncom
+#    pyui
+#    pywintypes
+#    queue
+#    quixote
+#    serial
+#    service_identity
+#    service_identity.pyopenssl
+#    setuptools
+#    setuptools.dist
+#    shadow
+#    subunit
+#    tkFileDialog
+#    tkFont
+#    tkMessageBox
+#    tkSimpleDialog
+#    twisted.plugins.fakeendpoint
+#    twisted.python._initgroups
+#    twisted_private_helper
+#    twisted_python_versions_package
+#    twisted_rebuild_fakelib
+#    twisted_renamed_helper
+#    twisted_toptobottom_temp
+#    uberpackage
+#    urllib.parse
+#    utmp
+#    win32api
+#    win32com.shell
+#    win32con
+#    win32console
+#    win32event
+#    win32file
+#    win32gui
+#    win32pipe
+#    win32process
+#    win32security
+#    wx
+#    wxPython.wx
+#    xmlrpc.client
+#    zope
