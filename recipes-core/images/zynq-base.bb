@@ -1,4 +1,4 @@
-require core-image-base.bb
+inherit core-image
 
 DESCRIPTION = "The base image for all L1Calo embedded OS work providing python at a minimum."
 
