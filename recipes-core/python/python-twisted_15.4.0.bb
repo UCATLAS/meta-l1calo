@@ -26,7 +26,6 @@ PACKAGES += "\
     ${PN}-test \
     ${PN}-protocols \
     ${PN}-conch \
-    ${PN}-lore \
     ${PN}-mail \
     ${PN}-names \
     ${PN}-news \
@@ -49,7 +48,6 @@ PACKAGES =+ "\
 RDEPENDS_${PN} = "\
     ${PN}-bin \
     ${PN}-conch \
-    ${PN}-lore \
     ${PN}-mail \
     ${PN}-names \
     ${PN}-news \
@@ -64,7 +62,6 @@ RDEPENDS_${PN} = "\
 RDEPENDS_${PN}-core = "python-core python-zopeinterface python-contextlib"
 RDEPENDS_${PN}-test = "${PN}"
 RDEPENDS_${PN}-conch = "${PN}-core ${PN}-protocols"
-RDEPENDS_${PN}-lore = "${PN}-core"
 RDEPENDS_${PN}-mail = "${PN}-core ${PN}-protocols"
 RDEPENDS_${PN}-names = "${PN}-core"
 RDEPENDS_${PN}-news = "${PN}-core ${PN}-protocols"
@@ -192,13 +189,6 @@ ${libdir}/${PYTHON_DIR}/site-packages/twisted/python/*.py* \
 ${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/*.py* \
 ${libdir}/${PYTHON_DIR}/site-packages/twisted/topfiles \
 ${libdir}/${PYTHON_DIR}/site-packages/Twisted*egg-info \
-"
-
-FILES_${PN}-lore = " \
-${bindir}/bookify \
-${bindir}/lore \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_lore.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/lore \
 "
 
 FILES_${PN}-mail = " \
