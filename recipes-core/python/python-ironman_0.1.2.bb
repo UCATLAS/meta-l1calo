@@ -12,5 +12,5 @@ S = "${WORKDIR}/ironman-${PV}"
 
 inherit setuptools
 
-RDEPENDS_${PN} += "python-core python-twisted python-construct python-xmltodict python-zopeinterface"
+RDEPENDS_${PN} += "python-core python-twisted-core python-construct python-xmltodict python-zopeinterface"
 
