@@ -25,37 +25,41 @@ do_install_append() {
 #       as of 15.3.0 -- no subpackages are strictly supported
 PACKAGES += "\
     ${PN}-admin \
-    ${PN}-core \
+    ${PN}-bin \
+    ${PN}-dbg \
     ${PN}-docs \
     ${PN}-scripts \
-    ${PN}-bin \
     ${PN}-src \
     ${PN}-test \
     ${PN}-topfiles \
     ${PN}-ui \
+    ${PN}-core \
 "
 
 # use python-twisted for the bare minimum that people want
 RDEPENDS_${PN} = "\
-    ${PN}-core \
-    ${PN}-docs \
-    ${PN}-test \
-    ${PN}-src \
-    ${PN}-bin \
     ${PN}-admin \
+    ${PN}-bin \
+    ${PN}-dbg \
+    ${PN}-docs \
+    ${PN}-scripts \
+    ${PN}-src \
+    ${PN}-test \
     ${PN}-topfiles \
     ${PN}-ui \
-    ${PN}-scripts \
+    ${PN}-core \
 "
 
-RDEPENDS_${PN}-test = "${PN}"
-RDEPENDS_${PN}-docs = "${PN}"
-RDEPENDS_${PN}-dbg = "${PN}"
-RDEPENDS_${PN}-admin = "${PN}"
-RDEPENDS_${PN}-src = "${PN}"
-RDEPENDS_${PN}-topfiles = "${PN}"
-RDEPENDS_${PN}-ui = "${PN}"
-RDEPENDS_${PN}-scripts = "${PN}"
+RDEPENDS_${PN}-admin += "${PN}-core"
+RDEPENDS_${PN}-bin += ""
+RDEPENDS_${PN}-dbg += "${PN}-core"
+RDEPENDS_${PN}-docs += "${PN}-core"
+RDEPENDS_${PN}-scripts += "${PN}-core"
+RDEPENDS_${PN}-src += "${PN}-core"
+RDEPENDS_${PN}-test += "${PN}-core"
+RDEPENDS_${PN}-topfiles += "${PN}-core"
+RDEPENDS_${PN}-ui += "${PN}-core"
+
 RDEPENDS_${PN}-core = "\
     ${PN}-bin \
     python-zopeinterface \
@@ -104,26 +108,8 @@ RDEPENDS_${PN}-core = "\
 ALLOW_EMPTY_${PN} = "1"
 FILES_${PN} = ""
 
-FILES_${PN}-test = " \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/test \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/test \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/test \
-"
-
-FILES_${PN}-ui = " \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/ui/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/ui/*.glade \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/ui/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/ui/*.glade \
-"
-
-FILES_${PN}-scripts = " \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/scripts \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/scripts \
-"
-
-FILES_${PN}-docs = " \
-    ${PYTHON_SITEPACKAGES_DIR}/docs \
+FILES_${PN}-admin = " \
+    ${PYTHON_SITEPACKAGES_DIR}/bin/admin \
 "
 
 FILES_${PN}-bin = " \
@@ -140,8 +126,40 @@ FILES_${PN}-bin = " \
     ${bindir}/twistd \
 "
 
-FILES_${PN}-admin = " \
-    ${PYTHON_SITEPACKAGES_DIR}/bin/admin \
+# no actual debug files, but one can only hope
+FILES_${PN}-dbg += " \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/.debug \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/.debug \
+"
+
+FILES_${PN}-docs = " \
+    ${PYTHON_SITEPACKAGES_DIR}/docs \
+"
+
+FILES_${PN}-scripts = " \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/scripts \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/scripts \
+"
+
+FILES_${PN}-src = " \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.c \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.c \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.c \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.h \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.h \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.h \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.pxi \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.pxi \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.pxi \
+"
+
+FILES_${PN}-test = " \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/test \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/test \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/test \
 "
 
 FILES_${PN}-topfiles = " \
@@ -154,16 +172,11 @@ FILES_${PN}-topfiles = " \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/*/topfiles \
 "
 
-# no actual debug files, but one can only hope
-FILES_${PN}-dbg += " \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/.debug \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/.debug \
-"
-
-FILES_${PN}-src = " \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.py* \
+FILES_${PN}-ui = " \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/ui/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/ui/*.glade \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/ui/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/ui/*.glade \
 "
 
 # note, all *.c files are compiled to *.so files which we copy over
