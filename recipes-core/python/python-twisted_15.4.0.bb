@@ -41,7 +41,6 @@ RDEPENDS_${PN} = "\
     ${PN}-bin \
     ${PN}-docs \
     ${PN}-scripts \
-    ${PN}-src \
     ${PN}-test \
     ${PN}-topfiles \
     ${PN}-ui \
@@ -53,7 +52,6 @@ RDEPENDS_${PN}-bin += ""
 RDEPENDS_${PN}-dbg += "${PN}-core"
 RDEPENDS_${PN}-docs += "${PN}-core"
 RDEPENDS_${PN}-scripts += "${PN}-core"
-RDEPENDS_${PN}-src += "${PN}-core"
 RDEPENDS_${PN}-test += "${PN}-core"
 RDEPENDS_${PN}-topfiles += "${PN}-core"
 RDEPENDS_${PN}-ui += "${PN}-core"
@@ -139,21 +137,6 @@ FILES_${PN}-scripts = " \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/*/scripts \
 "
 
-FILES_${PN}-src = " \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.c \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.c \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.c \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.h \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.h \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.h \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.pxi \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.pxi \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.pxi \
-"
-
 FILES_${PN}-test = " \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/test \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/*/test \
@@ -229,4 +212,20 @@ FILES_${PN}-core = " \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/words/protocols/jabber/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/words/xish/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/words/xish/*.g \
+"
+
+RDEPENDS_${PN}-src += "${PN}"
+FILES_${PN}-src = " \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.c \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.c \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.c \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.h \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.h \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.h \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.pxi \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.pxi \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.pxi \
 "
