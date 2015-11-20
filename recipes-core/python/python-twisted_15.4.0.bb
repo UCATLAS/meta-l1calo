@@ -172,7 +172,7 @@ FILES_${PN}-core = " \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/_version.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/copyright.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/plugin.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/Twisted-${PV}-*egg-info \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/Twisted-${PV}-*.egg-info \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/_threads/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/application/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/*.py* \
