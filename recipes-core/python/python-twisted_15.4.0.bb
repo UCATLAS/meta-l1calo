@@ -31,8 +31,8 @@ PACKAGES += "\
     ${PN}-bin \
     ${PN}-admin \
     ${PN}-topfiles \
-    ${PN}-ui
-    ${PN}-scripts
+    ${PN}-ui \
+    ${PN}-scripts \
 "
 
 # use python-twisted for the bare minimum that people want
