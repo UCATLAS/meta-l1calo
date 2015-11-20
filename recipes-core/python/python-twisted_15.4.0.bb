@@ -24,7 +24,6 @@ do_install_append() {
 # see http://twistedmatrix.com/pipermail/twisted-python/2015-April/029392.html
 #       as of 15.3.0 -- no subpackages are strictly supported
 PACKAGES += "\
-    ${PN}-admin \
     ${PN}-docs \
     ${PN}-scripts \
     ${PN}-test \
@@ -40,7 +39,6 @@ PACKAGES += "\
 
 # use python-twisted for the bare minimum that people want
 RDEPENDS_${PN} = "\
-    ${PN}-admin \
     ${PN}-bin \
     ${PN}-docs \
     ${PN}-scripts \
@@ -48,7 +46,6 @@ RDEPENDS_${PN} = "\
     ${PN}-ui \
 "
 
-RDEPENDS_${PN}-admin += "${PN}-core"
 RDEPENDS_${PN}-bin += "${PN}-core"
 RDEPENDS_${PN}-dbg += "${PN}"
 RDEPENDS_${PN}-docs += "${PN}-core"
@@ -104,10 +101,6 @@ RDEPENDS_${PN}-core = "\
 ALLOW_EMPTY_${PN} = "1"
 FILES_${PN} = ""
 
-FILES_${PN}-admin = " \
-    ${PYTHON_SITEPACKAGES_DIR}/bin/admin \
-"
-
 FILES_${PN}-bin = " \
     ${bindir}/cftp \
     ${bindir}/ckeygen \
@@ -120,6 +113,7 @@ FILES_${PN}-bin = " \
     ${bindir}/tkconch \
     ${bindir}/trial \
     ${bindir}/twistd \
+    ${bindir}/admin/ \
 "
 
 # no actual debug files, but one can only hope
@@ -129,18 +123,18 @@ FILES_${PN}-dbg += " \
 "
 
 FILES_${PN}-docs = " \
-    ${PYTHON_SITEPACKAGES_DIR}/docs \
+    ${PYTHON_SITEPACKAGES_DIR}/docs/ \
 "
 
 FILES_${PN}-scripts = " \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/scripts \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/scripts \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/scripts/ \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/scripts/ \
 "
 
 FILES_${PN}-test = " \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/test \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/test \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/test \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/test/ \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/test/ \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/test/ \
 "
 
 FILES_${PN}-topfiles = " \
@@ -167,19 +161,26 @@ FILES_${PN}-core = " \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/_version.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/copyright.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/plugin.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/_threads/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/_threads/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/application/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/application/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/client/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/client/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/insults/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/insults/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/openshh_compat/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/openshh_compat/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/ssh/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/ssh/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/cred/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/enterprise/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/internet/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/internet/iocpreactor/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/internet/iocpreactor/*.txt \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/internet/iocpreactor/iocpsupport \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/internet/iocpreactor/iocpsupport/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/logger/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/mail/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/manhole/*.py* \
