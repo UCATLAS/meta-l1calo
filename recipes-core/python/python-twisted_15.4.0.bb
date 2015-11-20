@@ -39,7 +39,6 @@ PACKAGES += "\
 RDEPENDS_${PN} = "\
     ${PN}-admin \
     ${PN}-bin \
-    ${PN}-dbg \
     ${PN}-docs \
     ${PN}-scripts \
     ${PN}-src \
