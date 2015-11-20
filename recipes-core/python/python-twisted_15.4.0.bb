@@ -24,15 +24,15 @@ do_install_append() {
 # see http://twistedmatrix.com/pipermail/twisted-python/2015-April/029392.html
 #       as of 15.3.0 -- no subpackages are strictly supported
 PACKAGES += "\
+    ${PN}-admin \
     ${PN}-core \
     ${PN}-docs \
-    ${PN}-test \
-    ${PN}-src \
+    ${PN}-scripts \
     ${PN}-bin \
-    ${PN}-admin \
+    ${PN}-src \
+    ${PN}-test \
     ${PN}-topfiles \
     ${PN}-ui \
-    ${PN}-scripts \
 "
 
 # use python-twisted for the bare minimum that people want
