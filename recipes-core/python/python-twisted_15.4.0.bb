@@ -54,49 +54,7 @@ RDEPENDS_${PN}-test += "${PN}"
 RDEPENDS_${PN}-topfiles += "${PN}-core"
 RDEPENDS_${PN}-ui += "${PN}-core"
 
-RDEPENDS_${PN}-core = "\
-    python-zopeinterface \
-    python-codecs \
-    python-compile \
-    python-compression \
-    python-contextlib \
-    python-core \
-    python-crypt \
-    python-ctypes \
-    python-curses \
-    python-datetime \
-    python-debugger \
-    python-distutils \
-    python-doctest \
-    python-email \
-    python-importlib \
-    python-io \
-    python-json \
-    python-lang \
-    python-logging \
-    python-math \
-    python-mime \
-    python-misc \
-    python-netclient \
-    python-netserver \
-    python-numbers \
-    python-pickle \
-    python-pprint \
-    python-profile \
-    python-pygobject \
-    python-re \
-    python-resource \
-    python-shell \
-    python-stringold \
-    python-subprocess \
-    python-terminal \
-    python-textutils \
-    python-threading \
-    python-unittest \
-    python-unixadmin \
-    python-xml \
-    python-xmlrpc \
-"
+RDEPENDS_${PN}-core = "python-core python-zopeinterface python-contextlib"
 
 ALLOW_EMPTY_${PN} = "1"
 FILES_${PN} = ""
