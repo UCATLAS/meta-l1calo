@@ -179,11 +179,11 @@ FILES_${PN}-ui = " \
 
 # note, all *.c files are compiled to *.so files which we copy over
 FILES_${PN}-core = " \
+    ${PYTHON_SITEPACKAGES_DIR}/Twisted-${PV}-*.egg-info \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/__init__.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/_version.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/copyright.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/plugin.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/Twisted*.egg-info \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/_threads/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/application/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/*.py* \
