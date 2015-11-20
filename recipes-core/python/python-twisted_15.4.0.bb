@@ -141,7 +141,7 @@ FILES_${PN}-bin = " \
 "
 
 FILES_${PN}-admin = " \
-    ${PYTHON_SITEPACKAGES_DIR}/bin/admin
+    ${PYTHON_SITEPACKAGES_DIR}/bin/admin \
 "
 
 FILES_${PN}-topfiles = " \
