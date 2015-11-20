@@ -21,239 +21,199 @@ do_install_append() {
     find ${D} \( -name "*.bat" -o -name "*.c" -o -name "*.h" \) -exec rm -f {} \;
 }
 
+# see http://twistedmatrix.com/pipermail/twisted-python/2015-April/029392.html
+#       as of 15.3.0 -- no subpackages are strictly supported
 PACKAGES += "\
-    ${PN}-zsh \
-    ${PN}-test \
-    ${PN}-protocols \
-    ${PN}-conch \
-    ${PN}-mail \
-    ${PN}-names \
-    ${PN}-news \
-    ${PN}-runner \
-    ${PN}-web \
-    ${PN}-words \
-    ${PN}-flow \
-    ${PN}-pair \
     ${PN}-core \
-    ${PN}-_threads \
-    ${PN}-logger \
-    ${PN}-positioning \
-"
-
-PACKAGES =+ "\
+    ${PN}-docs \
+    ${PN}-test \
     ${PN}-src \
     ${PN}-bin \
+    ${PN}-admin \
+    ${PN}-topfiles \
+    ${PN}-ui
+    ${PN}-scripts
 "
 
+# use python-twisted for the bare minimum that people want
 RDEPENDS_${PN} = "\
+    ${PN}-core \
+    ${PN}-docs \
+    ${PN}-test \
+    ${PN}-src \
     ${PN}-bin \
-    ${PN}-conch \
-    ${PN}-mail \
-    ${PN}-names \
-    ${PN}-news \
-    ${PN}-runner \
-    ${PN}-web \
-    ${PN}-words \
-    ${PN}-_threads \
-    ${PN}-logger \
-    ${PN}-positioning \
+    ${PN}-admin \
+    ${PN}-topfiles \
+    ${PN}-ui \
+    ${PN}-scripts \
 "
 
-RDEPENDS_${PN}-core = "python-codecs python-compile python-compression python-contextlib python-core python-crypt python-ctypes python-curses python-datetime python-debugger python-distutils python-doctest python-email python-importlib python-io python-json python-lang python-logging python-math python-mime python-misc python-netclient python-netserver python-numbers python-pickle python-pprint python-profile python-pygobject python-re python-resource python-shell python-stringold python-subprocess python-terminal python-textutils python-threading python-twisted-core python-unittest python-unixadmin python-xml python-xmlrpc python-zopeinterface"
 RDEPENDS_${PN}-test = "${PN}"
-RDEPENDS_${PN}-conch = "${PN}-core ${PN}-protocols"
-RDEPENDS_${PN}-mail = "${PN}-core ${PN}-protocols"
-RDEPENDS_${PN}-names = "${PN}-core"
-RDEPENDS_${PN}-news = "${PN}-core ${PN}-protocols"
-RDEPENDS_${PN}-runner = "${PN}-core ${PN}-protocols"
-RDEPENDS_${PN}-web += "${PN}-core ${PN}-protocols"
-RDEPENDS_${PN}-words += "${PN}-core"
-RDEPENDS_${PN}-flow += "${PN}-core"
-RDEPENDS_${PN}-pair += "${PN}-core"
+RDEPENDS_${PN}-docs = "${PN}"
 RDEPENDS_${PN}-dbg = "${PN}"
-RDEPENDS_${PN}-_threads = "${PN}-core"
-RDEPENDS_${PN}-logger = "${PN}-core"
-RDEPENDS_${PN}-positioning = "${PN}-core"
+RDEPENDS_${PN}-admin = "${PN}"
+RDEPENDS_${PN}-src = "${PN}"
+RDEPENDS_${PN}-topfiles = "${PN}"
+RDEPENDS_${PN}-ui = "${PN}"
+RDEPENDS_${PN}-scripts = "${PN}"
+RDEPENDS_${PN}-core = "\
+    ${PN}-bin \
+    python-zopeinterface \
+    python-codecs \
+    python-compile \
+    python-compression \
+    python-contextlib \
+    python-core \
+    python-crypt \
+    python-ctypes \
+    python-curses \
+    python-datetime \
+    python-debugger \
+    python-distutils \
+    python-doctest \
+    python-email \
+    python-importlib \
+    python-io \
+    python-json \
+    python-lang \
+    python-logging \
+    python-math \
+    python-mime \
+    python-misc \
+    python-netclient \
+    python-netserver \
+    python-numbers \
+    python-pickle \
+    python-pprint \
+    python-profile \
+    python-pygobject \
+    python-re \
+    python-resource \
+    python-shell \
+    python-stringold \
+    python-subprocess \
+    python-terminal \
+    python-textutils \
+    python-threading \
+    python-unittest \
+    python-unixadmin \
+    python-xml \
+    python-xmlrpc \
+"
 
 ALLOW_EMPTY_${PN} = "1"
 FILES_${PN} = ""
 
 FILES_${PN}-test = " \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/test \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/*/test \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/test \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/test \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/test \
 "
 
-FILES_${PN}-protocols = " \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/protocols/*.py* \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/protocols/gps/ \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/protocols/mice/ \
+FILES_${PN}-ui = " \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/ui/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/ui/*.glade \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/ui/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/ui/*.glade \
 "
 
-FILES_${PN}-zsh = " \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/python/zsh \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/python/zshcomp.* \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/python/twisted-completion.zsh \
+FILES_${PN}-scripts = " \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/scripts \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/scripts \
 "
 
-FILES_${PN}-conch = " \
-    ${bindir}/ckeygen \
-    ${bindir}/tkconch \
-    ${bindir}/conch \
-    ${bindir}/conchftp \
-    ${bindir}/cftp \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_conch.py* \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/conch  \
+FILES_${PN}-docs = " \
+    ${PYTHON_SITEPACKAGES_DIR}/docs \
 "
 
-FILES_${PN}-core = " \
-${bindir}/manhole \
-${bindir}/mktap \
-${bindir}/twistd \
-${bindir}/tap2deb \
-${bindir}/tap2rpm \
-${bindir}/tapconvert \
-${bindir}/tkmktap \
-${bindir}/trial \
-${bindir}/easy_install* \
-${bindir}/pyhtmlizer \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/*.so \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/*.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/__init__.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/notestplugin.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/testplugin.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_ftp.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_inet.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_manhole.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_portforward.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_socks.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_telnet.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_trial.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/dropin.cache \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/application \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/cred \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/enterprise \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/internet \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/manhole \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/manhole \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/persisted \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/protocols\
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python\
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/timeoutqueue.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/filepath.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/dxprofile.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/plugin.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/htmlizer.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/__init__.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/dispatch.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/hook.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/threadpool.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/otp.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/usage.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/roots.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/versions.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/urlpath.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/util.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/components.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/logfile.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/runtime.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/reflect.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/context.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/threadable.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/rebuild.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/failure.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/lockfile.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/formmethod.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/finalize.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/win32.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/dist.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/shortcut.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/zipstream.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/release.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/syslog.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/log.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/compat.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/zshcomp.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/procutils.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/text.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/_twisted_zsh_stub \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/scripts/ \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/spread/ \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/tap/ \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/trial/ \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/__init__.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/_version.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/copyright.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/im.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/*.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/python/*.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/*.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/topfiles \
-${libdir}/${PYTHON_DIR}/site-packages/Twisted*egg-info \
+FILES_${PN}-bin = " \
+    ${bindir}/bin/cftp \
+    ${bindir}/bin/ckeygen \
+    ${bindir}/bin/conch \
+    ${bindir}/bin/mailmail \
+    ${bindir}/bin/manhole \
+    ${bindir}/bin/pyhtmlizer \
+    ${bindir}/bin/tap2deb \
+    ${bindir}/bin/tap2rpm \
+    ${bindir}/bin/tkconch \
+    ${bindir}/bin/trial \
+    ${bindir}/bin/twistd \
 "
 
-FILES_${PN}-mail = " \
-${bindir}/mailmail \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_mail.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/mail \
+FILES_${PN}-admin = " \
+    ${PYTHON_SITEPACKAGES_DIR}/bin/admin
 "
 
-FILES_${PN}-names = " \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_names.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/names \
+FILES_${PN}-topfiles = " \
+    ${PYTHON_SITEPACKAGES_DIR}/CONTRIBUTING \
+    ${PYTHON_SITEPACKAGES_DIR}/INSTALL \
+    ${PYTHON_SITEPACKAGES_DIR}/LICENSE \
+    ${PYTHON_SITEPACKAGES_DIR}/NEWS \
+    ${PYTHON_SITEPACKAGES_DIR}/README \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/topfiles \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/topfiles \
 "
 
-FILES_${PN}-news = " \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_news.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/news \
-"
-
-FILES_${PN}-runner = " \
-${libdir}/site-packages/twisted/runner/portmap.so \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/runner\
-"
-
-FILES_${PN}-web = " \
-${bindir}/websetroot \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_web.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/web\
-"
-
-FILES_${PN}-words = " \
-${bindir}/im \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_words.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/words\
-"
-
-FILES_${PN}-flow = " \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_flow.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/flow \"
-
-FILES_${PN}-pair = " \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/plugins/twisted_pair.py* \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/pair \
-"
-
+# no actual debug files, but one can only hope
 FILES_${PN}-dbg += " \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/*/.debug \
-${libdir}/${PYTHON_DIR}/site-packages/twisted/*/*/.debug \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/.debug \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/.debug \
 "
 
-FILES_${PN}-_threads = " \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/_threads/*.py* \
-"
-
-FILES_${PN}-logger = " \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/logger/*.py* \
-"
-
-FILES_${PN}-positioning = " \
-    ${libdir}/${PYTHON_DIR}/site-packages/twisted/positioning/*.py* \
-"
-
-
-RDEPENDS_{PN}-src = "${PN}"
 FILES_${PN}-src = " \
-	${libdir}/${PYTHON_DIR}/site-packages/twisted/*.py \
-	${libdir}/${PYTHON_DIR}/site-packages/twisted/*/*.py \
-	${libdir}/${PYTHON_DIR}/site-packages/twisted/*/*/*.py \
-	"
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/*/*/*.py* \
+"
+
+# note, all *.c files are compiled to *.so files which we copy over
+FILES_${PN}-core = " \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/__init__.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/_version.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/copyright.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/plugin.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/_threads/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/application/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/client/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/insults/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/openshh_compat/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/ssh/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/cred/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/enterprise/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/internet/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/internet/iocpreactor/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/internet/iocpreactor/iocpsupport \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/logger/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/mail/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/manhole/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/manhole/*.glade \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/names/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/news/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/pair/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/persisted/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/plugins/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/positioning/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/protocols/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/protocols/gps/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/protocols/mice/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/python/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/python/*.so \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/python/*.zsh \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/runner/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/runner/*.so \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/spread/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/tap/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/trial/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/trial/_dist/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/web/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/web/*.xhtml \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/web/_auth/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/words/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/words/im/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/words/im/*.glade \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/words/protocols/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/words/protocols/jabber/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/words/xish/*.py* \
+    ${PYTHON_SITEPACKAGES_DIR}/twisted/words/xish/*.g \
+"
