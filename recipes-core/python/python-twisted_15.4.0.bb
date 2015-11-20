@@ -25,14 +25,17 @@ do_install_append() {
 #       as of 15.3.0 -- no subpackages are strictly supported
 PACKAGES += "\
     ${PN}-admin \
-    ${PN}-bin \
     ${PN}-docs \
     ${PN}-scripts \
-    ${PN}-src \
     ${PN}-test \
     ${PN}-topfiles \
     ${PN}-ui \
     ${PN}-core \
+"
+
+PACKAGES += "\
+    ${PN}-bin \
+    ${PN}-src \
 "
 
 # use python-twisted for the bare minimum that people want
