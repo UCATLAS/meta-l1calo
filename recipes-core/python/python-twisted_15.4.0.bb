@@ -41,23 +41,20 @@ RDEPENDS_${PN} = "\
     ${PN}-bin \
     ${PN}-docs \
     ${PN}-scripts \
-    ${PN}-test \
     ${PN}-topfiles \
     ${PN}-ui \
-    ${PN}-core \
 "
 
 RDEPENDS_${PN}-admin += "${PN}-core"
-RDEPENDS_${PN}-bin += ""
-RDEPENDS_${PN}-dbg += "${PN}-core"
+RDEPENDS_${PN}-bin += "${PN}-core"
+RDEPENDS_${PN}-dbg += "${PN}"
 RDEPENDS_${PN}-docs += "${PN}-core"
 RDEPENDS_${PN}-scripts += "${PN}-core"
-RDEPENDS_${PN}-test += "${PN}-core"
+RDEPENDS_${PN}-test += "${PN}"
 RDEPENDS_${PN}-topfiles += "${PN}-core"
 RDEPENDS_${PN}-ui += "${PN}-core"
 
 RDEPENDS_${PN}-core = "\
-    ${PN}-bin \
     python-zopeinterface \
     python-codecs \
     python-compile \
