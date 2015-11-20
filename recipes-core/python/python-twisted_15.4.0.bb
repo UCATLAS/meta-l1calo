@@ -161,19 +161,12 @@ FILES_${PN}-core = " \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/_version.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/copyright.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/plugin.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/_threads/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/_threads/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/application/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/application/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/client/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/client/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/insults/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/insults/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/openshh_compat/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/openshh_compat/*.py* \
-    ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/ssh/ \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/conch/ssh/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/cred/*.py* \
     ${PYTHON_SITEPACKAGES_DIR}/twisted/enterprise/*.py* \
