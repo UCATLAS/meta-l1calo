@@ -127,17 +127,17 @@ FILES_${PN}-docs = " \
 "
 
 FILES_${PN}-bin = " \
-    ${bindir}/bin/cftp \
-    ${bindir}/bin/ckeygen \
-    ${bindir}/bin/conch \
-    ${bindir}/bin/mailmail \
-    ${bindir}/bin/manhole \
-    ${bindir}/bin/pyhtmlizer \
-    ${bindir}/bin/tap2deb \
-    ${bindir}/bin/tap2rpm \
-    ${bindir}/bin/tkconch \
-    ${bindir}/bin/trial \
-    ${bindir}/bin/twistd \
+    ${bindir}/cftp \
+    ${bindir}/ckeygen \
+    ${bindir}/conch \
+    ${bindir}/mailmail \
+    ${bindir}/manhole \
+    ${bindir}/pyhtmlizer \
+    ${bindir}/tap2deb \
+    ${bindir}/tap2rpm \
+    ${bindir}/tkconch \
+    ${bindir}/trial \
+    ${bindir}/twistd \
 "
 
 FILES_${PN}-admin = " \
