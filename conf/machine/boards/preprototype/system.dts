@@ -33,6 +33,16 @@
 	phy-mode = "rgmii-id";
 	status = "okay";
 	xlnx,ptp-enet-clock = <0x69f6bcb>;
+	phy-handle = <&phy0>;
+	mdio {
+		#address-cells = <1>;
+		#size-cells = <0>;
+		phy0: phy@23 {
+			compatible = "marvell,88e1116r";
+			device_type = "ethernet-phy";
+			reg = <0x17>;
+		};
+	};
 };
 &gpio0 {
 	emio-gpio-width = <64>;
