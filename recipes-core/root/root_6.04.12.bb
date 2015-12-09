@@ -9,7 +9,7 @@
 # these in the LICENSE value using & if the multiple licenses all apply, or | if there
 # is a choice between the multiple licenses. If in doubt, check the accompanying
 # documentation to determine which situation is applicable.
-LICENSE = "Unknown LGPLv2.1"
+LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=932cfc70c6596f332fc0aaba8cdbccc0"
 SRC_URI = "https://root.cern.ch/download/root_v${PV}.source.tar.gz"
 SRC_URI[md5sum] = "bb43d3c01d97cd2714e841630148c371"
