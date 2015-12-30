@@ -8,7 +8,7 @@ SRC_URI[sha256sum] = "e02cc3297deaf5a5623ab15fbefdd992413cd41c37e39a6a5cbc9a5d0c
 
 inherit cmake pkgconfig
 
-DEPENDS += "llvm3 libx11 libxpm libxft python-core"
+DEPENDS += "llvm3.3 libx11 libxpm libxft python-core"
 
 do_configure_prepend(){
 	export FC=${GFORTRAN}
