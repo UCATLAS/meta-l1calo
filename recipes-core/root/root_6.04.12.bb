@@ -22,4 +22,5 @@ EXTRA_OECMAKE = "\
 	-Dssl=ON \
 	-Dxrootd=ON \
 	-Dbuiltin_freetype=ON \
+        -Dbuiltin_llvm=OFF \
 "
