@@ -13,4 +13,4 @@ S = "${WORKDIR}/ironman-${PV}"
 inherit setuptools
 
 RDEPENDS_${PN} += "python-core python-twisted-core python-construct python-pyyaml python-zopeinterface"
-PREFERRED_VERSION_python-pyyaml = "3.11"
+PREFERRED_VERSION_python-pyyaml = "3.10"
