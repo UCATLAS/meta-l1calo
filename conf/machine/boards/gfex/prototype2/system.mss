@@ -19,30 +19,40 @@ END
 BEGIN DRIVER
  PARAMETER DRIVER_NAME = axi_iic
  PARAMETER HW_INSTANCE = axi_iic_0
+ PARAMETER clock-names = ref_clk
+ PARAMETER clocks = clkc 15
  PARAMETER reg = 0x41600000 0x10000
 END
 
 BEGIN DRIVER
  PARAMETER DRIVER_NAME = axi_iic
  PARAMETER HW_INSTANCE = axi_iic_1
+ PARAMETER clock-names = ref_clk
+ PARAMETER clocks = clkc 15
  PARAMETER reg = 0x41610000 0x10000
 END
 
 BEGIN DRIVER
  PARAMETER DRIVER_NAME = axi_iic
  PARAMETER HW_INSTANCE = axi_iic_2
+ PARAMETER clock-names = ref_clk
+ PARAMETER clocks = clkc 15
  PARAMETER reg = 0x41620000 0x10000
 END
 
 BEGIN DRIVER
  PARAMETER DRIVER_NAME = axi_iic
  PARAMETER HW_INSTANCE = axi_iic_3
+ PARAMETER clock-names = ref_clk
+ PARAMETER clocks = clkc 15
  PARAMETER reg = 0x41630000 0x10000
 END
 
 BEGIN DRIVER
  PARAMETER DRIVER_NAME = axi_iic
  PARAMETER HW_INSTANCE = axi_iic_4
+ PARAMETER clock-names = ref_clk
+ PARAMETER clocks = clkc 15
  PARAMETER reg = 0x41640000 0x10000
 END
 
@@ -99,8 +109,7 @@ END
 
 BEGIN DRIVER
  PARAMETER DRIVER_NAME = emacps
- PARAMETER HW_INSTANCE = ps7_ethernet_0
- PARAMETER enet-reset = gpio0 51 0
+ PARAMETER HW_INSTANCE = ps7_ethernet_1
  PARAMETER phy-mode = rgmii-id
  PARAMETER xlnx,ptp-enet-clock = 111111115
 END
