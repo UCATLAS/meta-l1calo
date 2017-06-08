@@ -16,10 +16,11 @@ do_configure_prepend(){
 
 # Specify any options you want to pass to cmake using EXTRA_OECMAKE:
 EXTRA_OECMAKE = "\
-	-Drootfit=ON \
-	-Dminuit2=ON \
-	-Dpython=ON \
-	-Dssl=ON \
-	-Dxrootd=ON \
-	-Dbuiltin_freetype=ON \
+    -Drootfit=ON \
+    -Dminuit2=ON \
+    -Dpython=ON \
+    -Dssl=ON \
+    -Dxrootd=ON \
+    -Dbuiltin_freetype=ON \
+    -Dbuiltin_llvm=OFF \
 "
