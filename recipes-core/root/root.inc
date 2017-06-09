@@ -2,6 +2,7 @@ SUMMARY = "Numerical data analysis framework (OO)"
 DESCRIPTION = "Object oriented framework for large scale data analysis"
 HOMEPAGE = "http://root.cern.ch"
 LICENSE = "LGPLv2.1"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=932cfc70c6596f332fc0aaba8cdbccc0"
 SRC_URI = "https://root.cern.ch/download/root_v${PV}.source.tar.gz"
 
 S = "${WORKDIR}/${BPN}-${PV}"
