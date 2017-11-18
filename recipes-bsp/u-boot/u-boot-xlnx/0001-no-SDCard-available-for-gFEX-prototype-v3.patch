@@ -1,0 +1,24 @@
+From ebd28c1e89b57d64a0ed5748946d6c843a3ff4d8 Mon Sep 17 00:00:00 2001
+From: Giordon Stark <kratsg@gmail.com>
+Date: Sat, 18 Nov 2017 11:57:22 -0600
+Subject: [PATCH] no SDCard available for gFEX prototype v3
+
+---
+ include/configs/xilinx_zynqmp_zcu102.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/include/configs/xilinx_zynqmp_zcu102.h b/include/configs/xilinx_zynqmp_zcu102.h
+index 9c26800..6d6b67b 100644
+--- a/include/configs/xilinx_zynqmp_zcu102.h
++++ b/include/configs/xilinx_zynqmp_zcu102.h
+@@ -10,7 +10,6 @@
+ #ifndef __CONFIG_ZYNQMP_ZCU102_H
+ #define __CONFIG_ZYNQMP_ZCU102_H
+ 
+-#define CONFIG_ZYNQ_SDHCI1
+ #define CONFIG_ZYNQ_I2C0
+ #define CONFIG_ZYNQ_I2C1
+ #define CONFIG_SYS_I2C_MAX_HOPS		1
+-- 
+2.7.4
+
