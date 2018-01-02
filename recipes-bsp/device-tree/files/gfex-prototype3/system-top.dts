@@ -28,4 +28,10 @@
 		device_type = "memory";
 		reg = <0x0 0x0 0x0 0x80000000>, <0x00000008 0x00000000 0x00000003 0x80000000>;
 	};
+    gem2 {
+        local-mac-address = [00 0a 35 00 00 00];
+    };
+    gem3 {
+        local-mac-address = [00 0a 35 00 00 01];
+    };
 };

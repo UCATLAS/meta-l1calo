@@ -22,7 +22,6 @@ SRC_URI_append_gfex-prototype3  = " \
     file://pcw.dtsi            \
     file://pl.dtsi             \
     file://system-top.dts      \
-    file://system.dts          \
     file://zynqmp-clk-ccf.dtsi \
     file://zynqmp-clk.dtsi     \
     file://zynqmp.dtsi         \
