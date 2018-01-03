@@ -1,4 +1,3 @@
-
 DEPENDS_append_gfex-prototype1b = " device-tree"
 EXTRA_OEMAKE_append_gfex-prototype1b = " EXT_DTB=${RECIPE_SYSROOT}/boot/devicetree/${MACHINE}.dtb dtb_depends= " 
 

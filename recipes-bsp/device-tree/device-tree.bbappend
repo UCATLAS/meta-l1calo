@@ -1,5 +1,8 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
+# needed to populate sysroot so that u-boot can find the *.dtb
+SYSROOT_DIRS += "/boot/devicetree"
+
 # device tree sources for the various machines
 #COMPATIBLE_MACHINE_gfex-prototype1b = ".*"
 SRC_URI_append_gfex-prototype1b = " \
@@ -21,7 +24,7 @@ SRC_URI_append_gfex-prototype2  = " \
 SRC_URI_append_gfex-prototype3  = " \
     file://pcw.dtsi            \
     file://pl.dtsi             \
-    file://system-top.dts      \
+    file://gfex-prototype3.dts      \
     file://zynqmp-clk-ccf.dtsi \
     file://zynqmp-clk.dtsi     \
     file://zynqmp.dtsi         \
