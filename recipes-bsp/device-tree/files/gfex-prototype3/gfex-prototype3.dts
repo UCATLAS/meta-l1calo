@@ -28,10 +28,26 @@
 		device_type = "memory";
 		reg = <0x0 0x0 0x0 0x80000000>, <0x00000008 0x00000000 0x00000003 0x80000000>;
 	};
-    gem2 {
-        local-mac-address = [00 0a 35 00 00 00];
+};
+
+&gem2 {
+    local-mac-address = [00 0a 35 00 00 00];
+    phy-handle = <&phy0>;
+    phy0: phy@4 {
+        reg = <0x4>;
+        ti,rx-internal-delay = <0x8>;
+        ti,tx-internal-delay = <0xa>;
+        ti,fifo-depth = <0x1>;
     };
-    gem3 {
-        local-mac-address = [00 0a 35 00 00 01];
+};
+
+&gem3 {
+    local-mac-address = [00 0a 35 00 00 01];
+    phy-handle = <&phy1>;
+    phy1: phy@7 {
+        reg = <0x7>;
+        ti,rx-internal-delay = <0x8>;
+        ti,tx-internal-delay = <0xa>;
+        ti,fifo-depth = <0x1>;
     };
 };
