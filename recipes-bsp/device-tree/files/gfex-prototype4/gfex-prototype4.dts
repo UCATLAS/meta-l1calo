@@ -1,0 +1,46 @@
+/dts-v1/;
+/include/ "zynqmp.dtsi"
+/include/ "zynqmp-clk-ccf.dtsi"
+/include/ "pl.dtsi"
+/include/ "pcw.dtsi"
+/ {
+  chosen {
+    bootargs = "earlycon clk_ignore_unused";
+    stdout-path = "serial0:115200n8";
+  };
+  aliases {
+    ethernet0 = &gem2;
+    ethernet1 = &gem3;
+    serial0 = &uart0;
+    spi0 = &axi_quad_spi_0;
+    spi1 = &qspi;
+    spi2 = &spi0;
+    spi3 = &spi1;
+  };
+  memory {
+    device_type = "memory";
+    reg = <0x0 0x0 0x0 0x80000000>, <0x00000008 0x00000000 0x0 0x80000000>;
+  };
+};
+
+&gem2 {
+    local-mac-address = [00 0a 35 00 00 00];
+    phy-handle = <&phy0>;
+    phy0: phy@4 {
+        reg = <0x4>;
+        ti,rx-internal-delay = <0x8>;
+        ti,tx-internal-delay = <0xa>;
+        ti,fifo-depth = <0x1>;
+    };
+};
+
+&gem3 {
+    local-mac-address = [00 0a 35 00 00 01];
+    phy-handle = <&phy1>;
+    phy1: phy@7 {
+        reg = <0x7>;
+        ti,rx-internal-delay = <0x8>;
+        ti,tx-internal-delay = <0xa>;
+        ti,fifo-depth = <0x1>;
+    };
+};

@@ -29,3 +29,13 @@ SRC_URI_append_gfex-prototype3  = " \
     file://zynqmp-clk.dtsi     \
     file://zynqmp.dtsi         \
 "
+
+#COMPATIBLE_MACHINE_gfex-prototype4 = ".*"
+SRC_URI_append_gfex-prototype4  = " \
+    file://pcw.dtsi            \
+    file://pl.dtsi             \
+    file://gfex-prototype4.dts      \
+    file://zynqmp-clk-ccf.dtsi \
+    file://zynqmp-clk.dtsi     \
+    file://zynqmp.dtsi         \
+"
