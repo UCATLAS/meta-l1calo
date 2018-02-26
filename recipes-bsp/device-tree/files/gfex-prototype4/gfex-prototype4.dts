@@ -25,6 +25,7 @@
 
 &gem2 {
     local-mac-address = [00 0a 35 00 00 00];
+    compatible = "marvell,88e1116r";
     phy-handle = <&phy0>;
     phy0: phy@7 {
         reg = <0x7>;
@@ -36,6 +37,7 @@
 
 &gem3 {
     local-mac-address = [00 0a 35 00 00 01];
+    compatible = "marvell,88e1116r";
     phy-handle = <&phy1>;
     phy1: phy@4 {
         reg = <0x4>;
