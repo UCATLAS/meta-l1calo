@@ -27,7 +27,6 @@
     local-mac-address = [00 0a 35 00 00 00];
     phy-handle = <&phy0>;
     phy0: phy@7 {
-        compatible = "marvell,88e1116r";
         reg = <0x7>;
         ti,rx-internal-delay = <0x8>;
         ti,tx-internal-delay = <0xa>;
@@ -39,7 +38,6 @@
     local-mac-address = [00 0a 35 00 00 01];
     phy-handle = <&phy1>;
     phy1: phy@4 {
-        compatible = "marvell,88e1116r";
         reg = <0x4>;
         ti,rx-internal-delay = <0x8>;
         ti,tx-internal-delay = <0xa>;
@@ -49,4 +47,5 @@
 
 &sdhci1 {
   disable-wp;
+  disable-cd;
 };
