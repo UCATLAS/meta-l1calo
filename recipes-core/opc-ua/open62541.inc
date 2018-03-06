@@ -14,6 +14,11 @@ DEPENDS = "openssl python-six-native"
 
 inherit cmake pythonnative
 
+do_install_append() {
+  install -d ${D}${includedir}
+  install -m 644 ${B}/open62541.h ${D}${includedir}
+}
+
 # Specify any options you want to pass to cmake using EXTRA_OECMAKE:
 EXTRA_OECMAKE = "\
   -DCMAKE_BUILD_TYPE=Release \
@@ -22,4 +27,5 @@ EXTRA_OECMAKE = "\
 FILES_${PN}_append = "\
   ${libdir}/cmake \
   ${libdir}/cmake/open62541*.cmake \
+  ${includedir}/open62541.h \
 "
