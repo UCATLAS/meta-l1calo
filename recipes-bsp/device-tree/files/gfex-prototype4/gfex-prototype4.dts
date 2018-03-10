@@ -49,11 +49,3 @@
   disable-wp;
   disable-cd;
 };
-
-&i2c0 {
-  clock-frequency = <100000>;
-};
-
-&i2c1 {
-  clock-frequency = <100000>;
-};
