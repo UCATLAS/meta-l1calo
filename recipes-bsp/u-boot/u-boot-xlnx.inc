@@ -6,8 +6,11 @@ EXTRA_OEMAKE_append_gfex-prototype1b = " EXT_DTB=${RECIPE_SYSROOT}/boot/devicetr
 DEPENDS_append_gfex-prototype2  = " device-tree"
 EXTRA_OEMAKE_append_gfex-prototype2  = " EXT_DTB=${RECIPE_SYSROOT}/boot/devicetree/${MACHINE}.dtb dtb_depends= "
 
-DEPENDS_append_gfex-prototype3  = " device-tree"
-EXTRA_OEMAKE_append_gfex-prototype3  = " EXT_DTB=${RECIPE_SYSROOT}/boot/devicetree/${MACHINE}.dtb dtb_depends= "
+DEPENDS_append_gfex-prototype3a  = " device-tree"
+EXTRA_OEMAKE_append_gfex-prototype3a  = " EXT_DTB=${RECIPE_SYSROOT}/boot/devicetree/${MACHINE}.dtb dtb_depends= "
+
+DEPENDS_append_gfex-prototype3b  = " device-tree"
+EXTRA_OEMAKE_append_gfex-prototype3b  = " EXT_DTB=${RECIPE_SYSROOT}/boot/devicetree/${MACHINE}.dtb dtb_depends= "
 
 DEPENDS_append_gfex-prototype4  = " device-tree"
 EXTRA_OEMAKE_append_gfex-prototype4  = " EXT_DTB=${RECIPE_SYSROOT}/boot/devicetree/${MACHINE}.dtb dtb_depends= "
@@ -18,8 +21,10 @@ SRC_URI_append_gfex-prototype1b += "file://machine.h"
 SRC_URI_append_gfex-prototype1b += "file://defconfig"
 SRC_URI_append_gfex-prototype2 += "file://machine.h"
 SRC_URI_append_gfex-prototype2 += "file://defconfig"
-SRC_URI_append_gfex-prototype3 += "file://machine.h"
-SRC_URI_append_gfex-prototype3 += "file://defconfig"
+SRC_URI_append_gfex-prototype3a += "file://machine.h"
+SRC_URI_append_gfex-prototype3a += "file://defconfig"
+SRC_URI_append_gfex-prototype3b += "file://machine.h"
+SRC_URI_append_gfex-prototype3b += "file://defconfig"
 SRC_URI_append_gfex-prototype4 += "file://machine.h"
 SRC_URI_append_gfex-prototype4 += "file://defconfig"
 
@@ -38,7 +43,11 @@ do_patch_append_gfex-prototype2() {
     bb.build.exec_func('do_copy_configs', d)
 }
 
-do_patch_append_gfex-prototype3() {
+do_patch_append_gfex-prototype3a() {
+    bb.build.exec_func('do_copy_configs', d)
+}
+
+do_patch_append_gfex-prototype3b() {
     bb.build.exec_func('do_copy_configs', d)
 }
 

@@ -24,11 +24,21 @@ SRC_URI_append_gfex-prototype2  = " \
     file://system.dts      \
 "
 
-#COMPATIBLE_MACHINE_gfex-prototype3 = ".*"
-SRC_URI_append_gfex-prototype3  = " \
+#COMPATIBLE_MACHINE_gfex-prototype3a = ".*"
+SRC_URI_append_gfex-prototype3a  = " \
     file://pcw.dtsi            \
     file://pl.dtsi             \
-    file://gfex-prototype3.dts      \
+    file://gfex-prototype3a.dts      \
+    file://zynqmp-clk-ccf.dtsi \
+    file://zynqmp-clk.dtsi     \
+    file://zynqmp.dtsi         \
+"
+
+#COMPATIBLE_MACHINE_gfex-prototype3b = ".*"
+SRC_URI_append_gfex-prototype3b  = " \
+    file://pcw.dtsi            \
+    file://pl.dtsi             \
+    file://gfex-prototype3b.dts      \
     file://zynqmp-clk-ccf.dtsi \
     file://zynqmp-clk.dtsi     \
     file://zynqmp.dtsi         \

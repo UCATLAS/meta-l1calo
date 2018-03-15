@@ -19,8 +19,8 @@
 		ethernet0 = &gem2;
 		ethernet1 = &gem3;
 		serial0 = &uart0;
-		spi0 = &axi_quad_spi_0;
-		spi1 = &qspi;
+		spi1 = &axi_quad_spi_0;
+		spi0 = &qspi;
 		spi2 = &spi0;
 		spi3 = &spi1;
 	};
@@ -30,11 +30,12 @@
 	};
 };
 
+/** Note: gem2/gem3 switched between v3a and v3b **/
 &gem2 {
     local-mac-address = [00 0a 35 00 00 00];
     phy-handle = <&phy0>;
-    phy0: phy@4 {
-        reg = <0x4>;
+    phy0: phy@7 {
+        reg = <0x7>;
         ti,rx-internal-delay = <0x8>;
         ti,tx-internal-delay = <0xa>;
         ti,fifo-depth = <0x1>;
@@ -44,8 +45,8 @@
 &gem3 {
     local-mac-address = [00 0a 35 00 00 01];
     phy-handle = <&phy1>;
-    phy1: phy@7 {
-        reg = <0x7>;
+    phy1: phy@4 {
+        reg = <0x4>;
         ti,rx-internal-delay = <0x8>;
         ti,tx-internal-delay = <0xa>;
         ti,fifo-depth = <0x1>;
