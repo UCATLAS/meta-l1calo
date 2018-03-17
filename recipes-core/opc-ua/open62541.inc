@@ -24,8 +24,4 @@ EXTRA_OECMAKE = "\
   -DCMAKE_BUILD_TYPE=Release \
 "
 
-FILES_${PN}_append = "\
-  ${libdir}/cmake \
-  ${libdir}/cmake/open62541*.cmake \
-  ${includedir}/open62541.h \
-"
+FILES_${PN}-dev += "${libdir}/cmake"
