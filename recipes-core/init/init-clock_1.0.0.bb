@@ -12,6 +12,8 @@ inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "init-clock"
 
+RDEPENDS_${PN} = "python-core"
+
 # install it in the correct location for update-rc.d
 do_install() {
   install -d ${D}${INIT_D_DIR}
