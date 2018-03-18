@@ -6,9 +6,10 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 # so that the u-boot recipe can find it
 SYSROOT_DIRS += "/boot/devicetree"
 
+COMPATIBLE_MACHINE_gfex = ".*"
+
 # device tree sources for the various machines
 # these are the file paths for the device tree information
-COMPATIBLE_MACHINE_gfex-prototype1b = ".*"
 SRC_URI_append_gfex-prototype1b = " \
     file://skeleton.dtsi  \
     file://pl.dtsi        \
@@ -16,7 +17,6 @@ SRC_URI_append_gfex-prototype1b = " \
     file://system.dts     \
 "
 
-COMPATIBLE_MACHINE_gfex-prototype2 = ".*"
 SRC_URI_append_gfex-prototype2  = " \
     file://skeleton.dtsi   \
     file://pl.dtsi         \
@@ -24,7 +24,6 @@ SRC_URI_append_gfex-prototype2  = " \
     file://system.dts      \
 "
 
-COMPATIBLE_MACHINE_gfex-prototype3a = ".*"
 SRC_URI_append_gfex-prototype3a  = " \
     file://pcw.dtsi            \
     file://pl.dtsi             \
@@ -34,7 +33,6 @@ SRC_URI_append_gfex-prototype3a  = " \
     file://zynqmp.dtsi         \
 "
 
-COMPATIBLE_MACHINE_gfex-prototype3b = ".*"
 SRC_URI_append_gfex-prototype3b  = " \
     file://pcw.dtsi            \
     file://pl.dtsi             \
@@ -44,7 +42,6 @@ SRC_URI_append_gfex-prototype3b  = " \
     file://zynqmp.dtsi         \
 "
 
-COMPATIBLE_MACHINE_gfex-prototype4 = ".*"
 SRC_URI_append_gfex-prototype4  = " \
     file://pcw.dtsi            \
     file://pl.dtsi             \
