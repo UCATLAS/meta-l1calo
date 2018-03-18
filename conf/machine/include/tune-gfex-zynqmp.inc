@@ -26,12 +26,3 @@ SPL_BINARY = ""
 
 # PMU instance args
 PMU_ROM ?= "${DEPLOY_DIR_IMAGE}/pmu-rom.elf"
-QB_PMU_OPT = " \
-    -M microblaze-fdt \
-    -display none \
-    -hw-dtb ${DEPLOY_DIR_IMAGE}/qemu-hw-devicetrees/multiarch/zynqmp-pmu.dtb \
-    -kernel ${PMU_ROM} \
-    -device loader,file=${DEPLOY_DIR_IMAGE}/pmu-${MACHINE}.elf \
-    -device loader,addr=0xfd1a0074,data=0x1011003,data-len=4 \
-    -device loader,addr=0xfd1a007C,data=0x1010f03,data-len=4 \
-    "
