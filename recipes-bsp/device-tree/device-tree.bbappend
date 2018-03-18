@@ -24,29 +24,24 @@ SRC_URI_append_gfex-prototype2  = " \
     file://system.dts      \
 "
 
-SRC_URI_append_gfex-prototype3a  = " \
-    file://pcw.dtsi            \
+SRC_URI_append_gfex-zynqmp = " \
     file://pl.dtsi             \
-    file://gfex-prototype3a.dts      \
     file://zynqmp-clk-ccf.dtsi \
     file://zynqmp-clk.dtsi     \
     file://zynqmp.dtsi         \
+"
+
+SRC_URI_append_gfex-prototype3a  = " \
+    file://pcw.dtsi            \
+    file://gfex-prototype3a.dts      \
 "
 
 SRC_URI_append_gfex-prototype3b  = " \
     file://pcw.dtsi            \
-    file://pl.dtsi             \
     file://gfex-prototype3b.dts      \
-    file://zynqmp-clk-ccf.dtsi \
-    file://zynqmp-clk.dtsi     \
-    file://zynqmp.dtsi         \
 "
 
 SRC_URI_append_gfex-prototype4  = " \
     file://pcw.dtsi            \
-    file://pl.dtsi             \
     file://gfex-prototype4.dts      \
-    file://zynqmp-clk-ccf.dtsi \
-    file://zynqmp-clk.dtsi     \
-    file://zynqmp.dtsi         \
 "
