@@ -55,7 +55,7 @@
 
 &qspi {
     flash0: flash@0 {
-        compatible = "micron,mt25qu02g";
+        compatible = "n25q512a", "micron,m25p80";
         reg = <0x0>;
         #address-cells = <1>;
         #size-cells = <1>;
@@ -63,25 +63,17 @@
         spi-rx-bus-width = <0x4>;
         spi-tx-bus-width = <0x1>;
         is-dual = <0x1>;
-        partition@qspi-fsbl-uboot {
-                  label = "qspi-fsbl-uboot";
-                  reg = <0x0 0x2000000>;
-        };
         partition@qspi-linux {
-                  label = "qspi-linux";
-                  reg = <0x2000000 0x2000000>;
+                  label = "kernel";
+                  reg = <0x02000000 0x01000000>;
         };
         partition@qspi-device-tree {
-                  label = "qspi-device-tree";
-                  reg = <0x4000000 0x2000000>;
+                  label = "device-tree";
+                  reg = <0x03000000 0x01000000>;
         };
         partition@qspi-rootfs {
-                  label = "qspi-rootfs";
-                  reg = <0x6000000 0x2000000>;
-        };
-        partition@qspi-bitstream {
-                  label = "qspi-bitstream";
-                  reg = <0x8000000 0x2000000>;
+                  label = "rootfs";
+                  reg = <0x04000000 0x04000000>;
         };
     };
 };
