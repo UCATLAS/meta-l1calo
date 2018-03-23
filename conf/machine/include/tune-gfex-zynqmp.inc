@@ -15,7 +15,7 @@ EXTRA_IMAGEDEPENDS += " \
 
 # image for SPI
 IMAGE_FSTYPES += "jffs2"
-JFFS2_ERASEBLOCK = "0x20000"
+JFFS2_ERASEBLOCK = "0x2000"
 
 # image for SD card
 IMAGE_FSTYPES += "wic"
