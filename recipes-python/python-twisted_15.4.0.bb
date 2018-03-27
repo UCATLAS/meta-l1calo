@@ -57,6 +57,7 @@ RDEPENDS_${PN}-core = "\
     python-distutils \
     python-doctest \
     python-email \
+    python-fcntl \
     python-importlib \
     python-io \
     python-json \

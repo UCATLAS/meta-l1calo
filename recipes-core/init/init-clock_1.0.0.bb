@@ -12,7 +12,7 @@ inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "init-clock"
 
-RDEPENDS_${PN} = "python-core"
+RDEPENDS_${PN} = "python-core python-fcntl"
 
 # install it in the correct location for update-rc.d
 do_install() {
