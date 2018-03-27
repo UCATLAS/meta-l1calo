@@ -48,4 +48,8 @@
 &sdhci1 {
   disable-wp;
   disable-cd;
+  /*broken-mmc-highspeed;*/
+  /*clock-frequency = <50000000>;*/
+  broken-tuning;
+  no-1-8-v;
 };
