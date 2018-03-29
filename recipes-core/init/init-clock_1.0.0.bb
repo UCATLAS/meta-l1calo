@@ -1,6 +1,6 @@
 # see https://stackoverflow.com/a/40768781
 DESCRIPTION = "Clock Configuration via I2C"
-SRC_URI = "\
+SRC_URI_gfex-prototype4 = "\
   file://init-clock \
   file://init_clock/*\
 "
@@ -12,7 +12,7 @@ inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "init-clock"
 
-RDEPENDS_${PN} = "python-core python-fcntl"
+RDEPENDS_${PN} = "python-core python-fcntl python-periphery"
 
 # install it in the correct location for update-rc.d
 do_install() {

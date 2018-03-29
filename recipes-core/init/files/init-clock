@@ -19,11 +19,12 @@
 # SOFTWARE.
 
 from __future__ import print_function
-from init_clock import I2C, Si5345, frequencies
+from init_clock import Si5345, frequencies
+from periphery import I2C
 from time import sleep
 import sys
 
-i2c = I2C(0x68, 0) # device @ 0x68, bus 0
+i2c = I2C("/dev/i2c-0")
 
 def batch(iterable, n=1):
   l = len(iterable)
@@ -31,14 +32,14 @@ def batch(iterable, n=1):
     yield iterable[ndx:min(ndx+n, l)]
 
 def set_page(i2c, page):
-  i2c.write(bytearray([0x01, page]))
+  i2c.transfer(0x68, [I2C.Message([0x01, page])])
 
 def do_i2c_block_write(i2c, block):
   page, register, value = block
   if page != do_i2c_block_write.page:
     set_page(i2c, page)
     do_i2c_block_write.page = page
-  i2c.write(bytearray([register, value]))
+  i2c.transfer(0x68, [I2C.Message([register, value])])
 
 do_i2c_block_write.page = 0x00
 
