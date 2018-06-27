@@ -8,5 +8,4 @@ IMAGE_INSTALL += "git"
 
 IMAGE_INSTALL += "python-ironman"
 IMAGE_INSTALL += "python-periphery"
-IMAGE_INSTALL += "init-clock"
 IMAGE_INSTALL += "gator glew"
