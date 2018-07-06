@@ -27,5 +27,11 @@ EXTRA_OECMAKE = " \
   -DHAVE_ATOMICS_EXITCODE=0 \
 "
 
+# xrootd is installing plugins and shared libraries to the same location
+# which is not so easy to change. The best fix for now is to put all of them in /usr/lib 
+# and skip the QA for this. This is an acceptable workaround but we will end up with .so symlinks
+# in the run-time package, which doesn't do much harm.
+# See archive for discussion: https://lists.yoctoproject.org/pipermail/yocto/2018-July/041728.html .
+INSANE_SKIP_${PN} += "dev-so"
 FILES_SOLIBSDEV = ""
 FILES_${PN} += "${libdir}/*.so"
