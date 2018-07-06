@@ -4,22 +4,27 @@ DESCRIPTION = "Target-side daemon gathering data for ARM Streamline Performance 
 LICENSE = "GPL-2"
 LIC_FILES_CHKSUM = "file://driver/COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-SRCREV = "7ca6004c0b05138c49b9b21e0045487f55a60ab6"
-PV = "5.22+git${SRCPV}"
+SRCREV = "3ff46fedd4d097813156069edab9704cc65e0a42"
+PV = "6.7+git${SRCPV}"
 
-SRC_URI = "git://git.linaro.org/arm/ds5/gator.git;protocol=http;branch=linaro \
-           file://gator.init"
+SRC_URI = "git://github.com/ARM-software/gator.git;protocol=http;branch=master \           
+	   file://gator.init \
+	   file://DX910-SW-99002-r7p0-00rel0.tgz"
 
+#"git://git.linaro.org/arm/ds5/gator.git;protocol=http;branch=linaro
+	  
 S = "${WORKDIR}/git"
 
 inherit update-rc.d
+inherit module
+
 
 # Since this is c++ code we need to both compile and link with CXX
 #| PerfSource.o: In function `PerfSource::~PerfSource()':
 #| /usr/src/debug/gator/5.22+gitAUTOINC+7ca6004c0b-r0/git/daemon/PerfSource.cpp:128: undefined reference to `operator delete(void*, unsigned long)'
 CCLD = "${CXX}"
 
-EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} ${TARGET_CC_ARCH} -D_DEFAULT_SOURCE -DETCDIR=\"${sysconfdir}\"' \
+EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} ${TARGET_CC_ARCH} -D_DEFAULT_SOURCE -DETCDIR=\"${sysconfdir}\" \
     'LDFLAGS=${LDFLAGS} ${TARGET_CC_ARCH}' 'CROSS_COMPILE=${TARGET_PREFIX}' \
     'CXXFLAGS=${CXXFLAGS} ${TARGET_CC_ARCH} -fno-rtti'"
 
@@ -29,11 +34,18 @@ do_compile() {
     # Allow using a differnt linker than $(CC)
     sed -i -e 's:$(CC) $(LDFLAGS):$(CCLD) $(LDFLAGS):' ${S}/daemon/common.mk
     oe_runmake -C daemon CC='${CC}' CXX='${CXX}'
+
+    #Build gator.ko
+    GATOR_WITH_MALI_SUPPORT=MALI_4xx
+    CONFIG_GATOR_MALI_4XXMP_PATH=${WORKDIR}/DX910-SW-99002-r7p0-00rel0/driver/src/devicedrv/mali/
+    oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/driver ARCH=${ARCH} modules
+    #ARCH=${TARGET_ARCH} modules
 }
 
 do_install() {
-    install -D -p -m0755 daemon/gatord ${D}/${sbindir}/gatord
+    install -D -p -m0755 /daemon/gatord  ${D}/${sbindir}/gatord
     install -D -p -m0755 ${WORKDIR}/gator.init ${D}/${sysconfdir}/init.d/gator
+    #install -D -p -m0755 ${S}/driver/gator.ko ${D}/${sbindir}/gator.ko
 }
 
 INITSCRIPT_NAME = "gator"
