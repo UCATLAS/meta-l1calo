@@ -9,44 +9,48 @@ PV = "6.7+git${SRCPV}"
 
 SRC_URI = "git://github.com/ARM-software/gator.git;protocol=http;branch=master \           
 	   file://gator.init \
-	   file://DX910-SW-99002-r7p0-00rel0.tgz"
+	   file://DX910-SW-99002-r7p0-00rel0.tgz \
+       file://0001-disable-stripping-debug-info.patch \
+"
 
-#"git://git.linaro.org/arm/ds5/gator.git;protocol=http;branch=linaro
-	  
 S = "${WORKDIR}/git"
 
-inherit update-rc.d
-inherit module
-
+inherit update-rc.d module
 
 # Since this is c++ code we need to both compile and link with CXX
 #| PerfSource.o: In function `PerfSource::~PerfSource()':
 #| /usr/src/debug/gator/5.22+gitAUTOINC+7ca6004c0b-r0/git/daemon/PerfSource.cpp:128: undefined reference to `operator delete(void*, unsigned long)'
 CCLD = "${CXX}"
 
-EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} ${TARGET_CC_ARCH} -D_DEFAULT_SOURCE -DETCDIR=\"${sysconfdir}\" \
-    'LDFLAGS=${LDFLAGS} ${TARGET_CC_ARCH}' 'CROSS_COMPILE=${TARGET_PREFIX}' \
-    'CXXFLAGS=${CXXFLAGS} ${TARGET_CC_ARCH} -fno-rtti'"
+#EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} ${TARGET_CC_ARCH} -D_DEFAULT_SOURCE -DETCDIR=\"${sysconfdir}\" \
+#    'LDFLAGS=${LDFLAGS} ${TARGET_CC_ARCH}' 'CROSS_COMPILE=${TARGET_PREFIX}' \
+#    'CXXFLAGS=${CXXFLAGS} ${TARGET_CC_ARCH} -fno-rtti'"
+#LDFLAGS := "${@'${LDFLAGS}'.replace('-Wl,-O1', '-O1')}"
 
 do_compile() {
     # The regular makefile tries to be 'smart' by hardcoding ABI assumptions, let's use the clean makefile for everything.
     cp ${S}/daemon/Makefile_aarch64 ${S}/daemon/Makefile
-    # Allow using a differnt linker than $(CC)
-    sed -i -e 's:$(CC) $(LDFLAGS):$(CCLD) $(LDFLAGS):' ${S}/daemon/common.mk
-    oe_runmake -C daemon CC='${CC}' CXX='${CXX}'
+    oe_runmake -C daemon CROSS_COMPILE=${TARGET_PREFIX} CC='${CC}' CXX='${CXX}' 
 
     #Build gator.ko
-    GATOR_WITH_MALI_SUPPORT=MALI_4xx
-    CONFIG_GATOR_MALI_4XXMP_PATH=${WORKDIR}/DX910-SW-99002-r7p0-00rel0/driver/src/devicedrv/mali/
-    oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/driver ARCH=${ARCH} modules
+    #GATOR_WITH_MALI_SUPPORT=MALI_4xx
+    #CONFIG_GATOR_MALI_4XXMP_PATH=${WORKDIR}/DX910-SW-99002-r7p0-00rel0/driver/src/devicedrv/mali/
+    #oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/driver ARCH=${ARCH} modules
     #ARCH=${TARGET_ARCH} modules
 }
 
 do_install() {
-    install -D -p -m0755 /daemon/gatord  ${D}/${sbindir}/gatord
-    install -D -p -m0755 ${WORKDIR}/gator.init ${D}/${sysconfdir}/init.d/gator
-    #install -D -p -m0755 ${S}/driver/gator.ko ${D}/${sbindir}/gator.ko
+    install -d ${D}${sbindir}
+    install -d ${D}${INIT_D_DIR}
+    install -m 0755 ${S}/daemon/gatord  ${D}${sbindir}/gatord
+    install -m 0755 ${WORKDIR}/gator.init ${D}${INIT_D_DIR}/gator
+    #install -d -m 0755 ${S}/driver/gator.ko ${D}${sbindir}/gator.ko
 }
+
+FILES_${PN} = " \
+  ${INIT_D_DIR}/gator \
+  ${sbindir}/gatord \
+"
 
 INITSCRIPT_NAME = "gator"
 INITSCRIPT_PARAMS = "defaults 66"
