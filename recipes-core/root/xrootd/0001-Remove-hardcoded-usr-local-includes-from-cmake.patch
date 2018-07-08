@@ -1,0 +1,11 @@
+diff --git a/cmake/XRootDCommon.cmake b/cmake/XRootDCommon.cmake
+index 76257ca..63cd552 100644
+--- a/cmake/XRootDCommon.cmake
++++ b/cmake/XRootDCommon.cmake
+@@ -3,5 +3,4 @@ if( READLINE_FOUND )
+   include_directories( ${READLINE_INCLUDE_DIR} )
+ endif()
+ 
+-include_directories( ../ ./ ${ZLIB_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/src ${CMAKE_BINARY_DIR}/src
+-  /usr/local/include )
++include_directories( ../ ./ ${ZLIB_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/src ${CMAKE_BINARY_DIR}/src )
