@@ -17,15 +17,15 @@ S = "${WORKDIR}/git"
 
 inherit update-rc.d module
 
-# Since this is c++ code we need to both compile and link with CXX
-#| PerfSource.o: In function `PerfSource::~PerfSource()':
-#| /usr/src/debug/gator/5.22+gitAUTOINC+7ca6004c0b-r0/git/daemon/PerfSource.cpp:128: undefined reference to `operator delete(void*, unsigned long)'
-CCLD = "${CXX}"
-
 #EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} ${TARGET_CC_ARCH} -D_DEFAULT_SOURCE -DETCDIR=\"${sysconfdir}\" \
 #    'LDFLAGS=${LDFLAGS} ${TARGET_CC_ARCH}' 'CROSS_COMPILE=${TARGET_PREFIX}' \
 #    'CXXFLAGS=${CXXFLAGS} ${TARGET_CC_ARCH} -fno-rtti'"
-#LDFLAGS := "${@'${LDFLAGS}'.replace('-Wl,-O1', '-O1')}"
+LDFLAGS=''
+INHIBIT_PACKAGE_STRIP  = "1"
+INSTALL_MOD_STRIP="0"
+MALI_TIMELINE_PROFILING_ENABLED = "1"
+MALI_FRAMEBUFFER_DUMP_ENABLED = "1"
+MALE_SW_COUNTERS_ENABLED = "1"
 
 do_compile() {
     # The regular makefile tries to be 'smart' by hardcoding ABI assumptions, let's use the clean makefile for everything.
@@ -33,9 +33,9 @@ do_compile() {
     oe_runmake -C daemon CROSS_COMPILE=${TARGET_PREFIX} CC='${CC}' CXX='${CXX}' 
 
     #Build gator.ko
-    #GATOR_WITH_MALI_SUPPORT=MALI_4xx
-    #CONFIG_GATOR_MALI_4XXMP_PATH=${WORKDIR}/DX910-SW-99002-r7p0-00rel0/driver/src/devicedrv/mali/
-    #oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/driver ARCH=${ARCH} modules
+    GATOR_WITH_MALI_SUPPORT=MALI_4xx
+    CONFIG_GATOR_MALI_4XXMP_PATH=${WORKDIR}/DX910-SW-99002-r7p0-00rel0/driver/src/devicedrv/mali/
+    oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/driver ARCH=${ARCH} modules
     #ARCH=${TARGET_ARCH} modules
 }
 
@@ -44,12 +44,13 @@ do_install() {
     install -d ${D}${INIT_D_DIR}
     install -m 0755 ${S}/daemon/gatord  ${D}${sbindir}/gatord
     install -m 0755 ${WORKDIR}/gator.init ${D}${INIT_D_DIR}/gator
-    #install -d -m 0755 ${S}/driver/gator.ko ${D}${sbindir}/gator.ko
+    install -m 0755 ${S}/driver/gator.ko ${D}${sbindir}/gator.ko
 }
 
 FILES_${PN} = " \
   ${INIT_D_DIR}/gator \
   ${sbindir}/gatord \
+  ${sbindir}/gator.ko \
 "
 
 INITSCRIPT_NAME = "gator"
