@@ -5,6 +5,9 @@ EXTRA_OEMAKE_append_gfex = " EXT_DTB=${RECIPE_SYSROOT}/boot/devicetree/${MACHINE
 
 # add current directory FILES to the search path
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+
+SRC_URI_append_zc702-zynq7 += "file://0001-add-external-xadc-to-device-tree.patch"
+
 SRC_URI_append_gfex += " \
   file://machine.h \
   file://defconfig \

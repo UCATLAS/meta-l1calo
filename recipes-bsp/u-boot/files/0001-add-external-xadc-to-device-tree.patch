@@ -1,0 +1,22 @@
+diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
+index 0d280e99f0e3..b1ab34fada40 100644
+--- a/arch/arm/boot/dts/zynq-7000.dtsi
++++ b/arch/arm/boot/dts/zynq-7000.dtsi
+@@ -73,6 +73,17 @@
+ 			interrupts = <0 7 4>;
+ 			interrupt-parent = <&intc>;
+ 			clocks = <&clkc 12>;
++
++			xlnx, channels {
++				#address-cells = <0x01>;
++				#size-cells = <0x0>;
++				channel@1{
++					reg = <1>;
++				};
++				channel@9{
++					reg = <9>;
++				};
++			};
+ 		};
+ 
+ 		can0: can@e0008000 {
