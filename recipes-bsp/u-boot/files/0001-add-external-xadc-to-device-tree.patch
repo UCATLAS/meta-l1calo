@@ -1,7 +1,7 @@
-diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
+diff --git a/arch/arm/dts/zynq-7000.dtsi b/arch/arm/dts/zynq-7000.dtsi
 index 0d280e99f0e3..b1ab34fada40 100644
---- a/arch/arm/boot/dts/zynq-7000.dtsi
-+++ b/arch/arm/boot/dts/zynq-7000.dtsi
+--- a/arch/arm/dts/zynq-7000.dtsi
++++ b/arch/arm/dts/zynq-7000.dtsi
 @@ -73,6 +73,17 @@
  			interrupts = <0 7 4>;
  			interrupt-parent = <&intc>;
