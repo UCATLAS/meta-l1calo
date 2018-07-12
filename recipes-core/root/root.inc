@@ -10,7 +10,7 @@ S = "${WORKDIR}/${BPN}-${PV}"
 TOOLCHAIN = "clang"
 #TARGET_CXXFLAGS_append_toolchain-clang = " -stdlib=libc++ "
 
-DEPENDS += "llvm-native libpcre lz4 libx11 libxpm libxft gsl fftw libatomic-ops freetype glew xrootd"
+DEPENDS += "clang libpcre lz4 libx11 libxpm libxft gsl fftw libatomic-ops freetype glew xrootd"
 
 inherit cmake pkgconfig pythonnative
 
