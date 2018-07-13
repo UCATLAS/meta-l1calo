@@ -9,7 +9,7 @@ S = "${WORKDIR}/git"
 
 inherit cmake pythonnative
 
-DEPENDS += "boost python python-lxml-native xsd-native xerces-c"
+DEPENDS += "boost python-lxml-native xsd-native xerces-c"
 
 EXTRA_OECMAKE = " \
   -DCMAKE_BUILD_TYPE=Release \
