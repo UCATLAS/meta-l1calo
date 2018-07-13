@@ -9,13 +9,21 @@ PV = "6.7+git${SRCPV}"
 
 SRC_URI = "git://github.com/ARM-software/gator.git;protocol=http;branch=master \           
 	   file://gator.init \
-	   file://DX910-SW-99002-r7p0-00rel0.tgz \
-       file://0001-disable-stripping-debug-info.patch \
+	   file://DX910-SW-99002-r8p1-00rel0.tgz \
+       	   file://0001-disable-stripping-debug-info.patch \
 "
 
 S = "${WORKDIR}/git"
 
 inherit update-rc.d module
+
+RDEPENDS_${PN} = " \
+        libgles2 \
+        kernel-module-mali \
+	"
+
+
+#RDEPENDS /local/d6/easmith5/BuildOS/meta-xilinx/meta-xilinx-bsp/recipes-graphics/libgles
 
 #EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} ${TARGET_CC_ARCH} -D_DEFAULT_SOURCE -DETCDIR=\"${sysconfdir}\" \
 #    'LDFLAGS=${LDFLAGS} ${TARGET_CC_ARCH}' 'CROSS_COMPILE=${TARGET_PREFIX}' \
@@ -25,7 +33,7 @@ INHIBIT_PACKAGE_STRIP  = "1"
 INSTALL_MOD_STRIP="0"
 MALI_TIMELINE_PROFILING_ENABLED = "1"
 MALI_FRAMEBUFFER_DUMP_ENABLED = "1"
-MALE_SW_COUNTERS_ENABLED = "1"
+MALI_SW_COUNTERS_ENABLED = "1"
 
 do_compile() {
     # The regular makefile tries to be 'smart' by hardcoding ABI assumptions, let's use the clean makefile for everything.
