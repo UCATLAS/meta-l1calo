@@ -11,24 +11,20 @@ inherit cmake
 
 DEPENDS += "python"
 
-# ENABLE_CRYPTO
-#DEPENDS += "openssl"
-
-# ENABLE_KRB5
-#DEPENDS += "krb5"
+PACKAGECONFIG ??= "crypto krb5"
+PACKAGECONFIG[crypto] = "-DENABLE_KRB5=TRUE,-DENABLE_KRB5=FALSE,openssl"
+PACKAGECONFIG[krb5] = "-DENABLE_CRYPTO=TRUE,-DENABLE_CRYPTO=FALSE,krb5"
 
 EXTRA_OECMAKE = " \
   -DENABLE_PERL=FALSE \
   -DENABLE_FUSE=FALSE \
-  -DENABLE_CRYPTO=FALSE \
-  -DENABLE_KRB5=FALSE \
   -DENABLE_FUSE=FALSE \
   -DENABLE_READLINE=FALSE \
   -DHAVE_ATOMICS_EXITCODE=0 \
 "
 
 # xrootd is installing plugins and shared libraries to the same location
-# which is not so easy to change. The best fix for now is to put all of them in /usr/lib 
+# which is not so easy to change. The best fix for now is to put all of them in /usr/lib
 # and skip the QA for this. This is an acceptable workaround but we will end up with .so symlinks
 # in the run-time package, which doesn't do much harm.
 # See archive for discussion: https://lists.yoctoproject.org/pipermail/yocto/2018-July/041728.html .
