@@ -9,6 +9,8 @@ S = "${WORKDIR}/${BPN}-${PV}"
 
 TOOLCHAIN = "clang"
 #TARGET_CXXFLAGS_append_toolchain-clang = " -stdlib=libc++ "
+TUNE_CCARGS_remove_toolchain-clang = "-march=armv7-a"
+TUNE_CCARGS_append_toolchain-clang = "${@bb.utils.contains("TUNE_FEATURES", "armv7a", " -march=armv7a", "",d)}"
 
 DEPENDS += "clang libpcre lz4 libx11 libxpm libxft gsl fftw libatomic-ops freetype glew xrootd"
 
