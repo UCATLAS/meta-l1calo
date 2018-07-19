@@ -1,0 +1,12 @@
+diff --git a/drivers/clk/zynqmp/pll.c b/drivers/clk/zynqmp/pll.c
+index 668a2bd..29091f1 100644
+--- a/drivers/clk/zynqmp/pll.c
++++ b/drivers/clk/zynqmp/pll.c
+@@ -284,6 +284,7 @@ static void zynqmp_pll_disable(struct clk_hw *hw)
+ 	if (!zynqmp_pll_is_enabled(hw))
+ 		return;
+ 
++    pr_info("PLL: shutdown 0x%x %x %x \n",(u32)(ulong)clk->pll_ctrl, PLLCTRL_RESET_MASK, PLLCTRL_RESET_VAL);
+ 	pr_info("PLL: shutdown\n");
+ 
+ 	/* shut down PLL */
