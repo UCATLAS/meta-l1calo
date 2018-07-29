@@ -48,5 +48,5 @@ When sending single patches, please use something like:
 ## Maintenance
 
 Maintainers:
-        Giordon "kratsg" Stark <gstark@cern.ch>
-        Emily Smith <emily.ann.smith@cern.ch>
+  - Giordon "kratsg" Stark <gstark@cern.ch>
+  - Emily Smith <emily.ann.smith@cern.ch>
