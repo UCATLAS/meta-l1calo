@@ -33,11 +33,11 @@ The general steps are highlighted below:
 
 Open up the Xilinx SDK with the HDF (hardware description file) and BIT (bitstream file) loaded. From here, you will first create an application project for the Zynq FSBL `File > New > Application Project`:
 
-[[images/new_application_project.png|alt=new_application_project]]
+![new application project](images/new_application_project.png)
 
 and then select the Zynq FSBL project
 
-[[images/zynq_fsbl_wizard.png|alt=zynq_fsbl_wizard]]
+![zynq fsbl wizard](images/zynq_fsbl_wizard.png)
 
 and then the SDK will automatically build the necessary files, including the `fsbl.elf` file and copy over the bitstream file. The `fsbl.elf` file and the bitstream file will most likely be found in the `Debug/` folder under that project. This completes the first step.
 
@@ -45,7 +45,7 @@ and then the SDK will automatically build the necessary files, including the `fs
 
 Now, we just need to create the boot image `BOOT.BIN` with the necessary files loaded in the correct order. From the Xilinx SDK, `Xilinx Tools > Create Boot Image` which brings up a dialog
 
-[[images/create_boot_image_dialog.png|alt=create_boot_image_dialog]]
+![create boot image dialog](images/create_boot_image_dialog.png)
 
 where we need to have the following files loaded in exactly this order and type
 

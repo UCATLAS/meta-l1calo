@@ -100,11 +100,11 @@ which will produce the ELF in the same `deploy/images` directory as the above. A
 
 Open up the Xilinx SDK with the HDF (hardware description file) and BIT (bitstream file) loaded. From here, you will first create an application project for the Zynq Ultrascale+ MPSoC FSBL `File > New > Application Project`:
 
-[[images/zynqmp_new_application_project.png|alt=zynqmp_new_application_project]]
+![zynqmp - new application project](images/zynqmp_new_application_project.png)
 
 and then select the Zynq+ FSBL project
 
-[[images/zynqmp_fsbl_wizard.png|alt=zynqmp_fsbl_wizard]]
+![zynqmp - fsbl wizard](images/zynqmp_fsbl_wizard.png)
 
 and then the SDK will automatically build the necessary files, including the `fsbl.elf` file and copy over the bitstream file. The `fsbl.elf` file and the bitstream file will most likely be found in the `Debug/` folder under that project. This completes the first step.
 
@@ -112,11 +112,11 @@ and then the SDK will automatically build the necessary files, including the `fs
 
 Follow the same steps above, but this time, target the `PMU` instead of the `PS`. This might take a few seconds for Xilinx to load some other stuff
 
-[[images/zynqmp_new_application_project_pmu.png|alt=zynqmp_new_application_project_pm]]
+![zynqmp - new application project - power management](images/zynqmp_new_application_project_pmu.png)
 
 then there is only one example project which is the PMU firmware
 
-[[images/zynqmp_pmu_wizard.png|alt=zynqmp_pmu_wizard]]
+![zynqmp - pmu wizard](images/zynqmp_pmu_wizard.png)
 
 and then SDK will automatically build the necessary files, include the `pmufw.elf` file. The `pmufw.elf` file will most likely be found in the `Debug/` folder under that project. This completes the second step.
 
@@ -124,7 +124,7 @@ and then SDK will automatically build the necessary files, include the `pmufw.el
 
 Now, we just need to create the boot image `BOOT.BIN` with the necessary files loaded in the correct order. From the Xilinx SDK, `Xilinx Tools > Create Boot Image` which brings up a dialog
 
-[[images/zynqmp_create_boot_image_dialog.png|alt=zynqmp_create_boot_image_dialog]]
+![zynqmp - create boot image dialog](images/zynqmp_create_boot_image_dialog.png)
 
 where we need to have the following files loaded in exactly this order and type
 
@@ -397,7 +397,7 @@ or just plug it in a machine and drag-drop the files as the `BOOT` partition sho
 
 Configure SW16(?) to `0xE` (according to [this forum post](https://forums.xilinx.com/t5/Xilinx-Boards-and-Kits/ZCU102-fail-to-boot-from-SD-card/m-p/739836#M14443) if you have a rev1.0 board with ES2 chip)
 
-[[[https://www.starwaredesign.com/images/IMG_2053-1.JPG|alt=zynqmp_sw16_configuration]]](https://www.starwaredesign.com/index.php/articles-and-talks/87-build-and-deploy-yocto-linux-on-the-xilinx-zynq-ultrascale-mpsoc-zcu102)
+[![zynqmp_sw16_configuration](https://www.starwaredesign.com/images/IMG_2053-1.JPG)](https://www.starwaredesign.com/index.php/articles-and-talks/87-build-and-deploy-yocto-linux-on-the-xilinx-zynq-ultrascale-mpsoc-zcu102)
 
 and then plug in the SD card and you should see the board boot up successfully. Refer to [this Xilinx wiki](http://www.wiki.xilinx.com/Setup+a+Serial+Console) on setting up a serial console if you don't know how to do that.
 
