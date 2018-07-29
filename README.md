@@ -1,15 +1,12 @@
-meta-l1calo
-================================
+# meta-l1calo
 
-Introduction
--------------------------
+## Introduction
 
 This layer is intended to be the home of l1calo modules for OpenEmbedded.
 Modules in this layer need to be independent of openembedded-core and
 meta-openembedded/meta-oe.
 
-Dependencies
--------------------------
+## Dependencies
 
 The meta-l1calo layer depends on:
 
@@ -35,8 +32,7 @@ The meta-l1calo layer depends on:
 
 Please follow the recommended setup procedures of your OE distribution.
 
-Contributing
--------------------------
+## Contributing
 
 The meta-openembedded mailinglist
 (openembedded-devel@lists.openembedded.org) is used for questions,
@@ -49,9 +45,8 @@ Send pull requests to openembedded-devel@lists.openembedded.org with
 When sending single patches, please use something like:
 'git send-email -M -1 --to=openembedded-devel@lists.openembedded.org --subject-prefix=meta-l1calo][PATCH'
 
-Maintenance
--------------------------
+## Maintenance
 
 Maintainers:
         Giordon "kratsg" Stark <gstark@cern.ch>
-
+        Emily Smith <emily.ann.smith@cern.ch>
