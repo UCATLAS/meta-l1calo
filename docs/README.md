@@ -10,7 +10,7 @@ This documentation serves to provide a high-level overview of how to use this la
 
 ## Executive Summary
 
-- [Building and Deploying an OS](Building-and-Deploying-an-OS.md)
+### [Building and Deploying an OS](Building-and-Deploying-an-OS.md)
 1. Find an available machine with various requirements for setting up
 2. Get the yocto project by cloning the repository and initialize environment
 3. Download and set up the additional layer dependencies, including [meta-l1calo](https://github.com/kratsg/meta-l1calo) and [meta-xilinx](https://github.com/Xilinx/meta-xilinx).
@@ -18,9 +18,7 @@ This documentation serves to provide a high-level overview of how to use this la
 5. Build the default base image by running `bitbake zynq-base`.
 6. Use the `*.wic` file to flash the SD card [if building for a gFEX board].
 
-- General FSBL Procedure
-  - [Zynq 7: FSBL procedure](Zynq-7:-Prepare-and-Boot-Hardware.md)
-  - [ZynqMP: FSBL procedure](ZynqMP:-Prepare-and-Boot-Hardware.md)
+### General FSBL Procedure for [Zynq 7](Zynq-7:-Prepare-and-Boot-Hardware.md) and [ZynqMP](ZynqMP:-Prepare-and-Boot-Hardware.md)
 1. Generate your device tree (if not using the evaluation board) from **Xilinx SDK**
 2. Generate your FSBL using **Xilinx SDK**
 3. Build your kernel image, u-boot, filesystem, and cross-compiled executables using **bitbake**
