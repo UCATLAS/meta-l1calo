@@ -5,8 +5,8 @@
 - [Documentation for meta-l1calo](#documentation-for-meta-l1calo)
   - [Useful References and Links](#useful-references-and-links)
   - [Executive Summary](#executive-summary)
-    - [[Building and Deploying an OS](Building-and-Deploying-an-OS.md)](#building-and-deploying-an-osbuilding-and-deploying-an-osmd)
-    - [General FSBL Procedure for [Zynq 7](Zynq-7-Prepare-and-Boot-Hardware.md) and [ZynqMP](ZynqMP-Prepare-and-Boot-Hardware.md)](#general-fsbl-procedure-for-zynq-7zynq-7-prepare-and-boot-hardwaremd-and-zynqmpzynqmp-prepare-and-boot-hardwaremd)
+    - [Building and Deploying an OS](#building-and-deploying-an-os)
+    - [General FSBL Procedure for](#general-fsbl-procedure-for)
   - [Frequently Asked Questions](#frequently-asked-questions)
     - [The auto-generated DTS from Xilinx does not have any details about the PHY chip. Is that intentional?](#the-auto-generated-dts-from-xilinx-does-not-have-any-details-about-the-phy-chip-is-that-intentional)
     - [Why can't I nest the MDIO node when defining a PHY chip for ethernet?](#why-cant-i-nest-the-mdio-node-when-defining-a-phy-chip-for-ethernet)
@@ -33,7 +33,11 @@ This documentation serves to provide a high-level overview of how to use this la
 
 ## Executive Summary
 
-### [Building and Deploying an OS](Building-and-Deploying-an-OS.md)
+### Building and Deploying an OS
+
+**References**:
+  - [Building and Deploying an OS](Building-and-Deploying-an-OS.md)
+
 1. Find an available machine with various requirements for setting up
 2. Get the yocto project by cloning the repository and initialize environment
 3. Download and set up the additional layer dependencies, including [meta-l1calo](https://github.com/kratsg/meta-l1calo) and [meta-xilinx](https://github.com/Xilinx/meta-xilinx).
@@ -41,7 +45,12 @@ This documentation serves to provide a high-level overview of how to use this la
 5. Build the default base image by running `bitbake zynq-base`.
 6. Use the `*.wic` file to flash the SD card [if building for a gFEX board].
 
-### General FSBL Procedure for [Zynq 7](Zynq-7-Prepare-and-Boot-Hardware.md) and [ZynqMP](ZynqMP-Prepare-and-Boot-Hardware.md)
+### General FSBL Procedure for
+
+**References**:
+  - [Zynq 7: Prepare and Boot Hardware](Zynq-7-Prepare-and-Boot-Hardware.md)
+  - [ZynqMP: Prepare and Boot Hardware](ZynqMP-Prepare-and-Boot-Hardware.md)
+
 1. Generate your device tree (if not using the evaluation board) from **Xilinx SDK**
 2. Generate your FSBL using **Xilinx SDK**
 3. Build your kernel image, u-boot, filesystem, and cross-compiled executables using **bitbake**
