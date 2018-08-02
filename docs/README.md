@@ -45,7 +45,7 @@ This documentation serves to provide a high-level overview of how to use this la
 5. Build the default base image by running `bitbake zynq-base`.
 6. Use the `*.wic` file to flash the SD card [if building for a gFEX board].
 
-### General FSBL Procedure for
+### General FSBL Procedure for Zynq machines
 
 **References**:
   - [Zynq 7: Prepare and Boot Hardware](Zynq-7-Prepare-and-Boot-Hardware.md)
