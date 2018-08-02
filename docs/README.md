@@ -6,7 +6,7 @@
   - [Useful References and Links](#useful-references-and-links)
   - [Executive Summary](#executive-summary)
     - [Building and Deploying an OS](#building-and-deploying-an-os)
-    - [General FSBL Procedure for](#general-fsbl-procedure-for)
+    - [General FSBL Procedure for Zynq machines](#general-fsbl-procedure-for-zynq-machines)
   - [Frequently Asked Questions](#frequently-asked-questions)
     - [The auto-generated DTS from Xilinx does not have any details about the PHY chip. Is that intentional?](#the-auto-generated-dts-from-xilinx-does-not-have-any-details-about-the-phy-chip-is-that-intentional)
     - [Why can't I nest the MDIO node when defining a PHY chip for ethernet?](#why-cant-i-nest-the-mdio-node-when-defining-a-phy-chip-for-ethernet)
