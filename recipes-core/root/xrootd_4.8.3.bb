@@ -1,4 +1,4 @@
-SUMMARY = "%{name}"
+SUMMARY = "The XROOTD project aims at giving high performance, scalable fault tolerant access to data repositories of many kinds."
 LICENSE = "LGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5da7e85e91d892c5f88216fa5470012a"
 SRC_URI = "https://github.com/xrootd/xrootd/archive/v${PV}.tar.gz \
