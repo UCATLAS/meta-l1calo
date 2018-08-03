@@ -28,6 +28,7 @@ RDEPENDS_${PN} = " \
 #EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} ${TARGET_CC_ARCH} -D_DEFAULT_SOURCE -DETCDIR=\"${sysconfdir}\" \
 #    'LDFLAGS=${LDFLAGS} ${TARGET_CC_ARCH}' 'CROSS_COMPILE=${TARGET_PREFIX}' \
 #    'CXXFLAGS=${CXXFLAGS} ${TARGET_CC_ARCH} -fno-rtti'"
+
 LDFLAGS=''
 INHIBIT_PACKAGE_STRIP  = "1"
 INSTALL_MOD_STRIP="0"
@@ -41,15 +42,17 @@ do_compile() {
     oe_runmake -C daemon CROSS_COMPILE=${TARGET_PREFIX} CC='${CC}' CXX='${CXX}' 
 
     #Build gator.ko
-    GATOR_WITH_MALI_SUPPORT=MALI_4xx
-    CONFIG_GATOR_MALI_4XXMP_PATH=${WORKDIR}/DX910-SW-99002-r7p0-00rel0/driver/src/devicedrv/mali/
-    oe_runmake -C ${STAGING_KERNEL_DIR} M=${S}/driver ARCH=${ARCH} modules
-    #ARCH=${TARGET_ARCH} modules
+    oe_runmake -C ${STAGING_KERNEL_BUILDDIR} ARCH=${ARCH} CONFIG_GATOR=m CONFIG_GATOR_WITH_MALI_SUPPORT=y CONFIG_GATOR_MALI_4XXMP=y \
+    CONFIG_GATOR_MALI_4XXMP_PATH="${WORKDIR}/DX910-SW-99002-r8p1-00rel0/driver/src/devicedrv/mali/" M=${S}/driver modules
+
+#    make -C /local/d6/easmith5/bitbake/poky/build/tmp/work-shared/zcu102-zynqmp/kernel-build-artifacts/ ARCH=arm64 CONFIG_GATOR_WITH_MALI_SUPPORT=y CONFIG_GATOR_MALI_4XXM#P=y CONFIG_GATOR_MALI_4XXMP_PATH="/local/d6/easmith5/DX910-SW-99002-r8p1-00rel0/driver/src/devicedrv/mali" CONFIG_GATOR=y M=${S}/driver modules
+
+
 }
 
 do_install() {
     install -d ${D}${sbindir}
-    install -d ${D}${INIT_D_DIR}
+install -d ${D}${INIT_D_DIR}
     install -m 0755 ${S}/daemon/gatord  ${D}${sbindir}/gatord
     install -m 0755 ${WORKDIR}/gator.init ${D}${INIT_D_DIR}/gator
     install -m 0755 ${S}/driver/gator.ko ${D}${sbindir}/gator.ko
