@@ -22,19 +22,8 @@ RDEPENDS_${PN} = " \
         kernel-module-mali \
 	"
 
-
-#RDEPENDS /local/d6/easmith5/BuildOS/meta-xilinx/meta-xilinx-bsp/recipes-graphics/libgles
-
-#EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} ${TARGET_CC_ARCH} -D_DEFAULT_SOURCE -DETCDIR=\"${sysconfdir}\" \
-#    'LDFLAGS=${LDFLAGS} ${TARGET_CC_ARCH}' 'CROSS_COMPILE=${TARGET_PREFIX}' \
-#    'CXXFLAGS=${CXXFLAGS} ${TARGET_CC_ARCH} -fno-rtti'"
-
 LDFLAGS=''
 INHIBIT_PACKAGE_STRIP  = "1"
-INSTALL_MOD_STRIP="0"
-MALI_TIMELINE_PROFILING_ENABLED = "1"
-MALI_FRAMEBUFFER_DUMP_ENABLED = "1"
-MALI_SW_COUNTERS_ENABLED = "1"
 
 do_compile() {
     # The regular makefile tries to be 'smart' by hardcoding ABI assumptions, let's use the clean makefile for everything.
@@ -44,9 +33,6 @@ do_compile() {
     #Build gator.ko
     oe_runmake -C ${STAGING_KERNEL_BUILDDIR} ARCH=${ARCH} CONFIG_GATOR=m CONFIG_GATOR_WITH_MALI_SUPPORT=y CONFIG_GATOR_MALI_4XXMP=y \
     CONFIG_GATOR_MALI_4XXMP_PATH="${WORKDIR}/DX910-SW-99002-r8p1-00rel0/driver/src/devicedrv/mali/" M=${S}/driver modules
-
-#    make -C /local/d6/easmith5/bitbake/poky/build/tmp/work-shared/zcu102-zynqmp/kernel-build-artifacts/ ARCH=arm64 CONFIG_GATOR_WITH_MALI_SUPPORT=y CONFIG_GATOR_MALI_4XXM#P=y CONFIG_GATOR_MALI_4XXMP_PATH="/local/d6/easmith5/DX910-SW-99002-r8p1-00rel0/driver/src/devicedrv/mali" CONFIG_GATOR=y M=${S}/driver modules
-
 
 }
 
