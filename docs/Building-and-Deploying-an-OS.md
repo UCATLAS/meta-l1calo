@@ -127,7 +127,6 @@ layer                 path                                      priority
 meta                  /local/d4/gstark/poky/meta                5
 meta-poky             /local/d4/gstark/poky/meta-poky           5
 meta-yocto-bsp        /local/d4/gstark/poky/meta-yocto-bsp      5
-meta                  /local/d4/gstark/poky/meta                5
 meta-xilinx           /local/d4/gstark/meta-xilinx/meta-xilinx-bsp   5
 meta-oe               /local/d4/gstark/meta-openembedded/meta-oe  6
 meta-python           /local/d4/gstark/meta-openembedded/meta-python  7
