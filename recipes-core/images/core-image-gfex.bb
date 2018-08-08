@@ -10,4 +10,4 @@ IMAGE_INSTALL += "python-ironman"
 IMAGE_INSTALL += "python-periphery"
 
 IMAGE_INSTALL_gfex-prototype4 += "init-clock"
-IMAGE_INSTALL_zynqmp += "gator glew"
+#IMAGE_INSTALL_zynqmp += "gator glew"
