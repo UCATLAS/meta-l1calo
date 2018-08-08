@@ -167,7 +167,16 @@ MACHINE = "zc706-zynq7"
 
 and we're done. Running `bitbake` at this point will pick up the machine you've defined and run with it.
 
-Note: `zc706-zynq7` is a machine defined in `meta-xilinx` for the evaluation board of the same name.
+Note: `zc706-zynq7` is a machine defined in `meta-xilinx` for the evaluation board of the same name. A few common machines are:
+
+- `zc702-zynq7`
+- `zc706-zynq7`
+- `zcu102-zynqmp`
+- `gfex-prototype1b`
+- `gfex-prototype2`
+- `gfex-prototype3a`
+- `gfex-prototype3b`
+- `gfex-prototype4`
 
 ### What machines actually exist?
 
