@@ -145,7 +145,7 @@ Building a kernel image, when all is said and done requires two main pieces of i
 In all cases, the machine is locally configured for a given build and you can generate multiple images for that given machine. It's as simple as running
 
 ```
-bitbake <image-name>
+bitbake core-image-gfex
 ```
 
 making a white russian, and casually sipping it while it compiles it all for you. This section will discuss some specific configurations I did for selecting the machine and setting up the cores. We end the section with a special command you need to do to wrap the generated diskimage in u-boot headers so that it can be extracted correctly by u-boot later.
