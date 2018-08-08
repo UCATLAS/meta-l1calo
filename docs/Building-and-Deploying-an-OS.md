@@ -142,11 +142,7 @@ Building a kernel image, when all is said and done requires two main pieces of i
 - the machine which you want to build on; this defines the toolchain and steps taken to build drivers, compile the device tree, etc... defined by the vendor (eg: Xilinx)
 - the image you want to build on the provided machine; this defines what you actually want in your kernel image (and filesystem image) and is usually independent of the machine itself
 
-In all cases, the machine is locally configured for a given build and you can generate multiple images for that given machine. It's as simple as running
-
-```
-bitbake core-image-gfex
-```
+In all cases, the machine is locally configured for a given build and you can generate multiple images for that given machine. It's as simple as baking an image,
 
 making a white russian, and casually sipping it while it compiles it all for you. This section will discuss some specific configurations I did for selecting the machine and setting up the cores. We end the section with a special command you need to do to wrap the generated diskimage in u-boot headers so that it can be extracted correctly by u-boot later.
 
@@ -183,13 +179,16 @@ For `meta-l1calo`, you simply look in `meta-l1calo/conf/machine` to see a list o
 
 Since it is expected that more than just me will be using this, you will need to think (I know right?) about the machine you want to use and then set that configuration yourself in the `conf/local.conf` file.
 
-## Converting cpio.gz to a u-boot uramdisk.image.gz
+## Baking an Image
+
+This is as simple as running
 
 ```
-mkimage -A arm -T ramdisk -C gzip -d inputFile.cpio.gz uramdisk.image.gz
+bitbake core-image-gfex
 ```
 
-where `mkimage` is from `sudo apt-get install u-boot-tools`
+to build the `core-image-gfex` image for the gFEX boards.
+
 
 ## Flashing image using wic
 
@@ -204,6 +203,18 @@ sudo dd if=zynq-base-gfex-prototype4.wic of=/dev/sdX
 where `sdX` can be identified by `diskutil list` on a mac or `fdisk -l` on a Linux machine. On Windows - you can use a special tool known as [Rufus](https://rufus.akeo.ie/) to do the same job.
 
 # Extra Useful Commands
+
+- Converting cpio.gz to a u-boot uramdisk.image.gz
+  ```
+  mkimage -A arm -T ramdisk -C gzip -d inputFile.cpio.gz uramdisk.image.gz
+  ```
+
+  where `mkimage` is from `sudo apt-get install u-boot-tools`
+
+- List recipes or images matching a pattern
+  ```
+  bitbake-layers show-recipes "*-image-gfex"
+  ```
 
 - Looking for an open-embedded package that includes a specific python package
   ```
