@@ -86,6 +86,8 @@ and these all need to be matched with our `poky` distribution (which is set at `
 We can add all of these layers in. From your `~/poky` directory, run `source oe-init-build-env` if you haven't already so that your environment is set up and `bitbake` is found... then we add the layers by running
 
 ```
+cd /path/to/poky
+source oe-init-build-env
 bitbake-layers add-layer ../../meta-xilinx/meta-xilinx-bsp
 bitbake-layers add-layer ../../meta-openembedded/meta-oe
 bitbake-layers add-layer ../../meta-openembedded/meta-python
