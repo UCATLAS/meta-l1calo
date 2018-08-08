@@ -142,9 +142,7 @@ Building a kernel image, when all is said and done requires two main pieces of i
 - the machine which you want to build on; this defines the toolchain and steps taken to build drivers, compile the device tree, etc... defined by the vendor (eg: Xilinx)
 - the image you want to build on the provided machine; this defines what you actually want in your kernel image (and filesystem image) and is usually independent of the machine itself
 
-In all cases, the machine is locally configured for a given build and you can generate multiple images for that given machine. It's as simple as baking an image,
-
-making a white russian, and casually sipping it while it compiles it all for you. This section will discuss some specific configurations I did for selecting the machine and setting up the cores. We end the section with a special command you need to do to wrap the generated diskimage in u-boot headers so that it can be extracted correctly by u-boot later.
+In all cases, the machine is locally configured for a given build and you can generate multiple images for that given machine. It's as simple as baking an image, making a white russian, and casually sipping it while it compiles it all for you. This section will discuss some specific configurations I did for selecting the machine and setting up the cores. We end the section with a special command you need to do to wrap the generated diskimage in u-boot headers so that it can be extracted correctly by u-boot later.
 
 All configurations are done in `conf/local.conf` after you've sourced the environment as mentioned previously.
 
