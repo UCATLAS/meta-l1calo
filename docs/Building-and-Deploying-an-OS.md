@@ -34,7 +34,7 @@ Most of the instructions here come from [the documentation](http://www.yoctoproj
        build-essential chrpath socat libsdl1.2-dev xterm
     ```
 
-1. Or we use a docker image [[ref]](https://github.com/crops/poky-container/blob/master/README.md) (**WIP**)
+1. Or we use a docker image [[ref]](https://github.com/crops/poky-container/blob/master/README.md) (**WIP**: not fully supported, development/bleeding-edge. You have been warned.)
     ```
     # on your machine
     mkdir ~/yocto_shared
