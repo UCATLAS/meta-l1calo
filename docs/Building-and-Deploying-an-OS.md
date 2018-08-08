@@ -50,6 +50,7 @@ Most of the instructions here come from [the documentation](http://www.yoctoproj
 
 1. Finally, we just need to initialize our environment
     ```
+    cd poky/
     source oe-init-build-env
     ```
 
