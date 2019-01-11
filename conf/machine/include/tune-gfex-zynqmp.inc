@@ -19,7 +19,7 @@ JFFS2_ERASEBLOCK = "0x20000"
 
 # image for SD card
 IMAGE_FSTYPES += "wic"
-WKS_FILES = "sdimage-bootpart.wks"
+WKS_FILES = "gfex-sdimage.wks"
 
 # disable SPL
 SPL_BINARY = ""
