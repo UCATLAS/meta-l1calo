@@ -8,5 +8,7 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
 	hwaddress ether 6e:15:4f:93:8f:20 #zcu102 board
-	# 00:0A:35:03:74:6F #schuster board
-	#00:0A:35:03:6F:65 #zynq board
+
+# zcu102 board 	  6e:15:4f:93:8f:20 
+# schuster board  00:0A:35:03:74:6F 
+# zynq board 	  00:0A:35:03:6F:65 
