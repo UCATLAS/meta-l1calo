@@ -16,4 +16,6 @@ IMAGE_INSTALL_append_gfex-prototype4 += "init-auto-shutdown"
 
 #IMAGE_INSTALL_append_zynqmp += "gator glew"
 
+IMAGE_INSTALL += "opc-ua-server-gfex"
+
 EXTRA_USERS_PARAMS_zcu102-zynqmp = "usermod -P gFEX-prc011 root;"
