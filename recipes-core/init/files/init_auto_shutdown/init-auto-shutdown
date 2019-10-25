@@ -1,0 +1,79 @@
+#!/usr/bin/env python
+
+# Copyright 2019 Emily Smith Permission is hereby granted, free of charge, to
+# any person obtaining a copy of this software and associated documentation
+# files (the "Software"), to deal in the Software without restriction,
+# including without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to permit
+# persons to whom the Software is furnished to do so, subject to the following
+# conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+from __future__ import print_function
+from math import trunc
+from time import sleep
+import sys
+import commands
+import time
+import logging
+
+from periphery import I2C
+# all hw addresses are defined in here
+from configurations import board
+from constants import *
+
+# imported from manufacturer tech reference manual for the chip (ask Shaochun where it came from)
+
+def adm1066_shutdown(dev_addr):
+    i2c = I2C("/dev/i2c-1")
+    i2c.transfer(dev_addr, [I2C.Message([0x07,0x20])]) # reset STOPWRITE BIT
+    i2c.close()
+    
+def check_temp(temp_sensor):
+    raw = commands.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_raw")
+    raw_value = float(raw)
+  
+    offset = commands.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_offset")
+    offset_value = float(offset)
+
+    scale = commands.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_scale")
+    scale_value = float(scale)
+
+    temp = (raw_value + offset_value)*scale_value/1024
+    return temp
+
+#set the i2c mux channel, since all the device is under SENSOR_IIC_BUS, just need to set once at the b
+print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at %.2f C." %TEMP_THRESHOLD)
+logging.basicConfig(filename="/etc/init.d/init_auto_shutdown/temp.log", level=logging.INFO)
+i2c = I2C("/dev/i2c-1")
+i2c.transfer(TCA9548_U93_ADDR, [I2C.Message([SENSOR_IIC_BUS])]) # SENSOR_IIC_BUS is selected
+i2c.close()
+
+temp_zynq = float(25)
+
+while temp_zynq < TEMP_THRESHOLD:
+    temp_ps = check_temp("temp0_ps")
+    temp_pl = check_temp("temp2_pl")
+
+    logging.info(str(commands.getoutput("date")))
+    logging.info("PS temperature: %.2f" %temp_ps)
+    logging.info("PL temperature: %.2f\n" %temp_pl)
+
+    temp_zynq = max(temp_ps, temp_pl)
+    time.sleep(2)
+
+else:
+    logging.info("The Zynq+ is %.2f C and has overheated. Shutting down the board immediately." % temp_zynq)
+    print("The Zynq+ is %.2f C and has overheated. Shutting down the board immediately." % temp_zynq)
+    time.sleep(2)
+    adm1066_shutdown(ADM1066_U52_ADDR)

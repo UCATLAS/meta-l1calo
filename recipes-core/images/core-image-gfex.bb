@@ -10,6 +10,8 @@ IMAGE_INSTALL += "python-ironman"
 IMAGE_INSTALL += "python-periphery"
 
 IMAGE_INSTALL_append_gfex-prototype4 += "init-clock"
+IMAGE_INSTALL_append_gfex-prototype4 += "init-auto-shutdown"
+
 #IMAGE_INSTALL_append_zynqmp += "gator glew"
 
 EXTRA_USERS_PARAMS_zcu102-zynqmp = "usermod -P gFEX-prc011 root;"
