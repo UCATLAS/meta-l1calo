@@ -53,11 +53,24 @@ def check_temp(temp_sensor):
     return temp
 
 #set the i2c mux channel, since all the device is under SENSOR_IIC_BUS, just need to set once at the b
-print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at %.2f C." %TEMP_THRESHOLD)
-logging.basicConfig(filename="/etc/init.d/init_auto_shutdown/temp.log", level=logging.INFO)
 i2c = I2C("/dev/i2c-1")
 i2c.transfer(TCA9548_U93_ADDR, [I2C.Message([SENSOR_IIC_BUS])]) # SENSOR_IIC_BUS is selected
 i2c.close()
+
+#Get and Check Temperature threshold
+if (TEMP_THRESHOLD > 70.0):
+    print("Temperature Threshold set to %.2f. This is too high!!" %TEMP_THRESHOLD)
+    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at 60 C")
+
+elif (TEMP_THRESHOLD < 45.0):
+    print("Temperature Threshold set to %.2f. This is too low!!" %TEMP_THRESHOLD)
+    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at 60 C")
+
+else:
+    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at %.2f C." %TEMP_THRESHOLD)
+    
+logging.basicConfig(filename="/etc/init.d/init_auto_shutdown/temp.log", level=logging.INFO)
+
 
 temp_zynq = float(25)
 
