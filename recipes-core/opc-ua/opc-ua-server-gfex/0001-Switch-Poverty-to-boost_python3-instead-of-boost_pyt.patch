@@ -1,0 +1,19 @@
+From 151d865e649a3fbaaef5dcd21f0f0feadeeca08e Mon Sep 17 00:00:00 2001
+From: Emily Smith <easmith5@uchicago.edu>
+Date: Wed, 18 Mar 2020 16:15:52 -0500
+Subject: [PATCH] Switch Poverty to boost_python3 instead of boost_python-mt
+
+---
+ Poverty | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Poverty b/Poverty
+index 3a764f4..e519dd1 160000
+--- a/Poverty
++++ b/Poverty
+@@ -1 +1 @@
+-Subproject commit 3a764f4dba275891f6e0c4adc3acb4440966a411
++Subproject commit e519dd1041bd7c5d5bd442b7cf6b93a2e06bab82
+-- 
+2.7.4
+
