@@ -14,7 +14,7 @@ SRCREV ?= "921c56330955ccdad91715989db522683485c235"
 
 inherit cmake pythonnative
 
-
+RDEPENDS_${PN} += "boost"
 DEPENDS += "boost boost-native python-dev python-lxml-native xsd-native xerces-c python-enum34-native python-six-native python-jinja2-native python-markupsafe-native"
 
 # install it correctly, manually
@@ -34,6 +34,6 @@ do_install() {
     chrpath -d ${D}${bindir}/libOpcUaServerObject.so
     
   # install Poverty shared object file
-    #install -m 0755 ${B}/Poverty/Poverty.so ${D}${bindir}
-    #chrpath -d ${D}${bindir}/Poverty.so
+    install -m 0755 ${B}/Poverty/Poverty.so ${D}${bindir}
+    chrpath -d ${D}${bindir}/Poverty.so
 }
