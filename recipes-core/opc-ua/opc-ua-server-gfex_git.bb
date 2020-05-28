@@ -1,21 +1,19 @@
-UMMARY = "OPC UA Server for Zynq on gFEX"
+SUMMARY = "OPC UA Server for Zynq on gFEX"
 DESCRIPTION = "OPA UA Server for Zynq on gFEX"
 LICENSE = "LGPLv3"
 LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=e94f6920e0f51ea34f43be88dc810edc"
 SRC_URI = "gitsm://git@gitlab.cern.ch:7999/atlas-dcs-opcua-servers/OpcUaGFexServer.git;branch=yocto_compat;protocol=ssh \
-           file://0001-Switch-Poverty-to-boost_python3-instead-of-boost_pyt.patch \
+           file://0001-Update-Poverty-submodule-to-boost-python3-and-python.patch \
            "
-
 
 S = "${WORKDIR}/git"
 PV = "1.0+git${SRCPV}"
-SRCREV ?= "921c56330955ccdad91715989db522683485c235"
-#SRCREV ?= "e9eadf3279392700869305a9b93acd6c133e2a32"
+SRCREV ?= "16528e2c97ae98c5725fd56bcec91e86f8a821e7"
 
-inherit cmake pythonnative
 
-RDEPENDS_${PN} += "boost"
-DEPENDS += "boost boost-native python-dev python-lxml-native xsd-native xerces-c python-enum34-native python-six-native python-jinja2-native python-markupsafe-native"
+inherit cmake python3native pythonnative
+
+DEPENDS += "python3-native python3-dev boost boost-native python-native python-dev python-lxml-native xsd-native xerces-c python-enum34-native python-six-native python-jinja2-native python-markupsafe-native"
 
 # install it correctly, manually
 do_install() {

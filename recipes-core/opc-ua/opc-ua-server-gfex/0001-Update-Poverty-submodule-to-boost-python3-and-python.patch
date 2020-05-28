@@ -1,0 +1,32 @@
+Submodule Poverty contains modified content
+diff --git a/Poverty/CMakeLists.txt b/Poverty/CMakeLists.txt
+index f2e61f3..c4a6b8e 100644
+--- a/Poverty/CMakeLists.txt
++++ b/Poverty/CMakeLists.txt
+@@ -12,6 +12,7 @@ DEPENDS ${DESIGN_FILE} templates/Poverty.jinja.hpp templates/Poverty.jinja.cpp t
+ )
+ 
+ include_directories(${PROJECT_BINARY_DIR}/Poverty/output)
++include_directories(/local/d6/easmith5/rocko_bitbake/poky/build/tmp/work/aarch64-poky-linux/opc-ua-server-gfex/1.0+gitAUTOINC+16528e2c97-r0/recipe-sysroot/usr/include/python3.5m)
+ 
+ # the following target will simply be included quasar server
+ add_library(Poverty OBJECT
+@@ -23,7 +24,7 @@ add_dependencies(Poverty AddressSpace)
+     
+ # --- from this line on, we deal with building the Python extension and no longer with anything related to quasar.    
+   
+-execute_process(COMMAND python-config --cflags OUTPUT_VARIABLE python_config_cflags)
++execute_process(COMMAND python3-config --cflags OUTPUT_VARIABLE python_config_cflags)
+ add_definitions(${python_config_cflags})
+ 
+ set( SERVER_SHARED_LIB_TARGET ${EXECUTABLE}Object )
+@@ -31,6 +32,6 @@ set( SERVER_SHARED_LIB_TARGET ${EXECUTABLE}Object )
+ add_library( PovertyPython SHARED
+         ${PROJECT_BINARY_DIR}/Poverty/output/PovertyPythonModule.cpp
+         )
+-target_link_libraries(PovertyPython boost_python-mt ${SERVER_SHARED_LIB_TARGET})
++target_link_libraries(PovertyPython boost_python3 ${SERVER_SHARED_LIB_TARGET})
+ set_target_properties(PovertyPython PROPERTIES PREFIX "" OUTPUT_NAME "Poverty") 
+-add_dependencies(PovertyPython ${SERVER_SHARED_LIB_TARGET})
+\ No newline at end of file
++add_dependencies(PovertyPython ${SERVER_SHARED_LIB_TARGET})
