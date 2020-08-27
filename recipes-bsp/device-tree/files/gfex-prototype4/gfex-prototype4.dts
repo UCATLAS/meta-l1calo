@@ -24,7 +24,7 @@
 };
 
 &gem2 {
-    local-mac-address = [00 0a 35 00 00 00];
+    local-mac-address = [00 0a 35 00 00 4A];
     phy-handle = <&phy0>;
     phy0: phy@7 {
         reg = <0x7>;
