@@ -1,4 +1,4 @@
-require conf/machine/include/tune-zynqmp.inc
+require conf/machine/include/soc-zynqmp.inc
 require conf/machine/include/tune-gfex.inc
 
 # add overrides for group of machines

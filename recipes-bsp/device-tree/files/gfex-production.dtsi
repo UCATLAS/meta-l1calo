@@ -1,0 +1,141 @@
+&pinctrl0 {
+	status = "okay";
+	pinctrl_gem2_default: gem2-default {
+		mux {
+			function = "ethernet2";
+			groups = "ethernet2_0_grp";
+		};
+
+		conf {
+			groups = "ethernet2_0_grp";
+			slew-rate = <1>;
+			io-standard = <1>;
+		};
+
+		conf-rx {
+			pins = "MIO58", "MIO59", "MIO60", "MIO61", "MIO62","MIO63";
+			bias-high-impedance;
+			low-power-disable;
+		};
+
+		conf-tx {
+			pins = "MIO52", "MIO53", "MIO54", "MIO55", "MIO56","MIO57";
+			bias-disable;
+			low-power-enable;
+		};
+
+		mux-mdio {
+			function = "mdio2";
+			groups = "mdio2_0_grp";
+		};
+
+		conf-mdio {
+			groups = "mdio2_0_grp";
+			slew-rate = <1>;
+			io-standard = <1>;
+			bias-disable;
+		};
+	};
+	pinctrl_gem3_default: gem3-default {
+		mux {
+			function = "ethernet3";
+			groups = "ethernet3_0_grp";
+		};
+
+		conf {
+			groups = "ethernet3_0_grp";
+			slew-rate = <1>;
+			io-standard = <1>;
+		};
+
+		conf-rx {
+			pins = "MIO70", "MIO71", "MIO72", "MIO73", "MIO74","MIO75";
+			bias-high-impedance;
+			low-power-disable;
+		};
+
+		conf-tx {
+			pins = "MIO64", "MIO65", "MIO66", "MIO67", "MIO68","MIO69";
+			bias-disable;
+			low-power-enable;
+		};
+	};
+
+  pinctrl_sdhci1_default: sdhci1-default {
+		mux {
+			groups = "sdio1_0_grp";
+			function = "sdio1";
+		};
+
+		conf {
+			groups = "sdio1_0_grp";
+			slew-rate = <1>;
+			io-standard = <1>;
+			bias-disable;
+		};
+
+                /*
+		mux-cd {
+			groups = "sdio1_0_cd_grp";
+			function = "sdio1_cd";
+		};
+
+		conf-cd {
+			groups = "sdio1_0_cd_grp";
+			bias-high-impedance;
+			bias-pull-up;
+			slew-rate = <1>;
+			io-standard = <1>;
+		};
+
+		mux-wp {
+			groups = "sdio1_0_wp_grp";
+			function = "sdio1_wp";
+		};
+
+		conf-wp {
+			groups = "sdio1_0_wp_grp";
+			bias-high-impedance;
+			bias-pull-up;
+			slew-rate = <1>;
+			io-standard = <1>;
+		};*/
+	};
+};
+
+                                                                                                                             
+&gem2 {
+    local-mac-address = [00 0a 35 00 00 4A];
+    phy-handle = <&phy7>;
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_gem2_default>;
+    phy7: phy@7 {
+        reg = <0x7>;
+        ti,rx-internal-delay = <0x8>;
+        ti,tx-internal-delay = <0xa>;
+        ti,fifo-depth = <0x1>;
+        ti,rxctrl-strap-worka;
+	};  
+    phy4: phy@4 {
+        reg = <0x4>;
+        ti,rx-internal-delay = <0x8>;
+        ti,tx-internal-delay = <0xa>;
+        ti,fifo-depth = <0x1>;
+        ti,rxctrl-strap-worka;
+    };
+};
+
+&gem3 {
+    local-mac-address = [00 0a 35 00 00 4B];
+    phy-handle = <&phy4>;
+    pinctrl-names = "default";
+    pinctrl-0 = <&pinctrl_gem3_default>;
+};
+                                                              
+                                                           
+&sdhci1 {                                                        
+  disable-wp;                                                    
+  disable-cd;                                                                                                           
+  broken-tuning;                                                 
+  no-1-8-v;                                                                                                               
+};                                                               

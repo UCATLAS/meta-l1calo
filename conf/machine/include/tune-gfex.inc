@@ -1,5 +1,6 @@
+
 require conf/machine/include/machine-xilinx-default.inc
-require conf/machine/include/machine-xilinx-board.inc
+require conf/machine/include/xilinx-board.inc
 include conf/machine/include/zynqmp-pmu-config.inc
 
 # this is usually something you don't touch, but specify a list of features/tunes

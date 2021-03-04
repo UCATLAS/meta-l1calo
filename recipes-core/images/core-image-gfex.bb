@@ -13,8 +13,8 @@ IMAGE_INSTALL += "python-argparse"
 IMAGE_INSTALL += "python3"
 
 
-IMAGE_INSTALL_append_gfex-prototype4 += "init-clock"
-IMAGE_INSTALL_append_gfex-prototype4 += "init-auto-shutdown"
+IMAGE_INSTALL_append_gfex += "init-clock"
+IMAGE_INSTALL_append_gfex += "init-auto-shutdown"
 
 #IMAGE_INSTALL_append_zynqmp += "gator glew"
 
