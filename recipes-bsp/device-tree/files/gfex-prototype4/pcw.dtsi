@@ -5,6 +5,10 @@
  */
 
 
+&gic {
+     num_cpus = <2>;
+     num_interrupts = <96>;
+};
 &lpd_dma_chan1 {
 	status = "okay";
 };
