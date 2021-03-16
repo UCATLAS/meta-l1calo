@@ -94,6 +94,11 @@
 &rtc {
 	status = "okay";
 };
+&sdhci1 {
+      clock-frequency = <199998000>;
+      status = "okay";
+      xlnx,mio_bank = <0x1>;
+};
 &serdes {
 	status = "okay";
 };
