@@ -161,7 +161,7 @@ elif (TEMP_THRESHOLD < 50.0):
 else:
     print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at %.2f C." %TEMP_THRESHOLD)
 
-logging.basicConfig(filename="/etc/init.d/init_auto_shutdown/temp.log", level=logging.INFO)
+logging.basicConfig(filename="/etc/init.d/init_ipmc_auto_shutdown/temp.log", level=logging.INFO)
 
 gfex_temp = float(30)
 while gfex_temp < TEMP_THRESHOLD:
