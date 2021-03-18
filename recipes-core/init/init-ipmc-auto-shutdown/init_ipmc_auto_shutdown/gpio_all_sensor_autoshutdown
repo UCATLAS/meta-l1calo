@@ -149,14 +149,16 @@ i2c.transfer(TCA9548_U93_ADDR, [I2C.Message([SENSOR_IIC_BUS])]) # SENSOR_IIC_BUS
 i2c.close()
 
 #Get and Check Temperature threshold
-TEMP_THRESHOLD = float(91)
-if (TEMP_THRESHOLD > 85.0):
+TEMP_THRESHOLD = float(95)
+if (TEMP_THRESHOLD > 95.0):
     print("Temperature Threshold set to %.2f. This is too high!!" %TEMP_THRESHOLD)
-    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at 85 C")
+    TEMP_THRESHOLD = float(95)
+    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at 95 C")
 
-elif (TEMP_THRESHOLD < 50.0):
+elif (TEMP_THRESHOLD < 65.0):
     print("Temperature Threshold set to %.2f. This is too low!!" %TEMP_THRESHOLD)
-    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at 85 C")
+    TEMP_THRESHOLD = float(65)
+    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at 65 C")
 
 else:
     print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at %.2f C." %TEMP_THRESHOLD)
@@ -266,10 +268,10 @@ while gfex_temp < TEMP_THRESHOLD:
 
     logging.info("gFEX temperature to IMPC is %s C." %temp_datagpiostr)
 
-    gpiocmdA = commands.getoutput("./gpio-dev-mem-test -g 0x00A0020000 -o" + temp_datagpiostr)
-    gpiocmdB = commands.getoutput("./gpio-dev-mem-test -g 0x00A0022000 -o 1" )
-    gpiocmdC = commands.getoutput("./gpio-dev-mem-test -g 0x00A0022000 -o 0" )
-    gpiocmdD = commands.getoutput("./gpio-dev-mem-test -g 0x00A0021000 -i" )
+    gpiocmdA = commands.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0020000 -o" + temp_datagpiostr)
+    gpiocmdB = commands.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 1" )
+    gpiocmdC = commands.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 0" )
+    gpiocmdD = commands.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0021000 -i" )
     logging.info("gFEX temperature to IMPC is %s C." %gpiocmdD)
     
     time.sleep(1)
