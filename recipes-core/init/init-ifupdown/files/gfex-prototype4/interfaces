@@ -7,5 +7,5 @@ iface lo inet loopback
 # Wired interfaces
 auto eth0
 iface eth0 inet dhcp
-	hwaddress ether 00:0A:35:00:00:4A
+	hwaddress ether 80:D3:36:00:3E:E0
 iface eth1 inet dhcp
