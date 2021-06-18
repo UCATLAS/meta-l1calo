@@ -47,6 +47,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 # "
 
 SYSTEM_USER_DTSI_gfex-production ?= "gfex-production.dtsi"
+SYSTEM_USER_DTSI_zcu102-zynqmp ?= "zcu102-zynqmp.dtsi"
 
 SRC_URI_append = " file://${SYSTEM_USER_DTSI}"
 

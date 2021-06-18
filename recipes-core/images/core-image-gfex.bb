@@ -11,7 +11,8 @@ IMAGE_INSTALL += "python-ironman"
 IMAGE_INSTALL += "python-periphery"
 IMAGE_INSTALL += "python-argparse"
 IMAGE_INSTALL += "python3"
-
+IMAGE_INSTALL += "python3-pynq"
+IMAGE_INSTALL += "pynq-overlay"
 
 IMAGE_INSTALL_append_gfex += "init-clock"
 IMAGE_INSTALL_append_gfex += "init-auto-shutdown"
