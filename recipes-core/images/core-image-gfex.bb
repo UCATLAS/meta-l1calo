@@ -7,11 +7,10 @@ IMAGE_INSTALL += "devmem2"
 IMAGE_INSTALL += "git"
 IMAGE_INSTALL += "zile"
 
-IMAGE_INSTALL += "python-ironman"
-IMAGE_INSTALL += "python-periphery"
-IMAGE_INSTALL += "python-argparse"
+IMAGE_INSTALL += "python3-ironman"
+IMAGE_INSTALL += "python3-periphery"
+IMAGE_INSTALL += "python3-numpy"
 IMAGE_INSTALL += "python3"
-
 
 IMAGE_INSTALL_append_gfex += "init-clock"
 IMAGE_INSTALL_append_gfex += "init-auto-shutdown"
