@@ -5,7 +5,7 @@ SRC_URI_gfex-prototype4 = "\
   file://init_clock/*\
 "
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${WORKDIR}/init-clock;beginline=2;endline=19;md5=846eef20187f1d9f7f2af0d254faa171"
+LIC_FILES_CHKSUM = "file://${WORKDIR}/init-clock;beginline=2;endline=19;md5=e740893593d6ecb2033496b85b82c742"
 
 COMPATIBLE_MACHINE = "gfex-prototype4"
 
