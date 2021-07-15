@@ -2,13 +2,14 @@ require conf/machine/include/soc-zynqmp.inc
 require conf/machine/include/tune-gfex.inc
 
 # add overrides for group of machines
-MACHINEOVERRIDES .= ":gfex-zynqmp"
+MACHINEOVERRIDES .= ":gfex-production"
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-xlnx"
 PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot-xlnx"
 PREFERRED_PROVIDER_virtual/pmu-firmware ?= "zynqmp-pmu-pmu-firmware"
 
 EXTRA_IMAGEDEPENDS += " \
+    u-boot-zynq-scr \
     arm-trusted-firmware \
     virtual/pmu-firmware \
     "
