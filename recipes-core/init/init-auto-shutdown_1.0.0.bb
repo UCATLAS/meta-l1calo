@@ -13,7 +13,7 @@ inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "run-init-auto-shutdown.sh"
 
-RDEPENDS_${PN} = "python-core python-fcntl python-periphery"
+RDEPENDS_${PN} = "python3-core python3-fcntl python3-periphery"
 
 #  install -m 0755 ${WORKDIR}/init-auto-shutdown ${D}${INIT_D_DIR}/init-auto-shutdown
 # install it in the correct location for update-rc.d

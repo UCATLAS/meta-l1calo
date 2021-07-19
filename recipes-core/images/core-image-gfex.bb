@@ -8,7 +8,6 @@ IMAGE_INSTALL += "git"
 IMAGE_INSTALL += "zile"
 
 IMAGE_INSTALL += "python3-ironman"
-IMAGE_INSTALL += "python3-periphery"
 IMAGE_INSTALL += "python3-numpy"
 IMAGE_INSTALL += "python3"
 
