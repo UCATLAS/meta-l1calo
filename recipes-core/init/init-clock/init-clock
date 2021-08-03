@@ -24,7 +24,7 @@ from time import sleep
 import sys, os, csv, argparse
 
 parser = argparse.ArgumentParser(description='Clock Configuration')
-parser.add_argument('-c', '--configfile', dest='conf', action='store', default= os.path.dirname(os.path.realpath(__file__)+'/init_clock/si5345_GF040280-Registers.txt', help='Clock Chip Configuration Registers Text File')
+parser.add_argument('-c', '--configfile', dest='conf', action='store', default= os.path.dirname(os.path.realpath(__file__)+'/init_clock/si5345_GF240280-Registers.txt', help='Clock Chip Configuration Registers Text File')
 args = parser.parse_args()
 
 i2c = I2C("/dev/i2c-0")
