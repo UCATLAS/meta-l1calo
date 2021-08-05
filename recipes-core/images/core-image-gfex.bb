@@ -15,7 +15,7 @@ IMAGE_INSTALL += "python3"
 
 IMAGE_INSTALL_append_gfex-prototype4 += "init-clock"
 IMAGE_INSTALL_append_gfex-prototype4 += "init-ipmc-auto-shutdown"
-
+IMAGE_INSTALL_append_gfex-prototype4 += "init-i2c-poll"
 
 #IMAGE_INSTALL_append_zynqmp += "gator glew"
 
