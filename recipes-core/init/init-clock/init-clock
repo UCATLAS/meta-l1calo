@@ -23,9 +23,12 @@ from periphery import I2C
 from time import sleep
 import sys, os, csv, argparse
 
-parser = argparse.ArgumentParser(description='Clock Configuration')
-parser.add_argument('-c', '--configfile', dest='conf', action='store', default= os.path.dirname(os.path.realpath(__file__)+'/init_clock/si5345_GF240280-Registers.txt', help='Clock Chip Configuration Registers Text File')
-args = parser.parse_args()
+#parser = argparse.ArgumentParser(description='Clock Configuration')
+#parser.add_argument('-c', '--configfile', dest='conf', action='store', default='si5345_GF240280-Registers.txt', help='#Clock Chip Configuration Registers Text File')
+#args = parser.parse_args()
+#conf = args.conf
+
+conf = '/etc/init.d/si5345_GF240280-Registers.txt'
 
 i2c = I2C("/dev/i2c-0")
 
@@ -47,7 +50,7 @@ def decomment(csvfile):
         if raw: yield row
     
 c = []
-with open(args.conf) as f:
+with open(conf) as f:
     csv_reader = csv.reader(decomment(f))
     for row in csv_reader:
         c.append(row)
@@ -69,5 +72,5 @@ sleep(0.3) # 300 ms delay
 for i in c[3:]:
     do_i2c_block_write(i2c, i)
 
-print('Clock Chip was configured with configuration file: ' + args.conf)
+print('Clock Chip was configured with configuration file: ' + conf)
 i2c.close()
