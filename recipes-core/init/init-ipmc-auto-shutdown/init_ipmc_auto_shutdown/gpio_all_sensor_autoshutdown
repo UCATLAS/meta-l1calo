@@ -53,24 +53,28 @@ elif (TEMP_THRESHOLD < 65.0):
 else:
     print("Starting temperature monitoring. Automatic shutdown will occur at %.2f C." %TEMP_THRESHOLD)
 
-logging.basicConfig(filename="./temp.log", level=logging.INFO) #'/etc/init.d/init_ipmc_auto_shutdown/temp.log", level=logging.INFO)
+logging.basicConfig(filename='/logs/temp.log', level=logging.INFO)
 
 #Wait for first round of 12c polling to complete and be written to file 
-i2c_file = '/etc/init.d/init_i2c_poll/i2c_hardware.json'
+i2c_file = '/logs/i2c_hardware.json'
 while not os.path.isfile(i2c_file):
-    sleep(10)
+   sleep(10)
 
 gfex_temp = float(30)
 while gfex_temp < TEMP_THRESHOLD:
 
-    with open(i2c_file, 'r') as j :
-        i2c_data = json.load(j)
+    logging.info(str(subprocess.getoutput("date")))
+
+    try:
+        with open(i2c_file, 'r') as j :
+            i2c_data = json.load(j)
+    except:
+        logging.info("Problems opening the json file. Trying again.")
+        continue
 
     temp = i2c_data['TEMP_SENSORS']
     pwr = i2c_data['POWER_MODULES']
     mpd = i2c_data['MINIPODS']
-
-    logging.info(str(subprocess.getoutput("date")))
     
     # Read board temperature sensors zynq
     temp_ps = check_temp("temp0_ps")
@@ -89,7 +93,6 @@ while gfex_temp < TEMP_THRESHOLD:
     #12V power module BMR458 temperature
     temp_bmr458=pwr['U11_12V']['TEMP']
     logging.info("BMR458 temperature is %.2f C." %temp_bmr458)
-    # logging.info("Please wait for LTM4630A temperature, it will take several seconds.")
 
     # LTM4630A power modules Temperature monitoring
     temp_ltm_A=pwr['Z_U66_MGTAVTT']['TEMP']
@@ -160,19 +163,14 @@ while gfex_temp < TEMP_THRESHOLD:
 
     gfex_temp = max(temp_zynq,temp_ad7414,temp_DCDC,temp_minipods)
     logging.info("gFEX_Max temperature is %.2f C." %gfex_temp)
-    if (gfex_temp < TEMP_THRESHOLD):
-        logging.info("gFEX temperature is normal.")
     
     temp_datagpio= int(temp_zynq)+int(temp_ad7414)*256+int(temp_DCDC)*256*256+int(temp_minipods)*256*256*256
     temp_datagpiostr= str(temp_datagpio)
-
-    logging.info("gFEX temperature to IMPC is %s C." %temp_datagpiostr)
 
     gpiocmdA = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0020000 -o" + temp_datagpiostr)
     gpiocmdB = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 1" )
     gpiocmdC = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 0" )
     gpiocmdD = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0021000 -i" )
-    logging.info("gFEX temperature to IMPC is %s C." %gpiocmdD)
     
     time.sleep(1)
 

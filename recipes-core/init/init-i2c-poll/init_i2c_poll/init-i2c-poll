@@ -29,7 +29,7 @@ parser = argparse.ArgumentParser(description='Read I2C Sensors')
 parser.add_argument('--log', nargs='?', dest='logfile', action='store', const='i2c_log', default='', help='Mask A with specific configuration')
 args = parser.parse_args()
 
-i2c_file = '/etc/init.d/init_i2c_poll/i2c_hardware.json'
+i2c_file = '/logs/i2c_hardware.json'
 
 #Get rid of old file frome before startup
 if os.path.exists(i2c_file):
