@@ -14,7 +14,7 @@ inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "run-init-ipmc-auto-shutdown.sh"
 
-RDEPENDS_${PN} = "python-core python-fcntl python-periphery"
+RDEPENDS_${PN} = "python3-core python3-fcntl python3-periphery"
 
 # install it in the correct location for update-rc.d
 do_install() {

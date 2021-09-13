@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Copyright 2021 Emily Smith and Weigang Yin Permission is hereby granted, free of charge, to
 # any person obtaining a copy of this software and associated documentation
 # files (the "Software"), to deal in the Software without restriction,
@@ -21,258 +21,156 @@
 from __future__ import print_function
 from math import trunc
 from time import sleep
-import sys
-import commands
-import time
-import logging
+import os, logging, json, time
+import subprocess
 from periphery import I2C
-# all hw addresses are defined in here
-from configurations import board
-from constants import *
-
-# imported from manufacturer tech reference manual for the chip (ask Shaochun where it came from)
-
-def adm1066_shutdown(dev_addr):
-    i2c = I2C("/dev/i2c-1")
-    i2c.transfer(dev_addr, [I2C.Message([0x07,0x20])]) # reset STOPWRITE BIT
-    i2c.close()
-
-# get all temperature in gfex board
-
-def set_i2c_mux(dev_addr,channel):
-  i2c = I2C("/dev/i2c-1")
-  i2c.transfer(dev_addr, [I2C.Message([channel])])
-  i2c.close()
-
-def ad7414_reg_write(dev_addr,reg_addr,reg_value):
-  i2c = I2C("/dev/i2c-1")
-  i2c.transfer(dev_addr, [I2C.Message([reg_addr, reg_value])]) # SENSOR_IIC_BUS
-  i2c.close()
-
-def ad7414_reg_read(dev_addr,reg_addr,nbits):
-  i2c = I2C("/dev/i2c-1")
-  read = I2C.Message([0x0]*nbits, read=True)
-  i2c.transfer(dev_addr, [I2C.Message([reg_addr]), read]) # reg for read
-  i2c.close()
-  return bytes(bytearray(read.data)).encode('hex')
-
-def ad7414_mon(dev_addr):
-  ad7414_reg_write(dev_addr,0x1,0x48) #alert active low
-  ad7414_reg_write(dev_addr,0x2,0x3F) #up limit is 63 Degree
-  ad7414_reg_write(dev_addr,0x3,0x80) #low limit is 0 degree
-  temperature=ad7414_reg_read(dev_addr,0x0,1)#read the temperature value
-  return int(temperature,16)
-
-def ltc2499_temp_mon(dev_addr,reg_addr0,reg_addr1):
-  # two delays as the chip is slow
-  sleep(0.3)
-  i2c = I2C("/dev/i2c-1")
-  i2c.transfer(dev_addr, [I2C.Message([reg_addr1,reg_addr0])])# Reg for read
-  sleep(0.3)
-
-  read = I2C.Message([0x0]*4, read=True)
-  i2c.transfer(dev_addr, [read])
-  i2c.close()
-  adc_code=int(bytes(bytearray(read.data)).encode('hex'), 16)
-
-  resolution=2500./0x80000000
-  amplitude=(adc_code-0x40000000)*resolution
-  if(adc_code==0x3FFFFFFF): amplitude=-1
-
-  temperature= 326-0.5*amplitude
-  return temperature
-
-#convert a LinearFloat5_11 formatted word into a floating point value
-def lin5_11ToFloat(wordValue):
-  binValue = int(wordValue,16)
-  binValue=binValue>>8 | (binValue << 8 & 0xFF00)
-  #wordValue = ' '.join(format(x, 'b') for x in bytearray(wordValue))
-  exponent = binValue>>11      #extract exponent as MS 5 bits
-  mantissa = binValue & 0x7ff  #extract mantissa as LS 11 bits
-
-  #sign extended exponent
-  if exponent > 0x0F: exponent |= 0xE0
-  if exponent > 127: exponent -= 2**8
-  #sign extended mantissa
-  if mantissa > 0x03FF: mantissa |= 0xF800
-  if mantissa > 32768: mantissa -= 2**16
-  # compute value as
-  return mantissa * (2**exponent)
-
-def bmr458_mon(dev_addr,reg_addr):
-  i2c = I2C("/dev/i2c-1")
-  write = I2C.Message([reg_addr])
-  read = I2C.Message([0x0]*2, read=True)
-  i2c.transfer(dev_addr, [write, read])
-  i2c.close()
-  return bytes(bytearray(read.data)).encode('hex')
-
-def minipod_reg_wr(i2c_bus_addr,dev_addr,page_addr,reg_addr,reg_value):
-  i2c = I2C("/dev/i2c-1")
-  i2c.transfer(TCA9548_U93_ADDR, [I2C.Message([i2c_bus_addr])]) # select i2c bus
-  i2c.transfer(dev_addr, [I2C.Message([127,page_addr])])        # set the page
-  i2c.transfer(dev_addr, [I2C.Message([reg_addr,reg_value])])   # write the value to the reg_addr
-  i2c.close()
-
-def minipod_reg_rd(i2c_bus_addr,dev_addr,page_addr,reg_addr):
-  i2c = I2C("/dev/i2c-1")
-  i2c.transfer(TCA9548_U93_ADDR, [I2C.Message([i2c_bus_addr])]) # select i2c bus
-
-  read = I2C.Message([0x0], read=True)
-  i2c.transfer(dev_addr, [I2C.Message([127,page_addr])]) # set the page
-  i2c.transfer(dev_addr, [I2C.Message([reg_addr])])      # set reg_addr
-  i2c.transfer(dev_addr, [read])
-  i2c.close()
-
-  return read.data[0]
-
-def minipod_mon(i2c_bus_addr,dev_addr):
-  temperature=minipod_reg_rd(i2c_bus_addr,dev_addr,0x00,28) #temperature
-  return temperature
 
 def check_temp(temp_sensor):
-    raw = commands.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_raw")
+    raw = subprocess.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_raw")
     raw_value = float(raw)
 
-    offset = commands.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_offset")
+    offset = subprocess.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_offset")
     offset_value = float(offset)
 
-    scale = commands.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_scale")
+    scale = subprocess.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_scale")
     scale_value = float(scale)
 
     temp = (raw_value + offset_value)*scale_value/1024
     return temp
-
-#set the i2c mux channel, since all the device is under SENSOR_IIC_BUS, just need to set once at the b
-i2c = I2C("/dev/i2c-1")
-i2c.transfer(TCA9548_U93_ADDR, [I2C.Message([SENSOR_IIC_BUS])]) # SENSOR_IIC_BUS is selected
-i2c.close()
 
 #Get and Check Temperature threshold
 TEMP_THRESHOLD = float(95)
 if (TEMP_THRESHOLD > 95.0):
     print("Temperature Threshold set to %.2f. This is too high!!" %TEMP_THRESHOLD)
     TEMP_THRESHOLD = float(95)
-    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at 95 C")
+    print("Starting temperature monitoring. Automatic shutdown will occur at 95 C")
 
 elif (TEMP_THRESHOLD < 65.0):
     print("Temperature Threshold set to %.2f. This is too low!!" %TEMP_THRESHOLD)
     TEMP_THRESHOLD = float(65)
-    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at 65 C")
+    print("Starting temperature monitoring. Automatic shutdown will occur at 65 C")
 
 else:
-    print("Starting Zynq+ temperature monitoring. Automatic shutdown will occur at %.2f C." %TEMP_THRESHOLD)
+    print("Starting temperature monitoring. Automatic shutdown will occur at %.2f C." %TEMP_THRESHOLD)
 
-logging.basicConfig(filename="/etc/init.d/init_ipmc_auto_shutdown/temp.log", level=logging.INFO)
+logging.basicConfig(filename='/logs/temp.log', level=logging.INFO)
+
+#Wait for first round of 12c polling to complete and be written to file 
+i2c_file = '/logs/i2c_hardware.json'
+while not os.path.isfile(i2c_file):
+   sleep(10)
 
 gfex_temp = float(30)
 while gfex_temp < TEMP_THRESHOLD:
 
-    logging.info(str(commands.getoutput("date")))
+    logging.info(str(subprocess.getoutput("date")))
+
+    try:
+        with open(i2c_file, 'r') as j :
+            i2c_data = json.load(j)
+    except:
+        logging.info("Problems opening the json file. Trying again.")
+        continue
+
+    temp = i2c_data['TEMP_SENSORS']
+    pwr = i2c_data['POWER_MODULES']
+    mpd = i2c_data['MINIPODS']
     
-  # Read board temperature sensors zynq
+    # Read board temperature sensors zynq
     temp_ps = check_temp("temp0_ps")
     temp_pl = check_temp("temp2_pl")
     temp_zynq = max(temp_ps, temp_pl)
     logging.info("ZYNQ+ temperature is %.2f C." %temp_zynq)
 
-    set_i2c_mux(TCA9548_U93_ADDR,SENSOR_IIC_BUS)
-  # Read board temperature sensors AD7414
-    temp_7414_A=ad7414_mon(AD7414_U82_ADDR)
-    temp_7414_B=ad7414_mon(AD7414_U83_ADDR)
-    temp_7414_C=ad7414_mon(AD7414_U84_ADDR)
-    temp_7414_D=ad7414_mon(AD7414_U87_ADDR)
+    # Read board temperature sensors AD7414
+    temp_7414_A=temp['U82']['TEMP']
+    temp_7414_B=temp['U83']['TEMP']
+    temp_7414_C=temp['U84']['TEMP']
+    temp_7414_D=temp['U87']['TEMP']
     temp_ad7414 = max(temp_7414_A,temp_7414_B,temp_7414_C,temp_7414_D)
     logging.info("AD7414 temperature is %.2f C." %temp_ad7414)
 
-  #12V power module BMR458 temperature
-    reg_value=bmr458_mon(BMR4582_U11_ADDR,0x8D)
-    temp_bmr458=lin5_11ToFloat(reg_value)
+    #12V power module BMR458 temperature
+    temp_bmr458=pwr['U11_12V']['TEMP']
     logging.info("BMR458 temperature is %.2f C." %temp_bmr458)
-    # logging.info("Please wait for LTM4630A temperature, it will take several seconds.")
 
-  # LTM4630A power modules Temperature monitoring
-    temp_ltm_A=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBC)
-    temp_ltm_B=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB5)
-    temp_ltm_C=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBD)
-    temp_ltm_D=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB6)
-    temp_ltm_E=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB0)
-    temp_ltm_F=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB8)
-    temp_ltm_G=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB1)
-    temp_ltm_H=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB9)
-    temp_ltm_I=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB2)
-    temp_ltm_J=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBA)
-    temp_ltm_K=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB3)
-    temp_ltm_L=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBB)
-    temp_ltm_M=ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB4)
+    # LTM4630A power modules Temperature monitoring
+    temp_ltm_A=pwr['Z_U66_MGTAVTT']['TEMP']
+    temp_ltm_B=pwr['U73']['TEMP']
+    temp_ltm_C=pwr['U55']['TEMP']
+    temp_ltm_D=pwr['U59']['TEMP']
+    temp_ltm_E=pwr['A_U122']['TEMP']
+    temp_ltm_F=pwr['A_U77']['TEMP']
+    temp_ltm_G=pwr['A_U30']['TEMP']
+    temp_ltm_H=pwr['B_U123']['TEMP']
+    temp_ltm_I=pwr['B_U124']['TEMP']
+    temp_ltm_J=pwr['B_U40']['TEMP']
+    temp_ltm_K=pwr['C_U126']['TEMP']
+    temp_ltm_L=pwr['C_U125']['TEMP']
+    temp_ltm_M=pwr['C_U44']['TEMP']
     temp_DCDC = max(temp_bmr458,temp_ltm_A,temp_ltm_B,temp_ltm_C,temp_ltm_D,temp_ltm_E,temp_ltm_F,temp_ltm_G,temp_ltm_H,temp_ltm_I,temp_ltm_J,temp_ltm_K,temp_ltm_L,temp_ltm_M)
     logging.info("gfex DCDC temperature is %.2f C." %temp_DCDC)
 
-  # MiniPODs monitoring
-    temp_mini_ZA=minipod_mon(Z_IIC_BUS2,MPOD_U3_ADDR)
-    temp_mini_ZB=minipod_mon(Z_IIC_BUS2,MPOD_U24_ADDR)
-    temp_mini_ZC=minipod_mon(Z_IIC_BUS2,MPOD_U56_ADDR)
-    temp_mini_ZD=minipod_mon(Z_IIC_BUS2,MPOD_U72_ADDR)
+    # MiniPODs monitoring
+    temp_mini_spare=mpd['S_U91']['TEMP']
+
+    temp_mini_ZA=mpd['Z_U3']['TEMP']
+    temp_mini_ZB=mpd['Z_U24']['TEMP']
+    temp_mini_ZC=mpd['Z_U56']['TEMP']
+    temp_mini_ZD=mpd['Z_U72']['TEMP']
     
-    temp_mini_A1=minipod_mon(Z_IIC_BUS5,MPOD_U32_ADDR)
-    temp_mini_A2=minipod_mon(Z_IIC_BUS5,MPOD_U25_ADDR)
-    temp_mini_A3=minipod_mon(Z_IIC_BUS5,MPOD_U96_ADDR)
-    temp_mini_A4=minipod_mon(Z_IIC_BUS5,MPOD_U102_ADDR)
-    temp_mini_A5=minipod_mon(Z_IIC_BUS5,MPOD_U103_ADDR)
-    temp_mini_A6=minipod_mon(Z_IIC_BUS5,MPOD_U104_ADDR)
-    temp_mini_A7=minipod_mon(Z_IIC_BUS5,MPOD_U105_ADDR)
-    temp_mini_A8=minipod_mon(Z_IIC_BUS5,MPOD_U106_ADDR)
-    temp_mini_A9=minipod_mon(Z_IIC_BUS5,MPOD_U27_ADDR)
-    temp_mini_A10=minipod_mon(Z_IIC_BUS5,MPOD_U97_ADDR)
-    temp_mini_A11=minipod_mon(Z_IIC_BUS2,MPOD_U91_ADDR)
+    temp_mini_A1=mpd['A_U32']['TEMP']
+    temp_mini_A2=mpd['A_U25']['TEMP']
+    temp_mini_A3=mpd['A_U96']['TEMP']
+    temp_mini_A4=mpd['A_U102']['TEMP']
+    temp_mini_A5=mpd['A_U103']['TEMP']
+    temp_mini_A6=mpd['A_U104']['TEMP']
+    temp_mini_A7=mpd['A_U105']['TEMP']
+    temp_mini_A8=mpd['A_U106']['TEMP']
+    temp_mini_A9=mpd['A_U27']['TEMP']
+    temp_mini_A10=mpd['A_U97']['TEMP']
 
-    temp_mini_B1=minipod_mon(Z_IIC_BUS4,MPOD_U33_ADDR)
-    temp_mini_B2=minipod_mon(Z_IIC_BUS4,MPOD_U27_ADDR)
-    temp_mini_B3=minipod_mon(Z_IIC_BUS4,MPOD_U98_ADDR)
-    temp_mini_B4=minipod_mon(Z_IIC_BUS4,MPOD_U100_ADDR)
-    temp_mini_B5=minipod_mon(Z_IIC_BUS4,MPOD_U101_ADDR)
-    temp_mini_B6=minipod_mon(Z_IIC_BUS4,MPOD_U108_ADDR)
-    temp_mini_B7=minipod_mon(Z_IIC_BUS4,MPOD_U109_ADDR)
-    temp_mini_B8=minipod_mon(Z_IIC_BUS4,MPOD_U111_ADDR)
-    temp_mini_B9=minipod_mon(Z_IIC_BUS4,MPOD_U112_ADDR)
-    temp_mini_B10=minipod_mon(Z_IIC_BUS4,MPOD_U113_ADDR)
-    temp_mini_B11=minipod_mon(Z_IIC_BUS2,MPOD_U91_ADDR)
+    temp_mini_B1=mpd['B_U33']['TEMP']
+    temp_mini_B2=mpd['B_U27']['TEMP']
+    temp_mini_B3=mpd['B_U98']['TEMP']
+    temp_mini_B4=mpd['B_U100']['TEMP']
+    temp_mini_B5=mpd['B_U101']['TEMP']
+    temp_mini_B6=mpd['B_U108']['TEMP']
+    temp_mini_B7=mpd['B_U109']['TEMP']
+    temp_mini_B8=mpd['B_U111']['TEMP']
+    temp_mini_B9=mpd['B_U112']['TEMP']
+    temp_mini_B10=mpd['B_U113']['TEMP']
 
-    temp_mini_C1=minipod_mon(Z_IIC_BUS3,MPOD_U34_ADDR)
-    temp_mini_C2=minipod_mon(Z_IIC_BUS3,MPOD_U42_ADDR)
-    temp_mini_C3=minipod_mon(Z_IIC_BUS3,MPOD_U114_ADDR)
-    temp_mini_C4=minipod_mon(Z_IIC_BUS3,MPOD_U115_ADDR)
-    temp_mini_C5=minipod_mon(Z_IIC_BUS3,MPOD_U116_ADDR)
-    temp_mini_C6=minipod_mon(Z_IIC_BUS3,MPOD_U117_ADDR)
-    temp_mini_C7=minipod_mon(Z_IIC_BUS3,MPOD_U118_ADDR)
-    temp_mini_C8=minipod_mon(Z_IIC_BUS3,MPOD_U119_ADDR)
-    temp_mini_C9=minipod_mon(Z_IIC_BUS3,MPOD_U120_ADDR)
-    temp_mini_C10=minipod_mon(Z_IIC_BUS3,MPOD_U90_ADDR)
-    temp_mini_C11=minipod_mon(Z_IIC_BUS2,MPOD_U91_ADDR)
+    temp_mini_C1=mpd['C_U34']['TEMP']
+    temp_mini_C2=mpd['C_U42']['TEMP']
+    temp_mini_C3=mpd['C_U114']['TEMP']
+    temp_mini_C4=mpd['C_U115']['TEMP']
+    temp_mini_C5=mpd['C_U116']['TEMP']
+    temp_mini_C6=mpd['C_U117']['TEMP']
+    temp_mini_C7=mpd['C_U118']['TEMP']
+    temp_mini_C8=mpd['C_U119']['TEMP']
+    temp_mini_C9=mpd['C_U120']['TEMP']
+    temp_mini_C10=mpd['C_U90']['TEMP']
 
-    temp_mini_z = max(temp_mini_ZA,temp_mini_ZB,temp_mini_ZC,temp_mini_ZD)
-    temp_mini_a = max(temp_mini_A1,temp_mini_A2,temp_mini_A3,temp_mini_A4,temp_mini_A5,temp_mini_A6,temp_mini_A7,temp_mini_A8,temp_mini_A9,temp_mini_A10,temp_mini_A11)
-    temp_mini_b = max(temp_mini_B1,temp_mini_B2,temp_mini_B3,temp_mini_B4,temp_mini_B5,temp_mini_B6,temp_mini_B7,temp_mini_B8,temp_mini_B9,temp_mini_B10,temp_mini_B11)
-    temp_mini_c = max(temp_mini_C1,temp_mini_C2,temp_mini_C3,temp_mini_C4,temp_mini_C5,temp_mini_C6,temp_mini_C7,temp_mini_C8,temp_mini_C9,temp_mini_C10,temp_mini_C11)
+
+    temp_mini_z = max(temp_mini_ZA,temp_mini_ZB,temp_mini_ZC,temp_mini_ZD, temp_mini_spare)
+    temp_mini_a = max(temp_mini_A1,temp_mini_A2,temp_mini_A3,temp_mini_A4,temp_mini_A5,temp_mini_A6,temp_mini_A7,temp_mini_A8,temp_mini_A9,temp_mini_A10)
+    temp_mini_b = max(temp_mini_B1,temp_mini_B2,temp_mini_B3,temp_mini_B4,temp_mini_B5,temp_mini_B6,temp_mini_B7,temp_mini_B8,temp_mini_B9,temp_mini_B10)
+    temp_mini_c = max(temp_mini_C1,temp_mini_C2,temp_mini_C3,temp_mini_C4,temp_mini_C5,temp_mini_C6,temp_mini_C7,temp_mini_C8,temp_mini_C9,temp_mini_C10)
 
     temp_minipods = max(temp_mini_z,temp_mini_a,temp_mini_b,temp_mini_c)
     logging.info("Minipods temperature is %.2f C." %temp_minipods)
 
     gfex_temp = max(temp_zynq,temp_ad7414,temp_DCDC,temp_minipods)
     logging.info("gFEX_Max temperature is %.2f C." %gfex_temp)
-    if (gfex_temp < TEMP_THRESHOLD):
-        logging.info("gFEX temperature is normal.")
     
     temp_datagpio= int(temp_zynq)+int(temp_ad7414)*256+int(temp_DCDC)*256*256+int(temp_minipods)*256*256*256
     temp_datagpiostr= str(temp_datagpio)
 
-    logging.info("gFEX temperature to IMPC is %s C." %temp_datagpiostr)
-
-    gpiocmdA = commands.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0020000 -o" + temp_datagpiostr)
-    gpiocmdB = commands.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 1" )
-    gpiocmdC = commands.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 0" )
-    gpiocmdD = commands.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0021000 -i" )
-    logging.info("gFEX temperature to IMPC is %s C." %gpiocmdD)
+    gpiocmdA = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0020000 -o" + temp_datagpiostr)
+    gpiocmdB = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 1" )
+    gpiocmdC = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 0" )
+    gpiocmdD = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0021000 -i" )
     
     time.sleep(1)
 
