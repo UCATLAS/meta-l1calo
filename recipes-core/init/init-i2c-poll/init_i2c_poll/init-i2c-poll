@@ -148,75 +148,76 @@ def handle_errors(f):
 print("Beginning constant i2c sensor polling.")
 
 hardware = {}
-hardware['TEMP_SENSORS'] = {}
-hardware['POWER_MODULES'] = {}
+hardware['TEMPSENSORS'] = {}
+hardware['POWERMODULES'] = {}
 hardware['MINIPODS'] = {}
 
 #Temperature Sensors
-hardware['TEMP_SENSORS']['U82'] = {}
-hardware['TEMP_SENSORS']['U83'] = {}
-hardware['TEMP_SENSORS']['U84'] = {}
-hardware['TEMP_SENSORS']['U87'] = {}
+hardware['TEMPSENSORS']['U82'] = {}
+hardware['TEMPSENSORS']['U83'] = {}
+hardware['TEMPSENSORS']['U84'] = {}
+hardware['TEMPSENSORS']['U87'] = {}
 
 #DCDC
-hardware['POWER_MODULES']['U11_12V'] = {}
-hardware['POWER_MODULES']['U11_48V'] = {}
-hardware['POWER_MODULES']['U81'] = {} # external device for U11
+hardware['POWERMODULES']['U11_12V'] = {}
+hardware['POWERMODULES']['U11_48V'] = {}
+hardware['POWERMODULES']['U81'] = {} # external device for U11
 
 #Power Modules
-hardware['POWER_MODULES']['U66_DDR4'] = {}
-hardware['POWER_MODULES']['Z_U66_MGTAVTT'] = {}
-hardware['POWER_MODULES']['U73'] = {}
-hardware['POWER_MODULES']['Z_U73_INT'] = {}
-hardware['POWER_MODULES']['U55'] = {}
-hardware['POWER_MODULES']['U59'] = {}
-hardware['POWER_MODULES']['Z_U59_MGTAVCC'] = {}
-hardware['POWER_MODULES']['A_U122'] = {}
-hardware['POWER_MODULES']['A_U77'] = {}
-hardware['POWER_MODULES']['A_U30'] = {}
-hardware['POWER_MODULES']['B_U123'] = {}
-hardware['POWER_MODULES']['B_U124'] = {}
-hardware['POWER_MODULES']['B_U40'] = {}
-hardware['POWER_MODULES']['C_U126'] = {}
-hardware['POWER_MODULES']['C_U125'] = {}
-hardware['POWER_MODULES']['C_U44'] = {}
+hardware['POWERMODULES']['Z_U66_DDR4'] = {}
+hardware['POWERMODULES']['Z_U66_MGTAVTT'] = {}
+hardware['POWERMODULES']['Z_U73'] = {}
+hardware['POWERMODULES']['Z_U73_INT'] = {}
+hardware['POWERMODULES']['Z_U55'] = {}
+hardware['POWERMODULES']['Z_U59'] = {}
+hardware['POWERMODULES']['Z_U59_MGTAVCC'] = {}
+hardware['POWERMODULES']['A_U122'] = {}
+hardware['POWERMODULES']['A_U77'] = {}
+hardware['POWERMODULES']['A_U30'] = {}
+hardware['POWERMODULES']['B_U123'] = {}
+hardware['POWERMODULES']['B_U124'] = {}
+hardware['POWERMODULES']['B_U40'] = {}
+hardware['POWERMODULES']['C_U126'] = {}
+hardware['POWERMODULES']['C_U125'] = {}
+hardware['POWERMODULES']['C_U44'] = {}
 
 #MiniPODs
-hardware['MINIPODS']['S_U91'] = {}
-hardware['MINIPODS']['Z_U3'] = {}
-hardware['MINIPODS']['Z_U24'] = {}
-hardware['MINIPODS']['Z_U56'] = {}
-hardware['MINIPODS']['Z_U72'] = {}
-hardware['MINIPODS']['A_U32'] = {}
-hardware['MINIPODS']['A_U25'] = {}
-hardware['MINIPODS']['A_U96'] = {}
-hardware['MINIPODS']['A_U102'] = {}
-hardware['MINIPODS']['A_U103'] = {}
-hardware['MINIPODS']['A_U104'] = {}
-hardware['MINIPODS']['A_U105'] = {}
-hardware['MINIPODS']['A_U106'] = {}
-hardware['MINIPODS']['A_U27'] = {}
-hardware['MINIPODS']['A_U97'] = {}
-hardware['MINIPODS']['B_U33'] = {}
-hardware['MINIPODS']['B_U27'] = {}
-hardware['MINIPODS']['B_U98'] = {}
-hardware['MINIPODS']['B_U100'] = {}
-hardware['MINIPODS']['B_U101'] = {}
-hardware['MINIPODS']['B_U108'] = {}
-hardware['MINIPODS']['B_U109'] = {}
-hardware['MINIPODS']['B_U111'] = {}
-hardware['MINIPODS']['B_U112'] = {}
-hardware['MINIPODS']['B_U113'] = {}
-hardware['MINIPODS']['C_U34'] = {}
-hardware['MINIPODS']['C_U42'] = {}
-hardware['MINIPODS']['C_U114'] = {}
-hardware['MINIPODS']['C_U115'] = {}
-hardware['MINIPODS']['C_U116'] = {}
-hardware['MINIPODS']['C_U117'] = {}
-hardware['MINIPODS']['C_U118'] = {}
-hardware['MINIPODS']['C_U119'] = {}
-hardware['MINIPODS']['C_U120'] = {}
-hardware['MINIPODS']['C_U90'] = {}
+hardware['MINIPODS']['RX_CALO_S_U91'] = {}
+hardware['MINIPODS']['TX_FELIX_Z_U3'] = {}
+hardware['MINIPODS']['TX_L1TOPO_Z_U24'] = {}
+hardware['MINIPODS']['TX_GLOBAL_Z_U56'] = {}
+hardware['MINIPODS']['RX_FELIX_Z_U72'] = {}
+hardware['MINIPODS']['TX_L1TOPO_A_U32'] = {}
+hardware['MINIPODS']['TX_L1TOPO_A_U25'] = {}
+hardware['MINIPODS']['RX_CALO_A_U96'] = {}
+hardware['MINIPODS']['RX_CALO_A_U102'] = {}
+hardware['MINIPODS']['RX_CALO_A_U103'] = {}
+hardware['MINIPODS']['RX_CALO_A_U104'] = {}
+hardware['MINIPODS']['RX_CALO_A_U105'] = {}
+hardware['MINIPODS']['RX_CALO_A_U106'] = {}
+hardware['MINIPODS']['RX_CALO_A_U107'] = {}
+hardware['MINIPODS']['RX_CALO_A_U27'] = {}
+hardware['MINIPODS']['RX_CALO_A_U97'] = {}
+hardware['MINIPODS']['TX_L1TOPO_B_U33'] = {}
+hardware['MINIPODS']['TX_L1TOPO_B_U27'] = {}
+hardware['MINIPODS']['RX_CALO_B_U98'] = {}
+hardware['MINIPODS']['RX_CALO_B_U100'] = {}
+hardware['MINIPODS']['RX_CALO_B_U101'] = {}
+hardware['MINIPODS']['RX_CALO_B_U108'] = {}
+hardware['MINIPODS']['RX_CALO_B_U109'] = {}
+hardware['MINIPODS']['RX_CALO_B_U111'] = {}
+hardware['MINIPODS']['RX_CALO_B_U112'] = {}
+hardware['MINIPODS']['RX_CALO_B_U113'] = {}
+hardware['MINIPODS']['TX_L1TOPO_C_U34'] = {}
+hardware['MINIPODS']['TX_L1TOPO_C_U42'] = {}
+hardware['MINIPODS']['RX_CALO_C_U114'] = {}
+hardware['MINIPODS']['RX_CALO_C_U115'] = {}
+hardware['MINIPODS']['RX_CALO_C_U116'] = {}
+hardware['MINIPODS']['RX_CALO_C_U117'] = {}
+hardware['MINIPODS']['RX_CALO_C_U118'] = {}
+hardware['MINIPODS']['RX_CALO_C_U119'] = {}
+hardware['MINIPODS']['RX_CALO_C_U120'] = {}
+hardware['MINIPODS']['RX_CALO_C_U90'] = {}
 
 # Only Do Once 
 hardware['ID'] = get_hardware_id()
@@ -231,73 +232,74 @@ while True:
 
     # Board temperature sensors AD7414
     
-    hardware['TEMP_SENSORS']['U82']['TEMP'] = handle_errors( lambda: ad7414_mon(AD7414_U82_ADDR))
-    hardware['TEMP_SENSORS']['U83']['TEMP'] = handle_errors( lambda: ad7414_mon(AD7414_U83_ADDR))
-    hardware['TEMP_SENSORS']['U84']['TEMP'] = handle_errors( lambda: ad7414_mon(AD7414_U84_ADDR))
-    hardware['TEMP_SENSORS']['U87']['TEMP'] = handle_errors( lambda: ad7414_mon(AD7414_U87_ADDR))
+    hardware['TEMPSENSORS']['U82']['TEMP'] = handle_errors( lambda: ad7414_mon(AD7414_U82_ADDR))
+    hardware['TEMPSENSORS']['U83']['TEMP'] = handle_errors( lambda: ad7414_mon(AD7414_U83_ADDR))
+    hardware['TEMPSENSORS']['U84']['TEMP'] = handle_errors( lambda: ad7414_mon(AD7414_U84_ADDR))
+    hardware['TEMPSENSORS']['U87']['TEMP'] = handle_errors( lambda: ad7414_mon(AD7414_U87_ADDR))
     
     # # 12V DCDV BMR458 temperature
-    hardware['POWER_MODULES']['U11_12V']['TEMP'] = handle_errors( lambda: lin5_11ToFloat(bmr458_mon(BMR4582_U11_ADDR,0x8D)))
-    hardware['POWER_MODULES']['U11_48V']['TEMP'] = handle_errors( lambda: lin5_11ToFloat(bmr458_mon(BMR4582_U11_ADDR,0x8D)))
+    hardware['POWERMODULES']['U11_12V']['TEMP'] = handle_errors( lambda: lin5_11ToFloat(bmr458_mon(BMR4582_U11_ADDR,0x8D)))
+    hardware['POWERMODULES']['U11_48V']['TEMP'] = handle_errors( lambda: lin5_11ToFloat(bmr458_mon(BMR4582_U11_ADDR,0x8D)))
 
     # LTM4630A power module temperatures
-    hardware['POWER_MODULES']['U66_DDR4']['TEMP']    = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBC))
-    hardware['POWER_MODULES']['Z_U66_MGTAVTT']['TEMP'] = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBC))
-    hardware['POWER_MODULES']['U73']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB5))
-    hardware['POWER_MODULES']['Z_U73_INT']['TEMP']     = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB5))
-    hardware['POWER_MODULES']['U55']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBD) )
-    hardware['POWER_MODULES']['U59']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB6) )
-    hardware['POWER_MODULES']['Z_U59_MGTAVCC']['TEMP'] = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB6))
-    hardware['POWER_MODULES']['A_U122']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB0))
-    hardware['POWER_MODULES']['A_U77']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB8))
-    hardware['POWER_MODULES']['A_U30']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB1))
-    hardware['POWER_MODULES']['B_U123']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB9))
-    hardware['POWER_MODULES']['B_U124']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB2))
-    hardware['POWER_MODULES']['B_U40']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBA))
-    hardware['POWER_MODULES']['C_U126']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB3))
-    hardware['POWER_MODULES']['C_U125']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBB))
-    hardware['POWER_MODULES']['C_U44']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB4))
+    hardware['POWERMODULES']['Z_U66_DDR4']['TEMP']    = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBC))
+    hardware['POWERMODULES']['Z_U66_MGTAVTT']['TEMP'] = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBC))
+    hardware['POWERMODULES']['Z_U73']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB5))
+    hardware['POWERMODULES']['Z_U73_INT']['TEMP']     = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB5))
+    hardware['POWERMODULES']['Z_U55']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBD) )
+    hardware['POWERMODULES']['Z_U59']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB6) )
+    hardware['POWERMODULES']['Z_U59_MGTAVCC']['TEMP'] = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB6))
+    hardware['POWERMODULES']['A_U122']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB0))
+    hardware['POWERMODULES']['A_U77']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB8))
+    hardware['POWERMODULES']['A_U30']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB1))
+    hardware['POWERMODULES']['B_U123']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB9))
+    hardware['POWERMODULES']['B_U124']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB2))
+    hardware['POWERMODULES']['B_U40']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBA))
+    hardware['POWERMODULES']['C_U126']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB3))
+    hardware['POWERMODULES']['C_U125']['TEMP']        = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xBB))
+    hardware['POWERMODULES']['C_U44']['TEMP']         = handle_errors( lambda: ltc2499_temp_mon(LTC2499_U2_ADDR,0x90,0xB4))
 
     # MiniPOD temperatures
-    hardware['MINIPODS']['S_U91']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U91_ADDR))
+    hardware['MINIPODS']['RX_CALO_S_U91']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U91_ADDR))
 
-    hardware['MINIPODS']['Z_U3']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U3_ADDR) )
-    hardware['MINIPODS']['Z_U24']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U24_ADDR))
-    hardware['MINIPODS']['Z_U56']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U56_ADDR))
-    hardware['MINIPODS']['Z_U72']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U72_ADDR))
+    hardware['MINIPODS']['TX_FELIX_Z_U3']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U3_ADDR) )
+    hardware['MINIPODS']['TX_L1TOPO_Z_U24']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U24_ADDR))
+    hardware['MINIPODS']['TX_GLOBAL_Z_U56']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U56_ADDR))
+    hardware['MINIPODS']['RX_FELIX_Z_U72']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS2,MPOD_U72_ADDR))
 
-    hardware['MINIPODS']['A_U32']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U32_ADDR)  )
-    hardware['MINIPODS']['A_U25']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U25_ADDR) )
-    hardware['MINIPODS']['A_U96']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U96_ADDR) )
-    hardware['MINIPODS']['A_U102']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U102_ADDR))
-    hardware['MINIPODS']['A_U103']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U103_ADDR))
-    hardware['MINIPODS']['A_U104']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U104_ADDR))
-    hardware['MINIPODS']['A_U105']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U105_ADDR))
-    hardware['MINIPODS']['A_U106']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U106_ADDR))
-    hardware['MINIPODS']['A_U27']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U27_ADDR) )
-    hardware['MINIPODS']['A_U97']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U97_ADDR))
+    hardware['MINIPODS']['TX_L1TOPO_A_U32']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U32_ADDR)  )
+    hardware['MINIPODS']['TX_L1TOPO_A_U25']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U25_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U96']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U96_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U102']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U102_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U103']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U103_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U104']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U104_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U105']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U105_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U106']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U106_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U107']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U107_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U27']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U27_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U97']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS5,MPOD_U97_ADDR))
 
-    hardware['MINIPODS']['B_U33']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U33_ADDR)  )
-    hardware['MINIPODS']['B_U27']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U27_ADDR)  )
-    hardware['MINIPODS']['B_U98']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U98_ADDR)  )
-    hardware['MINIPODS']['B_U100']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U100_ADDR) )
-    hardware['MINIPODS']['B_U101']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U101_ADDR) )
-    hardware['MINIPODS']['B_U108']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U108_ADDR) )
-    hardware['MINIPODS']['B_U109']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U109_ADDR) )
-    hardware['MINIPODS']['B_U111']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U111_ADDR) )
-    hardware['MINIPODS']['B_U112']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U112_ADDR) )
-    hardware['MINIPODS']['B_U113']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U113_ADDR))
+    hardware['MINIPODS']['TX_L1TOPO_B_U33']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U33_ADDR)  )
+    hardware['MINIPODS']['TX_L1TOPO_B_U27']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U27_ADDR)  )
+    hardware['MINIPODS']['RX_CALO_B_U98']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U98_ADDR)  )
+    hardware['MINIPODS']['RX_CALO_B_U100']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U100_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U101']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U101_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U108']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U108_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U109']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U109_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U111']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U111_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U112']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U112_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U113']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS4,MPOD_U113_ADDR))
 
-    hardware['MINIPODS']['C_U34']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U34_ADDR) )
-    hardware['MINIPODS']['C_U42']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U42_ADDR) )
-    hardware['MINIPODS']['C_U114']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U114_ADDR))
-    hardware['MINIPODS']['C_U115']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U115_ADDR))
-    hardware['MINIPODS']['C_U116']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U116_ADDR))
-    hardware['MINIPODS']['C_U117']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U117_ADDR))
-    hardware['MINIPODS']['C_U118']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U118_ADDR))
-    hardware['MINIPODS']['C_U119']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U119_ADDR))
-    hardware['MINIPODS']['C_U120']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U120_ADDR))
-    hardware['MINIPODS']['C_U90']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U90_ADDR))
+    hardware['MINIPODS']['TX_L1TOPO_C_U34']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U34_ADDR) )
+    hardware['MINIPODS']['TX_L1TOPO_C_U42']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U42_ADDR) )
+    hardware['MINIPODS']['RX_CALO_C_U114']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U114_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U115']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U115_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U116']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U116_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U117']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U117_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U118']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U118_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U119']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U119_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U120']['TEMP'] = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U120_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U90']['TEMP']  = handle_errors( lambda: minipod_temp(Z_IIC_BUS3,MPOD_U90_ADDR))
 
     ######################################################
     ###################### VOLTAGES ######################
@@ -305,175 +307,178 @@ while True:
 
     # 12V DCDV BMR458 voltages & currents
     reg_value = bmr458_mon(BMR4582_U11_ADDR,0x8B)
-    hardware['POWER_MODULES']['U11_12V']['VOLTAGE'] = handle_errors( lambda: 2**(-11)*(int(reg_value, 16)>>8 | (int(reg_value, 16) << 8 & 0xFF00)))
-    hardware['POWER_MODULES']['U11_12V']['CURRENT'] = handle_errors( lambda: lin5_11ToFloat(bmr458_mon(BMR4582_U11_ADDR,0x8B)))
-    hardware['POWER_MODULES']['U11_48V']['VOLTAGE'] = handle_errors( lambda: lin5_11ToFloat(bmr458_mon(BMR4582_U11_ADDR,0x88)))
-    hardware['POWER_MODULES']['U81']['VOLTAGE'] = handle_errors( lambda: int(ina226_reg_read(INA226_U81_ADDR,0x02,2), 16)*1.25/1000)
-    hardware['POWER_MODULES']['U81']['CURRENT'] = handle_errors( lambda: int(ina226_reg_read(INA226_U81_ADDR,0x01,2), 16)*1.25/1000)
+    hardware['POWERMODULES']['U11_12V']['VOLTAGE'] = handle_errors( lambda: 2**(-11)*(int(reg_value, 16)>>8 | (int(reg_value, 16) << 8 & 0xFF00)))
+    hardware['POWERMODULES']['U11_12V']['CURRENT'] = handle_errors( lambda: lin5_11ToFloat(bmr458_mon(BMR4582_U11_ADDR,0x8B)))
+    hardware['POWERMODULES']['U11_48V']['VOLTAGE'] = handle_errors( lambda: lin5_11ToFloat(bmr458_mon(BMR4582_U11_ADDR,0x88)))
+    hardware['POWERMODULES']['U81']['VOLTAGE'] = handle_errors( lambda: int(ina226_reg_read(INA226_U81_ADDR,0x02,2), 16)*1.25/1000)
+    hardware['POWERMODULES']['U81']['CURRENT'] = handle_errors( lambda: int(ina226_reg_read(INA226_U81_ADDR,0x01,2), 16)*1.25/1000)
 
     # LTM4630A power module voltages and currents
-    hardware['POWER_MODULES']['Z_U73_INT']['VOLTAGE']     = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U51_ADDR,0x7F,0x1F,0xAE,0xAF,1)) # read ADM1066 U51 channel VX3 INT_Z_0.85V)
-    hardware['POWER_MODULES']['Z_U73_INT']['CURRENT']     = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBC))
-    hardware['POWER_MODULES']['Z_U59_MGTAVCC']['VOLTAGE'] = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U51_ADDR,0xFF,0x1E,0xB0,0xB1,1)) # read ADM1066 U51 channel VX4 MGTAVCC_Z_0.9V )
-    hardware['POWER_MODULES']['Z_U59_MGTAVCC']['CURRENT'] = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB5)   )
-    hardware['POWER_MODULES']['Z_U66_MGTAVTT']['VOLTAGE'] = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U51_ADDR,0x7F,0x1D,0xB2,0xB3,1)) # read ADM1066 U51 channel VX5 MGTAVTT_Z_1.2V)
-    hardware['POWER_MODULES']['Z_U66_MGTAVTT']['CURRENT'] = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBD))
-    hardware['POWER_MODULES']['U55']['VOLTAGE']           = handle_errors( lambda: 2.181 * adm1066_voltage_mon(ADM1066_U51_ADDR,0xFE,0x1F,0xA0,0xA1,1)) # read ADM1066 U51 channel VP1 2.5V)
-    hardware['POWER_MODULES']['U55']['CURRENT']           = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBE) )
-    hardware['POWER_MODULES']['U59']['VOLTAGE']           = handle_errors( lambda: 4.363 * adm1066_voltage_mon(ADM1066_U51_ADDR,0xFD,0x1F,0xA2,0xA3,1)) # read ADM1066 U51 channel VP2 3.3V)
-    hardware['POWER_MODULES']['U59']['CURRENT']           = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB7)/5 )
-    hardware['POWER_MODULES']['U73']['VOLTAGE']           = handle_errors( lambda: 2.181 * adm1066_voltage_mon(ADM1066_U51_ADDR,0xFB,0x1F,0xA4,0xA5,1)) # read ADM1066 U51 channel VP3 1.8V)
-    hardware['POWER_MODULES']['U73']['CURRENT']           = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB6)/2)
-    hardware['POWER_MODULES']['U66_DDR4']['VOLTAGE']      = handle_errors( lambda: 2.0 * adm1066_voltage_mon(ADM1066_U51_ADDR,0xF7,0x1F,0xA6,0xA7,1)) # read ADM1066 U51 channel VP4 DDR4_VDDQ_0.6V)
-    hardware['POWER_MODULES']['U66_DDR4']['CURRENT']      = handle_errors( lambda: 2*(ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBF)/10))
+    hardware['POWERMODULES']['Z_U73_INT']['VOLTAGE']     = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U51_ADDR,0x7F,0x1F,0xAE,0xAF,1)) # read ADM1066 U51 channel VX3 INT_Z_0.85V)
+    hardware['POWERMODULES']['Z_U73_INT']['CURRENT']     = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBC))
+    hardware['POWERMODULES']['Z_U59_MGTAVCC']['VOLTAGE'] = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U51_ADDR,0xFF,0x1E,0xB0,0xB1,1)) # read ADM1066 U51 channel VX4 MGTAVCC_Z_0.9V )
+    hardware['POWERMODULES']['Z_U59_MGTAVCC']['CURRENT'] = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB5)   )
+    hardware['POWERMODULES']['Z_U66_MGTAVTT']['VOLTAGE'] = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U51_ADDR,0x7F,0x1D,0xB2,0xB3,1)) # read ADM1066 U51 channel VX5 MGTAVTT_Z_1.2V)
+    hardware['POWERMODULES']['Z_U66_MGTAVTT']['CURRENT'] = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBD))
+    hardware['POWERMODULES']['Z_U55']['VOLTAGE']           = handle_errors( lambda: 2.181 * adm1066_voltage_mon(ADM1066_U51_ADDR,0xFE,0x1F,0xA0,0xA1,1)) # read ADM1066 U51 channel VP1 2.5V)
+    hardware['POWERMODULES']['Z_U55']['CURRENT']           = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBE) )
+    hardware['POWERMODULES']['Z_U59']['VOLTAGE']           = handle_errors( lambda: 4.363 * adm1066_voltage_mon(ADM1066_U51_ADDR,0xFD,0x1F,0xA2,0xA3,1)) # read ADM1066 U51 channel VP2 3.3V)
+    hardware['POWERMODULES']['Z_U59']['CURRENT']           = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB7)/5 )
+    hardware['POWERMODULES']['Z_U73']['VOLTAGE']           = handle_errors( lambda: 2.181 * adm1066_voltage_mon(ADM1066_U51_ADDR,0xFB,0x1F,0xA4,0xA5,1)) # read ADM1066 U51 channel VP3 1.8V)
+    hardware['POWERMODULES']['Z_U73']['CURRENT']           = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB6)/2)
+    hardware['POWERMODULES']['Z_U66_DDR4']['VOLTAGE']      = handle_errors( lambda: 2.0 * adm1066_voltage_mon(ADM1066_U51_ADDR,0xF7,0x1F,0xA6,0xA7,1)) # read ADM1066 U51 channel VP4 DDR4_VDDQ_0.6V)
+    hardware['POWERMODULES']['Z_U66_DDR4']['CURRENT']      = handle_errors( lambda: 2*(ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBF)/10))
 
-    hardware['POWER_MODULES']['A_U122']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xFD,0x1F,0xA2,0xA3,1)) # read ADM1066 U52 channel VP2 INT_A_0.85V)
-    hardware['POWER_MODULES']['A_U122']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB0))
-    hardware['POWER_MODULES']['A_U77']['VOLTAGE']         = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xFB,0x1F,0xA4,0xA5,1)) # read ADM1066 U52 channel VP3 MGTAVCC_A_0.9V)
-    hardware['POWER_MODULES']['A_U77']['CURRENT']         = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB8))
-    hardware['POWER_MODULES']['A_U30']['VOLTAGE']         = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xF7,0x1F,0xA6,0xA7,1)) # read ADM1066 U52 channel VP4 MGTAVCC_A_1.2V)
-    hardware['POWER_MODULES']['A_U30']['CURRENT']         = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB1))
-    hardware['POWER_MODULES']['B_U123']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xDF,0x1F,0xAA,0xAB,1)) # read ADM1066 U52 channel VX1 INT_B_0.85V)
-    hardware['POWER_MODULES']['B_U123']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB9))
-    hardware['POWER_MODULES']['B_U124']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xBF,0x1F,0xAC,0xAD,1)) # read ADM1066 U52 channel VX2 MGTAVCC_B_0.9V)
-    hardware['POWER_MODULES']['B_U124']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB2))
-    hardware['POWER_MODULES']['B_U40']['VOLTAGE']         = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0x7F,0x1F,0xAE,0xAF,1)) # read ADM1066 U52 channel VX3 MGTAVTT_B_1.2V)
-    hardware['POWER_MODULES']['B_U40']['CURRENT']         = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBA))
-    hardware['POWER_MODULES']['C_U126']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xFF,0x1E,0xB0,0xB1,1)) # read ADM1066 U52 channel VX4 INT_C_0.85)
-    hardware['POWER_MODULES']['C_U126']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB3))
-    hardware['POWER_MODULES']['C_U125']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0x7F,0x1D,0xB2,0xB3,1)) # read ADM1066 U52 channel VX5 MGTAVCC_C_0.9V)
-    hardware['POWER_MODULES']['C_U125']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBB))
-    hardware['POWER_MODULES']['C_U44']['VOLTAGE']         = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U51_ADDR,0xBF,0x1F,0xAC,0xAD,1)) # read ADM1066 U51 channel VX2 MGTAVTT_C_1.2V)
-    hardware['POWER_MODULES']['C_U44']['CURRENT']         = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB4))
+    hardware['POWERMODULES']['A_U122']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xFD,0x1F,0xA2,0xA3,1)) # read ADM1066 U52 channel VP2 INT_A_0.85V)
+    hardware['POWERMODULES']['A_U122']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB0))
+    hardware['POWERMODULES']['A_U77']['VOLTAGE']         = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xFB,0x1F,0xA4,0xA5,1)) # read ADM1066 U52 channel VP3 MGTAVCC_A_0.9V)
+    hardware['POWERMODULES']['A_U77']['CURRENT']         = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB8))
+    hardware['POWERMODULES']['A_U30']['VOLTAGE']         = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xF7,0x1F,0xA6,0xA7,1)) # read ADM1066 U52 channel VP4 MGTAVCC_A_1.2V)
+    hardware['POWERMODULES']['A_U30']['CURRENT']         = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB1))
+    hardware['POWERMODULES']['B_U123']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xDF,0x1F,0xAA,0xAB,1)) # read ADM1066 U52 channel VX1 INT_B_0.85V)
+    hardware['POWERMODULES']['B_U123']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB9))
+    hardware['POWERMODULES']['B_U124']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xBF,0x1F,0xAC,0xAD,1)) # read ADM1066 U52 channel VX2 MGTAVCC_B_0.9V)
+    hardware['POWERMODULES']['B_U124']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB2))
+    hardware['POWERMODULES']['B_U40']['VOLTAGE']         = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0x7F,0x1F,0xAE,0xAF,1)) # read ADM1066 U52 channel VX3 MGTAVTT_B_1.2V)
+    hardware['POWERMODULES']['B_U40']['CURRENT']         = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBA))
+    hardware['POWERMODULES']['C_U126']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0xFF,0x1E,0xB0,0xB1,1)) # read ADM1066 U52 channel VX4 INT_C_0.85)
+    hardware['POWERMODULES']['C_U126']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB3))
+    hardware['POWERMODULES']['C_U125']['VOLTAGE']        = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U52_ADDR,0x7F,0x1D,0xB2,0xB3,1)) # read ADM1066 U52 channel VX5 MGTAVCC_C_0.9V)
+    hardware['POWERMODULES']['C_U125']['CURRENT']        = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xBB))
+    hardware['POWERMODULES']['C_U44']['VOLTAGE']         = handle_errors( lambda: adm1066_voltage_mon(ADM1066_U51_ADDR,0xBF,0x1F,0xAC,0xAD,1)) # read ADM1066 U51 channel VX2 MGTAVTT_C_1.2V)
+    hardware['POWERMODULES']['C_U44']['CURRENT']         = handle_errors( lambda: ltc2499_current_mon(LTC2499_U1_ADDR,0x90,0xB4))
 
     # MiniPOD voltages
-    hardware['MINIPODS']['S_U91']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U91_ADDR))
+    hardware['MINIPODS']['RX_CALO_S_U91']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U91_ADDR))
 
-    hardware['MINIPODS']['Z_U3']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U3_ADDR) )
-    hardware['MINIPODS']['Z_U24']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U24_ADDR))
-    hardware['MINIPODS']['Z_U56']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U56_ADDR))
-    hardware['MINIPODS']['Z_U72']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U72_ADDR))
+    hardware['MINIPODS']['TX_FELIX_Z_U3']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U3_ADDR) )
+    hardware['MINIPODS']['TX_L1TOPO_Z_U24']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U24_ADDR))
+    hardware['MINIPODS']['TX_GLOBAL_Z_U56']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U56_ADDR))
+    hardware['MINIPODS']['RX_FELIX_Z_U72']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS2,MPOD_U72_ADDR))
 
-    hardware['MINIPODS']['A_U32']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U32_ADDR)  )
-    hardware['MINIPODS']['A_U25']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U25_ADDR) )
-    hardware['MINIPODS']['A_U96']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U96_ADDR) )
-    hardware['MINIPODS']['A_U102']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U102_ADDR))
-    hardware['MINIPODS']['A_U103']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U103_ADDR))
-    hardware['MINIPODS']['A_U104']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U104_ADDR))
-    hardware['MINIPODS']['A_U105']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U105_ADDR))
-    hardware['MINIPODS']['A_U106']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U106_ADDR))
-    hardware['MINIPODS']['A_U27']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U27_ADDR) )
-    hardware['MINIPODS']['A_U97']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U97_ADDR))
+    hardware['MINIPODS']['TX_L1TOPO_A_U32']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U32_ADDR)  )
+    hardware['MINIPODS']['TX_L1TOPO_A_U25']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U25_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U96']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U96_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U102']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U102_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U103']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U103_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U104']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U104_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U105']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U105_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U106']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U106_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U107']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U107_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U27']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U27_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U97']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS5,MPOD_U97_ADDR))
 
-    hardware['MINIPODS']['B_U33']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U33_ADDR)  )
-    hardware['MINIPODS']['B_U27']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U27_ADDR)  )
-    hardware['MINIPODS']['B_U98']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U98_ADDR)  )
-    hardware['MINIPODS']['B_U100']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U100_ADDR) )
-    hardware['MINIPODS']['B_U101']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U101_ADDR) )
-    hardware['MINIPODS']['B_U108']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U108_ADDR) )
-    hardware['MINIPODS']['B_U109']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U109_ADDR) )
-    hardware['MINIPODS']['B_U111']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U111_ADDR) )
-    hardware['MINIPODS']['B_U112']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U112_ADDR) )
-    hardware['MINIPODS']['B_U113']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U113_ADDR))
+    hardware['MINIPODS']['TX_L1TOPO_B_U33']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U33_ADDR)  )
+    hardware['MINIPODS']['TX_L1TOPO_B_U27']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U27_ADDR)  )
+    hardware['MINIPODS']['RX_CALO_B_U98']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U98_ADDR)  )
+    hardware['MINIPODS']['RX_CALO_B_U100']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U100_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U101']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U101_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U108']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U108_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U109']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U109_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U111']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U111_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U112']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U112_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U113']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS4,MPOD_U113_ADDR))
 
-    hardware['MINIPODS']['C_U34']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U34_ADDR) )
-    hardware['MINIPODS']['C_U42']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U42_ADDR) )
-    hardware['MINIPODS']['C_U114']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U114_ADDR))
-    hardware['MINIPODS']['C_U115']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U115_ADDR))
-    hardware['MINIPODS']['C_U116']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U116_ADDR))
-    hardware['MINIPODS']['C_U117']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U117_ADDR))
-    hardware['MINIPODS']['C_U118']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U118_ADDR))
-    hardware['MINIPODS']['C_U119']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U119_ADDR))
-    hardware['MINIPODS']['C_U120']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U120_ADDR))
-    hardware['MINIPODS']['C_U90']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U90_ADDR))
+    hardware['MINIPODS']['TX_L1TOPO_C_U34']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U34_ADDR) )
+    hardware['MINIPODS']['TX_L1TOPO_C_U42']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U42_ADDR) )
+    hardware['MINIPODS']['RX_CALO_C_U114']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U114_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U115']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U115_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U116']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U116_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U117']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U117_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U118']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U118_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U119']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U119_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U120']['VOLTAGE'] = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U120_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U90']['VOLTAGE']  = handle_errors( lambda: minipod_voltages(Z_IIC_BUS3,MPOD_U90_ADDR))
 
     #######################################################
     ##################### MINIPOD LOS #####################
     #######################################################
 
-    hardware['MINIPODS']['S_U91']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U91_ADDR))
+    hardware['MINIPODS']['RX_CALO_S_U91']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U91_ADDR))
 
-    #hardware['MINIPODS']['Z_U3']['LOS']   = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U3_ADDR) )
-    #hardware['MINIPODS']['Z_U24']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U24_ADDR))
-    #hardware['MINIPODS']['Z_U56']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U56_ADDR))
-    hardware['MINIPODS']['Z_U72']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U72_ADDR))
+    #hardware['MINIPODS']['TX_FELIX_Z_U3']['LOS']   = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U3_ADDR) )
+    #hardware['MINIPODS']['TX_L1TOPO_Z_U24']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U24_ADDR))
+    #hardware['MINIPODS']['TX_GLOBAL_Z_U56']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U56_ADDR))
+    hardware['MINIPODS']['RX_FELIX_Z_U72']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS2,MPOD_U72_ADDR))
 
-    #hardware['MINIPODS']['A_U32']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U32_ADDR)  )
-    #hardware['MINIPODS']['A_U25']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U25_ADDR) )
-    hardware['MINIPODS']['A_U96']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U96_ADDR) )
-    hardware['MINIPODS']['A_U102']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U102_ADDR))
-    hardware['MINIPODS']['A_U103']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U103_ADDR))
-    hardware['MINIPODS']['A_U104']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U104_ADDR))
-    hardware['MINIPODS']['A_U105']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U105_ADDR))
-    hardware['MINIPODS']['A_U106']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U106_ADDR))
-    hardware['MINIPODS']['A_U27']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U27_ADDR) )
-    hardware['MINIPODS']['A_U97']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U97_ADDR))
+    #hardware['MINIPODS']['TX_L1TOPO_A_U32']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U32_ADDR)  )
+    #hardware['MINIPODS']['TX_L1TOPO_A_U25']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U25_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U96']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U96_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U102']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U102_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U103']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U103_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U104']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U104_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U105']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U105_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U106']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U106_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U107']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U107_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U27']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U27_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U97']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS5,MPOD_U97_ADDR))
 
-    #hardware['MINIPODS']['B_U33']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U33_ADDR)  )
-    #hardware['MINIPODS']['B_U27']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U27_ADDR)  )
-    hardware['MINIPODS']['B_U98']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U98_ADDR)  )
-    hardware['MINIPODS']['B_U100']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U100_ADDR) )
-    hardware['MINIPODS']['B_U101']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U101_ADDR) )
-    hardware['MINIPODS']['B_U108']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U108_ADDR) )
-    hardware['MINIPODS']['B_U109']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U109_ADDR) )
-    hardware['MINIPODS']['B_U111']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U111_ADDR) )
-    hardware['MINIPODS']['B_U112']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U112_ADDR) )
-    hardware['MINIPODS']['B_U113']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U113_ADDR))
+    #hardware['MINIPODS']['TX_L1TOPO_B_U33']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U33_ADDR)  )
+    #hardware['MINIPODS']['TX_L1TOPO_B_U27']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U27_ADDR)  )
+    hardware['MINIPODS']['RX_CALO_B_U98']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U98_ADDR)  )
+    hardware['MINIPODS']['RX_CALO_B_U100']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U100_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U101']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U101_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U108']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U108_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U109']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U109_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U111']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U111_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U112']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U112_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U113']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS4,MPOD_U113_ADDR))
 
-    #hardware['MINIPODS']['C_U34']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U34_ADDR) )
-    #hardware['MINIPODS']['C_U42']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U42_ADDR) )
-    hardware['MINIPODS']['C_U114']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U114_ADDR))
-    hardware['MINIPODS']['C_U115']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U115_ADDR))
-    hardware['MINIPODS']['C_U116']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U116_ADDR))
-    hardware['MINIPODS']['C_U117']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U117_ADDR))
-    hardware['MINIPODS']['C_U118']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U118_ADDR))
-    hardware['MINIPODS']['C_U119']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U119_ADDR))
-    hardware['MINIPODS']['C_U120']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U120_ADDR))
-    hardware['MINIPODS']['C_U90']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U90_ADDR))
+    #hardware['MINIPODS']['TX_L1TOPO_C_U34']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U34_ADDR) )
+    #hardware['MINIPODS']['TX_L1TOPO_C_U42']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U42_ADDR) )
+    hardware['MINIPODS']['RX_CALO_C_U114']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U114_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U115']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U115_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U116']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U116_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U117']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U117_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U118']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U118_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U119']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U119_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U120']['LOS'] = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U120_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U90']['LOS']  = handle_errors( lambda: minipod_los(Z_IIC_BUS3,MPOD_U90_ADDR))
 
     #######################################################
     ################ MINIPOD OPTICAL POWER ################
     #######################################################
 
-    hardware['MINIPODS']['S_U91']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U91_ADDR))
+    hardware['MINIPODS']['RX_CALO_S_U91']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U91_ADDR))
 
-    hardware['MINIPODS']['Z_U3']['OPTPWR']   = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U3_ADDR) )
-    hardware['MINIPODS']['Z_U24']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U24_ADDR))
-    hardware['MINIPODS']['Z_U56']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U56_ADDR))
-    hardware['MINIPODS']['Z_U72']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U72_ADDR))
+    hardware['MINIPODS']['TX_FELIX_Z_U3']['OPTPWR']   = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U3_ADDR) )
+    hardware['MINIPODS']['TX_L1TOPO_Z_U24']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U24_ADDR))
+    hardware['MINIPODS']['TX_GLOBAL_Z_U56']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U56_ADDR))
+    hardware['MINIPODS']['RX_FELIX_Z_U72']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS2,MPOD_U72_ADDR))
 
-    hardware['MINIPODS']['A_U32']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U32_ADDR)  )
-    hardware['MINIPODS']['A_U25']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U25_ADDR) )
-    hardware['MINIPODS']['A_U96']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U96_ADDR) )
-    hardware['MINIPODS']['A_U102']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U102_ADDR))
-    hardware['MINIPODS']['A_U103']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U103_ADDR))
-    hardware['MINIPODS']['A_U104']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U104_ADDR))
-    hardware['MINIPODS']['A_U105']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U105_ADDR))
-    hardware['MINIPODS']['A_U106']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U106_ADDR))
-    hardware['MINIPODS']['A_U27']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U27_ADDR) )
-    hardware['MINIPODS']['A_U97']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U97_ADDR))
+    hardware['MINIPODS']['TX_L1TOPO_A_U32']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U32_ADDR)  )
+    hardware['MINIPODS']['TX_L1TOPO_A_U25']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U25_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U96']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U96_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U102']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U102_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U103']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U103_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U104']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U104_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U105']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U105_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U106']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U106_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U107']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U107_ADDR))
+    hardware['MINIPODS']['RX_CALO_A_U27']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U27_ADDR) )
+    hardware['MINIPODS']['RX_CALO_A_U97']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS5,MPOD_U97_ADDR))
 
-    hardware['MINIPODS']['B_U33']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U33_ADDR)  )
-    hardware['MINIPODS']['B_U27']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U27_ADDR)  )
-    hardware['MINIPODS']['B_U98']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U98_ADDR)  )
-    hardware['MINIPODS']['B_U100']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U100_ADDR) )
-    hardware['MINIPODS']['B_U101']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U101_ADDR) )
-    hardware['MINIPODS']['B_U108']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U108_ADDR) )
-    hardware['MINIPODS']['B_U109']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U109_ADDR) )
-    hardware['MINIPODS']['B_U111']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U111_ADDR) )
-    hardware['MINIPODS']['B_U112']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U112_ADDR) )
-    hardware['MINIPODS']['B_U113']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U113_ADDR))
+    hardware['MINIPODS']['TX_L1TOPO_B_U33']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U33_ADDR)  )
+    hardware['MINIPODS']['TX_L1TOPO_B_U27']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U27_ADDR)  )
+    hardware['MINIPODS']['RX_CALO_B_U98']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U98_ADDR)  )
+    hardware['MINIPODS']['RX_CALO_B_U100']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U100_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U101']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U101_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U108']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U108_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U109']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U109_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U111']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U111_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U112']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U112_ADDR) )
+    hardware['MINIPODS']['RX_CALO_B_U113']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS4,MPOD_U113_ADDR))
 
-    hardware['MINIPODS']['C_U34']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U34_ADDR) )
-    hardware['MINIPODS']['C_U42']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U42_ADDR) )
-    hardware['MINIPODS']['C_U114']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U114_ADDR))
-    hardware['MINIPODS']['C_U115']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U115_ADDR))
-    hardware['MINIPODS']['C_U116']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U116_ADDR))
-    hardware['MINIPODS']['C_U117']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U117_ADDR))
-    hardware['MINIPODS']['C_U118']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U118_ADDR))
-    hardware['MINIPODS']['C_U119']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U119_ADDR))
-    hardware['MINIPODS']['C_U120']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U120_ADDR))
-    hardware['MINIPODS']['C_U90']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U90_ADDR))
+    hardware['MINIPODS']['TX_L1TOPO_C_U34']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U34_ADDR) )
+    hardware['MINIPODS']['TX_L1TOPO_C_U42']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U42_ADDR) )
+    hardware['MINIPODS']['RX_CALO_C_U114']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U114_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U115']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U115_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U116']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U116_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U117']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U117_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U118']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U118_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U119']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U119_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U120']['OPTPWR'] = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U120_ADDR))
+    hardware['MINIPODS']['RX_CALO_C_U90']['OPTPWR']  = handle_errors( lambda: minipod_opticalpower(Z_IIC_BUS3,MPOD_U90_ADDR))
 
 
     with open(i2c_file, 'w+') as f_out:
