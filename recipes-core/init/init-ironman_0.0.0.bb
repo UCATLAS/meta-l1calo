@@ -4,7 +4,7 @@ SRC_URI_gfex-production = "\
   file://LICENSE \
 "
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;beginline=1;endline=18;md5=b3bb4917b02e28aa18f38fa79ccb195c"
+LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;beginline=1;endline=18;md5=4d9db4b2970e8185b1a8c2e4dd416c7a"
 
 COMPATIBLE_MACHINE = "gfex-prototype4"
 
