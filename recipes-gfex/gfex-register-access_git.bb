@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/kratsg/ironman"
 AUTHOR = "Emily Smith <emsmith@cern.ch>"
 
 SRC_URI = "git://git@gitlab.cern.ch:7999/atlas-l1calo/gfex/gfex-register-access.git;branch=master;protocol=ssh"
-SRCREV ?= "c50913df43871da20cf6e9ef4a535b3824f2b975"
+SRCREV ?= "8639314dede3f6134764c462182114306df130e9"
 
 S = "${WORKDIR}/git"
 
