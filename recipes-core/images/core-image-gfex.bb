@@ -6,6 +6,7 @@ IMAGE_INSTALL += "packagegroup-core-ssh-openssh"
 IMAGE_INSTALL += "devmem2"
 IMAGE_INSTALL += "git"
 IMAGE_INSTALL += "zile"
+IMAGE_INSTALL += "chrony"
 
 IMAGE_INSTALL += "python3-ironman"
 IMAGE_INSTALL += "python3-numpy"
