@@ -167,10 +167,10 @@ while gfex_temp < TEMP_THRESHOLD:
     temp_datagpio= int(temp_zynq)+int(temp_ad7414)*256+int(temp_DCDC)*256*256+int(temp_minipods)*256*256*256
     temp_datagpiostr= str(temp_datagpio)
 
-    gpiocmdA = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0020000 -o" + temp_datagpiostr)
-    gpiocmdB = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 1" )
-    gpiocmdC = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 0" )
-    gpiocmdD = subprocess.getoutput("/etc/init.d/init_ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0021000 -i" )
+    gpiocmdA = subprocess.getoutput("/software/misc/ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0020000 -o" + temp_datagpiostr)
+    gpiocmdB = subprocess.getoutput("/software/misc/ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 1" )
+    gpiocmdC = subprocess.getoutput("/software/misc/ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0022000 -o 0" )
+    gpiocmdD = subprocess.getoutput("/software/misc/ipmc_auto_shutdown/gpio-dev-mem-test -g 0x00A0021000 -i" )
     
     time.sleep(1)
 

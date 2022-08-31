@@ -13,6 +13,7 @@ COMPATIBLE_MACHINE = "gfex-prototype4"
 inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "init-clock"
+INITSCRIPT_PARAMS = "defaults 20"
 
 RDEPENDS_${PN} = "python3-core python3-fcntl python3-periphery"
 

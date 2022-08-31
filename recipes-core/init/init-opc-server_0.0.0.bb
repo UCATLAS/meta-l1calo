@@ -12,6 +12,7 @@ COMPATIBLE_MACHINE = "gfex-prototype4"
 inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "run-init-opc-server.sh"
+INITSCRIPT_PARAMS = "defaults 99"
 
 RDEPENDS_${PN} = "python3-core gfex-opcua-server-milkyway"
 
