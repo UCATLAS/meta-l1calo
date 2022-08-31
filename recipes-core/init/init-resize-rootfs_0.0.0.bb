@@ -1,28 +1,28 @@
 DESCRIPTION = "Repeated polling of i2c sensor values"
 SRC_URI_gfex-production = "\
-  file://run-init-ironman.sh \
+  file://run-init-resize-rootfs.sh \
   file://LICENSE \
 "
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;beginline=1;endline=18;md5=4d9db4b2970e8185b1a8c2e4dd416c7a"
+LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;beginline=1;endline=18;md5=470c8811ac7dbd16d782e1422760fad8"
 
 COMPATIBLE_MACHINE = "gfex-prototype4"
 
 # these 3 lines will have the script run on boot
 inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
-INITSCRIPT_NAME = "run-init-ironman.sh"
-INITSCRIPT_PARAMS = "defaults 99"
+INITSCRIPT_NAME = "run-init-resize-rootfs.sh"
+INITSCRIPT_PARAMS = "defaults 10"
 
-RDEPENDS_${PN} = "python3-core python3-ironman gfex-register-access"
+RDEPENDS_${PN} = "e2fsprogs-resize2fs bash"
 
 # install it in the correct location for update-rc.d
 do_install() {
   install -d ${D}${INIT_D_DIR}
-  install -m 0755 ${WORKDIR}/run-init-ironman.sh ${D}${INIT_D_DIR}/run-init-ironman.sh
+  install -m 0755 ${WORKDIR}/run-init-resize-rootfs.sh ${D}${INIT_D_DIR}/run-init-resize-rootfs.sh
 }
 
 # package it as it is not installed in a standard location
 FILES_${PN} = "\
-  ${INIT_D_DIR}/run-init-ironman.sh \
+  ${INIT_D_DIR}/run-init-resize-rootfs.sh \
 "

@@ -1,11 +1,11 @@
 DESCRIPTION = "Automatic Shutdown Based on Temperature Sensor Readings"
 SRC_URI_gfex-prototype4 = "\
   file://run-init-ipmc-auto-shutdown.sh \
-  file://init_ipmc_auto_shutdown/* \
+  file://ipmc_auto_shutdown/* \
 "
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${WORKDIR}/init_ipmc_auto_shutdown/gpio_all_sensor_autoshutdown;beginline=2;endline=19;md5=6f485c8366ff2b4b2fcaa5d957ea761a"
+LIC_FILES_CHKSUM = "file://${WORKDIR}/ipmc_auto_shutdown/gpio_all_sensor_autoshutdown.py;beginline=2;endline=19;md5=6f485c8366ff2b4b2fcaa5d957ea761a"
 
 COMPATIBLE_MACHINE = "gfex-prototype4"
 
@@ -13,6 +13,7 @@ COMPATIBLE_MACHINE = "gfex-prototype4"
 inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "run-init-ipmc-auto-shutdown.sh"
+INITSCRIPT_PARAMS = "defaults 99"
 
 RDEPENDS_${PN} = "python3-core python3-fcntl python3-periphery"
 
@@ -20,15 +21,15 @@ RDEPENDS_${PN} = "python3-core python3-fcntl python3-periphery"
 do_install() {
     install -d ${D}${INIT_D_DIR}
     install -m 0755 ${WORKDIR}/run-init-ipmc-auto-shutdown.sh ${D}${INIT_D_DIR}/run-init-ipmc-auto-shutdown.sh
-    install -d ${D}${INIT_D_DIR}/init_ipmc_auto_shutdown
-    install -m 0755 ${WORKDIR}/init_ipmc_auto_shutdown/* ${D}${INIT_D_DIR}/init_ipmc_auto_shutdown/.
+    install -d ${D}/software/misc/ipmc_auto_shutdown
+    install -m 0755 ${WORKDIR}/ipmc_auto_shutdown/* ${D}/software/misc/ipmc_auto_shutdown/.
 }
 
 #  ${INIT_D_DIR}/init-auto-shutdown \
 # package it as it is not installed in a standard location
 FILES_${PN} = "\
   ${INIT_D_DIR}/run-init-ipmc-auto-shutdown.sh \
-  ${INIT_D_DIR}/init_ipmc_auto_shutdown \
+  /software/misc/ipmc_auto_shutdown \
 "
 
 INSANE_SKIP_${PN} = "ldflags"
