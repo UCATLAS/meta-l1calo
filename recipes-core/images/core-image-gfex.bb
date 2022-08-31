@@ -21,7 +21,7 @@ IMAGE_INSTALL_append_gfex-production += "init-ironman"
 IMAGE_INSTALL_append_gfex-production += "init-opc-server"
 IMAGE_INSTALL_append_gfex-production += "init-log-manager"
 IMAGE_INSTALL_append_gfex-production += "init-resize-rootfs"
-
+IMAGE_INSTALL_append_gfex-production += "init-load-firmware"
 
 #IMAGE_INSTALL_append_zynqmp += "gator glew"
 
