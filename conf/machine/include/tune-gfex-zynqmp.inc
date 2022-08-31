@@ -14,12 +14,11 @@ EXTRA_IMAGEDEPENDS += " \
     virtual/pmu-firmware \
     "
 
-# image for SPI
-IMAGE_FSTYPES += "jffs2"
-JFFS2_ERASEBLOCK = "0x20000"
+YAML_ENABLE_DT_OVERLAY = "1"
 
-# image for SD card
-IMAGE_FSTYPES += "wic"
+# image for SPI
+IMAGE_FSTYPES += "jffs2 ext4 wic"
+JFFS2_ERASEBLOCK = "0x20000"
 WKS_FILES = "gfex-sdimage.wks"
 
 # disable SPL
