@@ -6,8 +6,8 @@ import tarfile
 import schedule, time
 
 workdir = "/logs/"
-maxSize = 1500000000    # Max allowed size of the log folder. If exceeded, triggers a log rotation.
-clearFrequency = 30     # Days between log rotation (this happens independently from the /log folder size)
+maxSize = 30000000000    # Max allowed size of the log folder. If exceeded, triggers a log rotation.
+clearFrequency = 90     # Days between log rotation (this happens independently from the /log folder size)
 
 #Find files with a given extension
 def find_files(base, ext):
