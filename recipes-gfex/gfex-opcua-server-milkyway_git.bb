@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitlab.cern.ch/atlas-l1calo/gfex/opc-ua-gfex-milkyway-server
 AUTHOR = "Emily Smith <emsmith@cern.ch>"
 
 SRC_URI = "git://git@gitlab.cern.ch:7999/atlas-l1calo/gfex/opc-ua-gfex-milkyway-server.git;branch=master;protocol=ssh"
-SRCREV ?= "6efbe5e4f3286ae4c3f49dd98261393680a091f8"
+SRCREV ?= "7955b6ac31af807d2506cd05a0a98fd4d1097f53"
 
 S = "${WORKDIR}/git"
 

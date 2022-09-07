@@ -2,8 +2,8 @@ SUMMARY = "Register Access for gFEX"
 HOMEPAGE = "https://github.com/kratsg/ironman"
 AUTHOR = "Emily Smith <emsmith@cern.ch>"
 
-SRC_URI = "git://git@gitlab.cern.ch:7999/atlas-l1calo/gfex/gfex-register-access.git;branch=master;protocol=ssh"
-SRCREV ?= "e4ed467e2978b1f7a8bd0eb4d2f9afea18883967"
+SRC_URI = "git://git@gitlab.cern.ch:7999/atlas-l1calo/gfex/gfex-register-access.git;branch=fix-new-regmap;protocol=ssh"
+SRCREV ?= "b57ef7072777191b783863218bdbad389343b113"
 
 S = "${WORKDIR}/git"
 
