@@ -27,52 +27,39 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-There are two main ways that you can boot the board using an SD Card. The way that I've been able to get working for the Zynq Ultrascale+ MPSoc "Zynq+" is via the Xilinx SDK bootgen and First Stage Boot loader (FSBL). Another possibility is through the Secondary Program Loader (SPL) but this method has various problems preventing it from working right now. This guide will focus only on the FSBL method and the general steps needed to get this working. All of this was tested on 2016.4.
-
-Many thanks to [this guide by Matteo](https://www.starwaredesign.com/index.php/articles-and-talks/87-build-and-deploy-yocto-linux-on-the-xilinx-zynq-ultrascale-mpsoc-zcu102) for inspiration and help and quick response to emails.
+There are two main ways that you can boot the board using an SD Card. The way that I've been able to get working for the Zynq Ultrascale+ MPSoc "Zynq+" is via the Xilinx SDK bootgen and First Stage Boot loader (FSBL). Another possibility is through the Secondary Program Loader (SPL) but this method has various problems preventing it from working right now. This guide will focus only on the FSBL method and the general steps needed to get this working. All of this was tested on 2020.2.
 
 # FSBL Method
 
 The general steps are highlighted below:
 
-1. [Generate your device tree](http://www.wiki.xilinx.com/Build+Device+Tree+Blob) (if not using the evaluation board) from Vivado
-1. Build your kernel image (also provides a uImage and u-boot binary) using [bitbake](https://en.wikipedia.org/wiki/BitBake)
-  - Build your ARM Trusted Firmware (ATF) if not built automatically with your image: `bitbake arm-trusted-firmware`
-1. Use Vivado to generate the Power Management Unit Firmware (PMUFW)
-1. Use Vivado to generate the FSBL firmware
-1. Use Vivado/bootgen to create a bootimage (BOOT.bin)
-1. Prepare your SD card [ref](http://www.wiki.xilinx.com/Prepare+Boot+Medium)
-1. Copy all necessary files to an SD card with a FAT32 BOOT partition and an ext4 ROOT partition.
+1. Build your kernel image, u-boot boot script (boot.scr), u-boot binary, bootimage(boot.bin), and device tree using [bitbake](https://en.wikipedia.org/wiki/BitBake) with the [Xilinx-based Yocto build environment](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841862/Install+and+Build+with+Xilinx+Yocto)
+2. Prepare your SD card [ref](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842385/How+to+format+SD+card+for+SD+boot)
+3. Copy/flash all necessary files to an SD card with a FAT32 BOOT partition and an ext4 ROOT partition.
 
 ## Files Required
 
 The following files are required in order to get everything working.
 
-| Originating | File Name                | Partition | Description                                                           |
-|-------------|--------------------------|-----------|------------------------------------------------------------------------
-  Xilinx SDK  | BOOT.BIN                 | BOOT (1)  | bootgen image containing the bitstream and binaries: FSBL, U-Boot, ATF, PMUFW
-  bitbake     | system.dtb               | BOOT (1)  | Device tree binary blob used by Linux, loaded into memory by U-Boot
-  bitbake     | Image                    | BOOT (1)  | Linux kernel image, loaded into memory by U-Boot
-  by hand     | uEnv.txt                 | BOOT (1)  | An editable bootscript defining the boot configuration [ref](http://linux-sunxi.org/UEnv.txt)
-  bitbake     | zcu102-zynqmp.tar.gz     | ROOT (2)  | Ramdisk image used by Linux, loaded into memory by U-Boot
-  Xilinx SDK  | top.bit                  | --------- | bitstream file that will be used to create a hardware definitions file (HDF)
-  Xilinx SDK  | fsbl.elf                 | --------- | FSBL elf image used to create BOOT.BIN image
-  Xilinx SDK  | pmufw.elf                | --------- | Handles the initial stage of the boot, stays running to do power monitoring/management
-  Xilinx SDK  | boot.bif                 | --------- | Defines the BOOT.bin that gets created with bootgen, needs to be edited for exception levels
-  bitbake     | u-boot.elf               | --------- | U-Boot elf file used to create the BOOT.BIN image
-  bitbake     | arm-trusted-firmware.elf | --------- | Equivalent of ARM TrustZone monitor for Cortex-A at 32-bit
+| Originating | File Name                 | Partition | Description                                                           |
+|-------------|---------------------------|-----------|------------------------------------------------------------------------
+  bitbake     | boot.bin                  | BOOT (1)  | Bootgen image containing the bitstream and binaries: FSBL, U-Boot, ATF, PMUFW
+  bitbake     | system.dtb                | BOOT (1)  | Device tree binary blob used by Linux, loaded into memory by U-Boot
+  bitbake     | Image                     | BOOT (1)  | Linux kernel image, loaded into memory by U-Boot
+  bitbake     | boot.scr                  | BOOT (1)  | User defined file that loads the kernel and rootfs
+  bitbake     | u-boot.bin                | BOOT (1)  | Binary compiled u-boot bootloader
+  bitbake     | zcu102-zynqmp.rootfs.ext4 | ROOT (2)  | Ramdisk image used by Linux, loaded into memory by U-Boot (rootfilesystem or rootfs)
+
 
 ### Bitstream and Device Tree
 
-If you use the default compiled device tree provided by `meta-xilinx` using the `zcu102-zynqmp` machine, this will be compatible with a block design containing only the Zynq MPSoC processor IPCore (with the PS-PL clocks disabled). Otherwise, you will need to create your own machine and this is out of the scope of this particular tutorial.
+If you use the default compiled device tree provided by `meta-xilinx` using the `zcu102-zynqmp` machine, this will be compatible with a block design containing only the Zynq MPSoC processor IPCore (with the PS-PL clocks disabled). Otherwise, you will need to create your own machine corresponding to a custom XSA file, or use one of the already existing `gfex-production` machines from `meta-l1calo` with their associated XSA files. 
+
+For these `gfex-production` machines in the Xilinx-based build system we are taking advantage of the ability to build a custom device tree and BOOT.BIN with bitbake using the `extra-hdf` recipe from Xilinx. This allows us to include a full XSA file describing the Zynq FPGA firmware configuation in the OS build. For the gFEX machines this XSA file is generated from the [gFEX firmware builds](https://gitlab.cern.ch/atlas-l1calo/gfex/firmware/) which are run usng the gitlab CI configuration. The output files from the build are located [on eos](https://cernbox.cern.ch/index.php/s/43JT9RHyz79gByE) with the XSA at the specific path of `devel/<commit-version-git-hash>/vitis/config#/zfpg/xsa`. These XSA files are included in the `external-hdf` [recipe files](https://github.com/kratsg/meta-l1calo/tree/master/recipes-bsp/external-hdf/files) in the meta-l1calo layer.
 
 ### Filesystem
 
-There's a couple of ways to load the filesystem depending on which you use, such as CPIO extraction (treating it as a ramdisk) or untarring into the second partition of the SD card. For the purposes of the tutorial, I'll focus on untarring into the second partition, so you should look for bitbake-produced files that have `tar.gz` in their extension.
-
-### ARM Trusted Firmware
-
-ATF is the ARM Trusted Firmware and it is the equivalent of the ARM TrustZone monitor for Cortex-A at 32 bit. It basically manages the access to the secure world from the non-secure world. Being i.e. non-secure world Linux and secure world where the encryption keys are store.
+There's a couple of ways to load the filesystem depending on which you use, such as CPIO extraction (treating it as a ramdisk), untarring into the second partition of the SD card, or flashing directly the second partition of the SD card with an ext4 image. For the purposes of the tutorial, I'll focus on flashing an ext4 image, so you would need the files with .rootfs.ext4
 
 ### Exception Levels
 
@@ -86,105 +73,12 @@ This step should be done with one or two commands:
 bitbake <image-name>
 ```
 
-and if that doesn't produce your ARM Trusted Firmware file, you will need to run
-
-```
-bitbake arm-trusted-firmware
-```
-
-which will produce the ELF in the same `deploy/images` directory as the above. An example image you might want to try is `zynq-base`. All your files will be found in `tmp/deploy/images/<machine-name>/`. This completes the first step. See [[Building-and-Deploying-an-OS]] for more details.
-
-## Xilinx SDK Generations
-
-### Create the FSBL
-
-Open up the Xilinx SDK with the HDF (hardware description file) and BIT (bitstream file) loaded. From here, you will first create an application project for the Zynq Ultrascale+ MPSoC FSBL `File > New > Application Project`:
-
-![zynqmp - new application project](images/zynqmp_new_application_project.png)
-
-and then select the Zynq+ FSBL project
-
-![zynqmp - fsbl wizard](images/zynqmp_fsbl_wizard.png)
-
-and then the SDK will automatically build the necessary files, including the `fsbl.elf` file and copy over the bitstream file. The `fsbl.elf` file and the bitstream file will most likely be found in the `Debug/` folder under that project. This completes the first step.
-
-### Create the PMUFW
-
-Follow the same steps above, but this time, target the `PMU` instead of the `PS`. This might take a few seconds for Xilinx to load some other stuff
-
-![zynqmp - new application project - power management](images/zynqmp_new_application_project_pmu.png)
-
-then there is only one example project which is the PMU firmware
-
-![zynqmp - pmu wizard](images/zynqmp_pmu_wizard.png)
-
-and then SDK will automatically build the necessary files, include the `pmufw.elf` file. The `pmufw.elf` file will most likely be found in the `Debug/` folder under that project. This completes the second step.
-
-### Create the BOOT image
-
-Now, we just need to create the boot image `BOOT.BIN` with the necessary files loaded in the correct order. From the Xilinx SDK, `Xilinx Tools > Create Boot Image` which brings up a dialog
-
-![zynqmp - create boot image dialog](images/zynqmp_create_boot_image_dialog.png)
-
-where we need to have the following files loaded in exactly this order and type
-
-| File Type             | File Name                                  | Destination |
-------------------------|--------------------------------------------|-------------|
- bootloader             | /path/to/sdk/fsbl_project/Debug/fsbl.elf   | PL
- pmufw                  | /path/to/sdk/pmufw_project/Debug/pmufw.elf | PMU
- datafile               | /path/to/sdk/hardware_project/top.bit      | PL
- datafile               | /path/to/bitbake/files/atf.elf             | PS (a53-0, EL-3, TrustZone)
- datafile               | /path/to/bitbake/files/u-boot.elf          | PS (a53-0, EL-2)
-
-and then we can go ahead and `Create Image`. This will be created in the path you specify. If you open up the created `.bif` file, you should see something like
-
-```
-//arch = zynqmp; split = false; format = BIN
-the_ROM_image:
-{
-        [fsbl_config]a53_x64
-        [bootloader, destination_device = pl]C:\Xilinx\Vivado_HLS\2016.4\ug871-design-files\Using_IP_with_Zynq\lab1\project_4\project_4.sdk\fsbl\Debug\fsbl.elf
-        [pmufw_image]C:\Xilinx\Vivado_HLS\2016.4\ug871-design-files\Using_IP_with_Zynq\lab1\project_4\project_4.sdk\pmufw\Debug\pmufw.elf
-        [destination_device = pl]C:\Xilinx\Vivado_HLS\2016.4\ug871-design-files\Using_IP_with_Zynq\lab1\project_4\project_4.sdk\design_1_wrapper_hw_platform_0\design_1_wrapper.bit
-        [destination_cpu = a53-0]F:\arm-trusted-firmware-zcu102-zynqmp.elf
-        [destination_cpu = a53-0]F:\u-boot.elf
-}
-```
-
-If you continue and try to boot the board and you get a [system crash](https://forums.xilinx.com/t5/Embedded-Linux/2016-3-ZynqMP-zcu102-Wrong-exception-level-in-ATF-BL31-after/td-p/730428) or the ATF hangs and doesn't hand-off to u-boot, it may be because `u-boot` needs an exception level (raised security). In this case, you will need to add `exception_level=el-3` and `exception_level=el-2` so that your `.bif` looks like
-
-```
-//arch = zynqmp; split = false; format = BIN
-the_ROM_image:
-{
-        [fsbl_config]a53_x64
-        [bootloader, destination_device = pl]C:\Xilinx\Vivado_HLS\2016.4\ug871-design-files\Using_IP_with_Zynq\lab1\project_4\project_4.sdk\fsbl\Debug\fsbl.elf
-        [pmufw_image]C:\Xilinx\Vivado_HLS\2016.4\ug871-design-files\Using_IP_with_Zynq\lab1\project_4\project_4.sdk\pmufw\Debug\pmufw.elf
-        [destination_device = pl]C:\Xilinx\Vivado_HLS\2016.4\ug871-design-files\Using_IP_with_Zynq\lab1\project_4\project_4.sdk\design_1_wrapper_hw_platform_0\design_1_wrapper.bit
-        [destination_cpu = a53-0, exception_level = el-3]F:\arm-trusted-firmware-zcu102-zynqmp.elf
-        [destination_cpu = a53-0, exception_level = el-2]F:\u-boot.elf
-}
-```
-
-## Preparing the bootscript
-
-The bootscript is an editable text file that defines how to boot the board correctly and these parameters can be read in via `u-boot` for example. Instead of discussing what you should do, I've provided an example `uEnv.txt` below tha you should probably copy as part of this tutorial
-
-```bash
-kernel_image=Image
-devicetree_image=system.dtb
-dtb=system.dtb
-bootargs=earlycon=cdns,mmio,0xFF000000,115200n8 root=/dev/mmcblk0p2 rw rootwait cma=128M
-uenvcmd=fatload mmc 0 0x3000000 ${kernel_image} && fatload mmc 0 0x2A00000 ${devicetree_image} && bootm 0x3000000 - 0x2A00000
-```
-
-A few of the options are generally self-explanatory. In particular, you should notice that the `root=/dev/mmcblk0p2` command is letting `u-boot` know where to find the filesystem you will be extracting in to the second partition of the SD card. Before, with the Zynq 7-series, it seemed possible to specify `devicetree_image=devicetree.dtb` but this didn't seem to get recognized with `u-boot` for the Zynq MPSoC. The default it expects is `system.dtb`. Similar issue came up with the kernel image `uImage` to `Image`.
+An example image you might want to try is `zynq-base`. All your files will be found in `tmp/deploy/images/<machine-name>/`. This completes the first step. See [[Building-and-Deploying-an-OS]] for more details.
 
 ## Preparing the SD Card
 
-I usually bypass all this SD Card fdisk fiddling by just using gparted. Make a "BOOT" partition, FAT32, 64MB, starting at zero. Then make a "rootfs" partition, ext4, rest of card.
 
-You need to prepare the SD card with two partitions: a FAT32 BOOT partition and an ext4 ROOT partition. These partition need to contain the [files required](#files-required). The next step will explain how to copy these over. Referring to the [Xilinx wiki](http://www.wiki.xilinx.com/Prepare+Boot+Medium) on preparing the SD card correctly with partitions, I will re-iterate the steps here in case the wiki changes in the future.
+You need to prepare the SD card with two partitions: a FAT32 BOOT partition and an ext4 ROOT partition. These partition need to contain the [files required](#files-required). The next step will explain how to copy these over. Referring to the [Xilinx wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842385/How+to+format+SD+card+for+SD+boot) on preparing the SD card correctly with partitions, I will re-iterate the steps here in case the wiki changes in the future.
 
 Note: these steps are strongly recommended to be performed on a Linux machine with `fdisk`, `dmesg`, and `partprobe` along with administrator privileges.
 
@@ -199,67 +93,17 @@ Plug in the SD card into the Linux machine and identify which device file maps t
 
 This is telling you that your SD card is identified by `sde` which means `/dev/sde` is the device file mapping to the SD card. For the purposes of this tutorial, I will refer to it as `/dev/sdX` but please replace it with your version where necessary.
 
-### Erase the first few bytes
+### Create actual partitions
 
-*Is this necessary?*
-
-```bash
-dd if=/dev/zero of=/dev/sdX bs=1024 count=1
-```
-
-According to Xilinx, the `fdisk` utility does not seem to erase the first few bytes of the first sector in the card when the partition table is saved. So you will use `dd` (affectionality known as `disk destroyer` to erase the first sector).
-
-### Configure the sectors, heads, and cylinders
-
-*Is this necessary?*
-
-#### Calculate new_cylinders
-
-To calculate the new cylinders value, we run
-
-```bash
-fdisk -l /dev/sdX
-```
-
-which gives an output like
-
-```bash
-Disk /dev/sde: 8068 MB, 8068792320 bytes
-249 heads, 62 sectors/track, 1020 cylinders, total 15759360 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x00000000
-
-Disk /dev/sde doesn't contain a valid partition table
-```
-
-Look for the size of the device in bytes `8068792320 bytes` and calculate with the following formula `new_cylinders = <size> / 8225280`. In this example, we would calculate `new_cylinders = 980`.
-
-Now, let's use `fdisk` to enter and partition the card
+Let's use `fdisk` to enter and partition the card
 
 ```bash
 fdisk /dev/sdX
 ```
 
-If you type `p`, you should not see any partitions on the SD card. Next, enter `expert mode` with `x` and then configure the sectors, heads, and cylinders of the SD card
+If you type `p`, you should not see any partitions on the SD card. If there are partitions type `d` to delete each one.
 
-```bash
-Command (m for help): x
-Expert command (m for help): h
-Number of heads (1-256, default 30): 255
-Expert command (m for help): s
-Number of sectors (1-63, default 29): 63
-Expert command (m for help): c
-Number of cylinders (1-1048576, default 2286): <new_cylinders calculated from above>
-Command (m for help): r
-```
-
-### Create actual partitions
-
-*Note*: If you did not configure the sectors, heads, and cylinders of the SD card, start with `fdisk /dev/sdX`.
-
-Now the actual partitions can be created. For the first partition (which will be our BOOT), I suggest at least 200M as the generated `BOOT.bin` can be rather large and needs to fit comfortably here
+Now the actual partitions can be created. For the first partition (which will be our BOOT), I suggest a size of 1GB to ensure enough space.
 
 ```bash
 Command (m for help): n
@@ -270,7 +114,7 @@ Select (default p): p
 Partition number (1-4, default 1): 1
 First sector (2048-15759359, default 2048):
 Using default value 2048
-Last sector, +sectors or +size{K,M,G} (2048-15759359, default 15759359): +200M
+Last sector, +sectors or +size{K,M,G} (2048-15759359, default 15759359): +1GB
 ```
 
 and now do the same procedure for the second partition (which will hold our ROOT filesystem)
@@ -359,39 +203,24 @@ Note that the numbers at the end refer to the first or second partition. If you'
 
 ### Copying Files Over
 
-First, you should go ahead and mount the ROOT partition to untar your filesystem:
+First, you should go ahead and mount the BOOT partition and copy over the necessary files normally. You may need to use sudo for the following commands.
 
 ```bash
-mkdir -p /media/ROOT
-mount /dev/sdX2 /media/ROOT
+mkdir -p /mnt/boot
+mount /dev/sdX1 /mnt/boot
+cp boot.bin /mnt/boot
+cp boot.scr /mnt/boot
+cp system.dtb /mnt/boot
+cp Image /mnt/boot
+cp u-boot.bin /mnt/boot
+umount /dev/sdX1
 ```
 
-then to untar, an example command is provided to give you an idea of what this would look like
+For the `ROOT` partition, you don't need to mount it, just use dd to flash the ext4 rootfs to the partition.
 
 ```bash
-cd /media/BOOT
-tar -xzvf ~/d4/poky/build/tmp/deploy/images/zcu102-zynqmp/zynq-base-zcu102-zynqmp.tar.gz
+dd if=rootfs.ext4 of=/dev/sdc2
 ```
-
-finally, unmount the `ROOT` partition with (`umount` and not `unmount`!)
-
-```bash
-umount /media/ROOT
-```
-
-For the `BOOT` partition, just copy over the files normally. You can choose to mount it similarly
-
-```bash
-mkdir -p /media/BOOT
-mount /dev/sdX1 /media/BOOT
-cp BOOT.bin /media/BOOT
-cp system.dtb /media/BOOT
-cp Image /media/BOOT
-cp uEnv.txt /media/BOOT
-umount /media/BOOT
-```
-
-or just plug it in a machine and drag-drop the files as the `BOOT` partition should just be auto-mounted as a storage device.
 
 ## Booting the Zynq MPSoC Ultrascale+
 
@@ -399,13 +228,4 @@ Configure SW16(?) to `0xE` (according to [this forum post](https://forums.xilinx
 
 [![zynqmp_sw16_configuration](https://www.starwaredesign.com/images/IMG_2053-1.JPG)](https://www.starwaredesign.com/index.php/articles-and-talks/87-build-and-deploy-yocto-linux-on-the-xilinx-zynq-ultrascale-mpsoc-zcu102)
 
-and then plug in the SD card and you should see the board boot up successfully. Refer to [this Xilinx wiki](http://www.wiki.xilinx.com/Setup+a+Serial+Console) on setting up a serial console if you don't know how to do that.
-
-# Useful Links
-
-- https://forums.xilinx.com/t5/Embedded-Linux/ZCU102-Ultrascale-ATF-hangs-in-SDCard-boot-using-FSBL/td-p/757044
-- https://www.starwaredesign.com/index.php/articles-and-talks/87-build-and-deploy-yocto-linux-on-the-xilinx-zynq-ultrascale-mpsoc-zcu102
-- https://forums.xilinx.com/t5/Xilinx-Boards-and-Kits/ZCU102-fail-to-boot-from-SD-card/m-p/739836#M14443
-- http://www.wiki.xilinx.com/Build+Device+Tree+Blob
-- http://www.wiki.xilinx.com/Prepare+Boot+Medium
-- http://linux-sunxi.org/UEnv.txt
+and then plug in the SD card and you should see the board boot up successfully. Refer to [this Xilinx wiki](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842446/Setup+a+Serial+Console) on setting up a serial console if you don't know how to do that.
