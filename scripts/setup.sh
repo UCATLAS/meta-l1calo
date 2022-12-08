@@ -7,8 +7,7 @@ export PATH=$PATH:$PWD
 repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2020.2 && repo sync &&  repo start rel-2020.2 --all
 
 cd sources
-#git clone https://github.com/kratsg/meta-l1calo.git
-git clone git@github.com:kratsg/meta-l1calo.git
+git clone git@github.com:UCATLAS/meta-l1calo.git
 cd ../
 source setupsdk && bitbake-layers add-layer ../sources/meta-l1calo 
 
