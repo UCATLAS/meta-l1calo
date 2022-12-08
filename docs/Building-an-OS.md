@@ -12,7 +12,8 @@
     - [What machines actually exist?](#what-machines-actually-exist)
   - [Converting cpio.gz to a u-boot uramdisk.image.gz](#converting-cpiogz-to-a-u-boot-uramdiskimagegz)
   - [Flashing image using wic](#flashing-image-using-wic)
-- [Extra Useful Commands](#extra-useful-commands)
+- [Quick Build an OS!](#quick-build-an-os)
+- [Extra Useful Commands](#extra-useful-commands-and-paths)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -225,14 +226,20 @@ Note: Please be careful when using fdisk! Please don't accidentally overwrite yo
 
 # Quick Build an OS! 
 
+## First Time Setup
 - Download the meta-l1calo [setup script](https://github.com/kratsg/meta-l1calo/blob/master/scripts/setup.sh)
 - Run the setup script: ```source setup.sh```
-- Go into the folder it created: ```cd xilinx_bitbake``` 
-- Setup Vivado SDK: ```source setupsdk```
-- Configure the build with your local.conf file in ```./xilinx_bitbake/build/conf/local.conf```
+- Configure the build with your local.conf file in ```./conf/local.conf```
   - In the file near other machine definitions set: ```MACHINE = "gfex-production-stf"```
   - Set any other needed variables 
-- Go to build directory: ```cd ./xilinx_bitbake/build/```
+- Build the OS: ```bitbake -c clean core-image-gfex; bitbake core-image-gfex```
+
+## Repeatable Setup
+- ```cd xilinx_bitbake``` 
+- Setup Vivado SDK: ```source setupsdk```
+- Configure the build with your local.conf file as needed ```.conf/local.conf```
+  - In the file near other machine definitions set: ```MACHINE = "gfex-production-stf"```
+  - Set any other needed variables 
 - Build the OS: ```bitbake -c clean core-image-gfex; bitbake core-image-gfex```
 
 # Extra Useful Commands and Paths
