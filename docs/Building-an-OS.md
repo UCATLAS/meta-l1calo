@@ -223,6 +223,17 @@ Xilinx provides [documentation on how to prepare an SD card for booting](https:/
 
 Note: Please be careful when using fdisk! Please don't accidentally overwrite your hard drive! You can verify the name of the device you've inserted by using the command `dmesg | tail` to see the name given to the device, usually it is something like `/dev/sdX`. 
 
+# Quick Build an OS! 
+
+- Download the meta-l1calo [setup script](https://github.com/kratsg/meta-l1calo/blob/master/scripts/setup.sh)
+- Run the setup script: ```source setup.sh```
+- Go into the folder it created: ```cd xilinx_bitbake``` 
+- Setup Vivado SDK: ```source setupsdk```
+- Configure the build with your local.conf file in ```./xilinx_bitbake/build/conf/local.conf```
+  - In the file near other machine definitions set: ```MACHINE = "gfex-production-stf"```
+  - Set any other needed variables 
+- Go to build directory: ```cd ./xilinx_bitbake/build/```
+- Build the OS: ```bitbake -c clean core-image-gfex; bitbake core-image-gfex```
 
 # Extra Useful Commands and Paths
 
