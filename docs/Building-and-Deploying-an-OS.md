@@ -66,7 +66,7 @@ You can go [here to see a list of layers](http://layers.openembedded.org/layerin
 - [meta-oe](http://layers.openembedded.org/layerindex/branch/master/layer/meta-oe/)
 - [meta-xilinx-bsp](http://layers.openembedded.org/layerindex/branch/master/layer/meta-xilinx/)
 - [meta-python](http://layers.openembedded.org/layerindex/branch/master/layer/meta-python/)
-- [meta-l1calo](https://github.com/kratsg/meta-l1calo)
+- [meta-l1calo](https://github.com/UCATLAS/meta-l1calo)
 
 so read each of those to see the sorts of recipes each of them have.
 
@@ -78,7 +78,7 @@ In the same directory (eg: the home directory), we `git clone` all of the above
 git clone -b rocko git://git.openembedded.org/openembedded-core
 git clone -b rocko git://git.openembedded.org/meta-openembedded
 git clone -b rocko git://git.yoctoproject.org/meta-xilinx
-git clone git://github.com/kratsg/meta-l1calo
+git clone git://github.com/UCATLAS/meta-l1calo
 ```
 
 and these all need to be matched with our `poky` distribution (which is set at `rocko`) with `meta-l1calo` at the time in development mode, and not necessarily frozen to a release.

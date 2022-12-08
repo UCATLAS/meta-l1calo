@@ -54,6 +54,6 @@ became
   };
 ```
 
-as seen in this change https://github.com/kratsg/meta-l1calo/compare/7f7687...69d89d1 .
+as seen in this change https://github.com/UCATLAS/meta-l1calo/compare/7f7687...69d89d1 .
 
 [1] http://www.wiki.xilinx.com/Linux+Drivers
