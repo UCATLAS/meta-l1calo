@@ -1,6 +1,6 @@
 #p Add log folder in rootfs
 dirs755_append = " /logs \ 
-	       	   /software
+	       	   /software \
 		   /software/misc "
 
 # Add alias for emacs since I keep trying to use it
