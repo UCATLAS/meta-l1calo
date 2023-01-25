@@ -11,7 +11,7 @@ inherit cmake pkgconfig
 
 DEPENDS += "llvm3.3 libx11 libxpm libxft python-core"
 
-do_configure_prepend(){
+do_configure:prepend(){
 	export FC=${GFORTRAN}
 }
 
