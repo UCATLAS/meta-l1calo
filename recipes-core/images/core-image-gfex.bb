@@ -10,9 +10,15 @@ IMAGE_INSTALL += "chrony"
 
 IMAGE_INSTALL += "python3-ironman"
 IMAGE_INSTALL += "python3-numpy"
+IMAGE_INSTALL += "python3-pandas"
 IMAGE_INSTALL += "python3"
 
 #IMAGE_INSTALL += "gcc"
+IMAGE_INSTALL += "rsync"
+IMAGE_INSTALL += "openssh"
+IMAGE_INSTALL += "openssh-sshd"
+IMAGE_INSTALL += "openssh-sftp"
+IMAGE_INSTALL += "openssh-sftp-server"
 
 IMAGE_INSTALL_append_gfex-production += "init-clock"
 IMAGE_INSTALL_append_gfex-production += "init-ipmc-auto-shutdown"
