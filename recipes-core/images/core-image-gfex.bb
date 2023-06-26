@@ -11,6 +11,7 @@ IMAGE_INSTALL += "chrony"
 IMAGE_INSTALL += "python3-ironman"
 IMAGE_INSTALL += "python3-numpy"
 IMAGE_INSTALL += "python3-pandas"
+IMAGE_INSTALL += "python3-bigtree"
 IMAGE_INSTALL += "python3"
 
 #IMAGE_INSTALL += "gcc"
