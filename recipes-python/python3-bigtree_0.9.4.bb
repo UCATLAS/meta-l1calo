@@ -2,7 +2,7 @@ SUMMARY = "BigTree - Tree Implementation for Python, integrated with Python list
 HOMEPAGE = "https://github.com/kayjan/bigtree"
 AUTHOR = "Kay Jan"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=6a46bf0dd4463bb3d7079f1e625d881e"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=d17cca707393ef99291b58377ab60797"
 
 PYPI_PACKAGE = "bigtree"
 
