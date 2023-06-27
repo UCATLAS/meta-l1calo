@@ -15,4 +15,16 @@ SRC_URI[sha256sum] = "37df7ef5b31bb3d81c09ee950b0fd208446fc2f20a2ad9787826deecda
 
 RDEPENDS_${PN} = "python3-pandas"
 
+do_configure_prepend() {
+cat > ${S}/setup.py <<-EOF
+from setuptools import setup, find_packages
 
+setup(
+       name="${PYPI_PACKAGE}",
+       version="${PV}",
+       license="${LICENSE}",
+       packages=find_packages(),    
+       install_requires=['numpy >= 1.11.1', 'matplotlib >= 1.5.1'],
+)
+EOF
+}
