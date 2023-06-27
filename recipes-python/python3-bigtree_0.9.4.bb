@@ -21,7 +21,7 @@ from setuptools import setup, find_packages
 
 setup(
        name="${PYPI_PACKAGE}",
-       version="${PV}",
+       version="${AUTHOR}",
        license="${LICENSE}",
        packages=find_packages(),    
        install_requires=['numpy >= 1.17.0', 'pandas >= 0.23.4'],
