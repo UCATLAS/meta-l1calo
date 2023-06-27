@@ -24,7 +24,7 @@ setup(
        version="${PV}",
        license="${LICENSE}",
        packages=find_packages(),    
-       install_requires=['numpy >= 1.11.1', 'matplotlib >= 1.5.1'],
+       install_requires=['numpy >= 1.17.0', 'pandas >= 0.23.4'],
 )
 EOF
 }
