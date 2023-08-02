@@ -94,6 +94,7 @@ Plug in the SD card into the Linux machine and identify which device file maps t
 This is telling you that your SD card is identified by `sde` which means `/dev/sde` is the device file mapping to the SD card. For the purposes of this tutorial, I will refer to it as `/dev/sdX` but please replace it with your version where necessary.
 
 ### Create actual partitions
+(in the case that you are using the `pc-gfex-fw-01` to parition the SD card, your SD card will probably be `sdb`)
 
 Let's use `fdisk` to enter and partition the card
 
