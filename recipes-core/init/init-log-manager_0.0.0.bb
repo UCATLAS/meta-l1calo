@@ -1,5 +1,5 @@
 DESCRIPTION = "Manage gFEX log file size "
-SRC_URI_gfex-prototype4 = "\
+SRC_URI:gfex-prototype4 = "\
   file://run-init-log-manager.sh \
   file://log-manager.py \
   file://LICENSE \
@@ -14,7 +14,7 @@ inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "run-init-log-manager.sh"
 
-RDEPENDS_${PN} = "python3-core python3-fcntl python3-schedule"
+RDEPENDS:${PN} = "python3-core python3-fcntl python3-schedule"
 
 # install it in the correct location for update-rc.d
 do_install() {
@@ -25,7 +25,7 @@ do_install() {
 }
 
 # package it as it is not installed in a standard location
-FILES_${PN} = "\
+FILES:${PN} = "\
   ${INIT_D_DIR}/run-init-log-manager.sh \
   /software/misc/log-manager.py \
 "

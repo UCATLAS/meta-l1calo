@@ -109,7 +109,7 @@ rm -rf workspace/sources/u-boot-xlnx
 The last thing we need to do is make sure that the `.bbappends` only applies the patch for the specific board `gfex-prototype3` that needs it. In this case, we go to the `meta-l1calo` layer where `devtool` made all the changes, and then edit `recipes-bsp/u-boot/u-boot-xlnx_2017.1.bbappend`:
 
 ```
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 SRC_URI += "file://0001-no-SDCard-available-for-gFEX-prototype-v3.patch"
 ```
@@ -117,9 +117,9 @@ SRC_URI += "file://0001-no-SDCard-available-for-gFEX-prototype-v3.patch"
 and change `SRC_URI` to add an append operation to a specific machine
 
 ```
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-SRC_URI_append_gfex-prototype3 += "file://0001-no-SDCard-available-for-gFEX-prototype-v3.patch"
+SRC_URI:append:gfex-prototype3 += "file://0001-no-SDCard-available-for-gFEX-prototype-v3.patch"
 ```
 
 and this will only patch the ZynqMP ZCU102 header file for u-boot if the target machine is `gfex-prototype3`.

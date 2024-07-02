@@ -1,5 +1,5 @@
 DESCRIPTION = "Repeated polling of i2c sensor values"
-SRC_URI_gfex-production = "\
+SRC_URI:gfex-production = "\
   file://run-init-resize-rootfs.sh \
   file://LICENSE \
 "
@@ -14,7 +14,7 @@ INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "run-init-resize-rootfs.sh"
 INITSCRIPT_PARAMS = "defaults 10"
 
-RDEPENDS_${PN} = "e2fsprogs-resize2fs bash"
+RDEPENDS:${PN} = "e2fsprogs-resize2fs bash"
 
 # install it in the correct location for update-rc.d
 do_install() {
@@ -23,6 +23,6 @@ do_install() {
 }
 
 # package it as it is not installed in a standard location
-FILES_${PN} = "\
+FILES:${PN} = "\
   ${INIT_D_DIR}/run-init-resize-rootfs.sh \
 "

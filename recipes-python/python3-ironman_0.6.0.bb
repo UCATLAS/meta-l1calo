@@ -13,6 +13,6 @@ SRC_URI = "https://files.pythonhosted.org/packages/63/df/b1dc2440c2a47d79fbfb4ea
 SRC_URI[md5sum] = "f1fab976d2fd28613d0e919629d82169"
 SRC_URI[sha256sum] = "6cc57944ac132988f19e74095d6425aefcbb58fc8a94f4654dcf48ec562692d2"
 
-RDEPENDS_${PN} = "python3-twisted python3-zopeinterface python3-construct python3-pyyaml"
+RDEPENDS:${PN} = "python3-twisted python3-zopeinterface python3-construct python3-pyyaml"
 //PREFERRED_VERSION_python3-twisted = "22.2.0"
 

@@ -30,4 +30,4 @@ EXTRA_OECMAKE = " \
 # See archive for discussion: https://lists.yoctoproject.org/pipermail/yocto/2018-July/041728.html .
 INSANE_SKIP_${PN} += "dev-so"
 FILES_SOLIBSDEV = ""
-FILES_${PN} += "${libdir}/*.so"
+FILES:${PN} += "${libdir}/*.so"

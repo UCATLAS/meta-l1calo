@@ -9,4 +9,4 @@ SRC_URI[sha256sum] = "730235fedf4f2fee5cfadda1d14b83ef1bf23790fb1cc579073e10f70a
 
 PYPI_PACKAGE = "construct"
 inherit pypi setuptools3
-RDEPENDS_${PN} += "python3-core python3-six python3-debugger"
+RDEPENDS:${PN} += "python3-core python3-six python3-debugger"

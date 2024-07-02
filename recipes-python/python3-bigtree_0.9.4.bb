@@ -13,9 +13,9 @@ inherit pypi setuptools3
 SRC_URI[md5sum] = "ff93e5bfaf3cd40c07a9bf4c9c0c0b34"
 SRC_URI[sha256sum] = "37df7ef5b31bb3d81c09ee950b0fd208446fc2f20a2ad9787826deecda68e821"
 
-RDEPENDS_${PN} = "python3-pandas"
+RDEPENDS:${PN} = "python3-pandas"
 
-do_configure_prepend() {
+do_configure:prepend() {
 cat > ${S}/setup.py <<-EOF
 from setuptools import setup, find_packages
 

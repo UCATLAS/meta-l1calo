@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/kratsg/ironman"
 AUTHOR = "Emily Smith <emsmith@cern.ch>"
 
 SRC_URI = "git://git@gitlab.cern.ch:7999/atlas-l1calo/gfex/gfex-register-access.git;branch=master;protocol=ssh"
-SRCREV ?= "a8289979c10412eccb0f2f65fa155cee9a42cde0"
+SRCREV ?= "a1691e4a5c91d63ee8fad80dff8060b9a7231897"
 
 S = "${WORKDIR}/git"
 
@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://${S}/ReadRegisters.py;beginline=2;endline=20;md5=084a
 
 #PV = "1.0+git${SRCPV}"
 
-RDEPENDS_${PN} = "python3-numpy python3-pyyaml python3-periphery"
+RDEPENDS:${PN} = "python3-numpy python3-pyyaml python3-periphery"
 
 do_install () {
 	   install -d ${D}/software/gfex-register-access
@@ -20,4 +20,4 @@ do_install () {
 }
 
 PACKAGES = "${PN}"
-FILES_${PN}="/software/gfex-register-access"
+FILES:${PN}="/software/gfex-register-access"
