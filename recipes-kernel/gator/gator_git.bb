@@ -19,7 +19,7 @@ S = "${WORKDIR}/git"
 
 inherit update-rc.d module
 
-RDEPENDS_${PN} = " \
+RDEPENDS:${PN} = " \
         libgles2 \
         kernel-module-mali \
 "
@@ -45,7 +45,7 @@ do_install() {
   install -m 0755 ${S}/driver/gator.ko ${D}${sbindir}/gator.ko
 }
 
-FILES_${PN} = " \
+FILES:${PN} = " \
   ${INIT_D_DIR}/gator \
   ${sbindir}/gatord \
   ${sbindir}/gator.ko \

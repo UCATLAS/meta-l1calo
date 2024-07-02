@@ -1,2 +1,2 @@
 # overwrite interfaces file coming from init-ifupdown
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"

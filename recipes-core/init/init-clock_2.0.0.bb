@@ -1,6 +1,6 @@
 # see https://stackoverflow.com/a/40768781
 DESCRIPTION = "Clock Configuration via I2C"
-SRC_URI_gfex-prototype4 = "\
+SRC_URI:gfex-prototype4 = "\
   file://init-clock \
   file://si5345_GF240280-Registers.txt \
 "
@@ -15,7 +15,7 @@ INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "init-clock"
 INITSCRIPT_PARAMS = "defaults 20"
 
-RDEPENDS_${PN} = "python3-core python3-fcntl python3-periphery"
+RDEPENDS:${PN} = "python3-core python3-fcntl python3-periphery"
 
 # install it in the correct location for update-rc.d
 do_install() {
@@ -25,7 +25,7 @@ do_install() {
 }
 
 # package it as it is not installed in a standard location
-FILES_${PN} = "\
+FILES:${PN} = "\
   ${INIT_D_DIR}/init-clock \
   ${INIT_D_DIR}/si5345_GF240280-Registers.txt \
 "

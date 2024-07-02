@@ -9,7 +9,7 @@ SRCREV ?= "dad44fc7d643a0d60609ce5b323e7fa849f7f3df"
 
 S = "${WORKDIR}/git"
 
-RDEPENDS_${PN} = "python3-opcua"
+RDEPENDS:${PN} = "python3-opcua"
 
 do_install () {
            install -d ${D}/usr/lib/python3.7/site-packages/MilkyWay
@@ -17,4 +17,4 @@ do_install () {
 }
 
 PACKAGES = "${PN}"
-FILES_${PN}="/usr/lib/python3.7/site-packages/MilkyWay"
+FILES:${PN}="/usr/lib/python3.7/site-packages/MilkyWay"

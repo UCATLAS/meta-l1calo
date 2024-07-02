@@ -10,7 +10,7 @@ SRC_URI[sha256sum] = "3352f30b5fed863146a82778aaf09faa5feafcb9dd446a4f49ff34c0c3
 
 S = "${WORKDIR}/opcua-0.98.13"
 
-RDEPENDS_${PN} = "${PYTHON_PN}-lxml ${PYTHON_PN}-pytz ${PYTHON_PN}-dateutil"
+RDEPENDS:${PN} = "${PYTHON_PN}-lxml ${PYTHON_PN}-pytz ${PYTHON_PN}-dateutil"
 
 PYPI_PACKAGE = "opcua"
 

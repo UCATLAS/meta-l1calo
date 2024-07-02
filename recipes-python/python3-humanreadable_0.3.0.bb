@@ -13,5 +13,5 @@ SRC_URI = "https://files.pythonhosted.org/packages/f6/64/b79577649ff6bb9d6677c8c
 SRC_URI[md5sum] = "b4ad5d181745183445bd47703f7ed493"
 SRC_URI[sha256sum] = "13a0de021098a0cb474b46e53cfedb9cbbfdb3c9a33e20a9dda48d8ea987109d"
 
-#RDEPENDS_${PN} = "python3-pandas"
+#RDEPENDS:${PN} = "python3-pandas"
 

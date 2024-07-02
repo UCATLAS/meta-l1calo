@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://${S}/ReadRegisters.py;beginline=2;endline=20;md5=084a
 
 #PV = "1.0+git${SRCPV}"
 
-RDEPENDS_${PN} = "python3-numpy python3-pyyaml python3-periphery"
+RDEPENDS:${PN} = "python3-numpy python3-pyyaml python3-periphery"
 
 do_install () {
 	   install -d ${D}/software/gfex-register-access
@@ -20,4 +20,4 @@ do_install () {
 }
 
 PACKAGES = "${PN}"
-FILES_${PN}="/software/gfex-register-access"
+FILES:${PN}="/software/gfex-register-access"

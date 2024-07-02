@@ -1,5 +1,5 @@
 DESCRIPTION = "Load user firmware on zFPGA"
-SRC_URI_gfex-production = "\
+SRC_URI:gfex-production = "\
   file://load-firmware.py \
   file://zfpga_top.bit \
   file://LICENSE \
@@ -15,7 +15,7 @@ INITSCRIPT_PACKAGES = "${PN}"
 INITSCRIPT_NAME = "load-firmware.py"
 INITSCRIPT_PARAMS = "defaults 01"
 
-RDEPENDS_${PN} = "python3-core"
+RDEPENDS:${PN} = "python3-core"
 
 # install it in the correct location for update-rc.d
 do_install() {
@@ -26,7 +26,7 @@ do_install() {
 }
 
 # package it as it is not installed in a standard location
-FILES_${PN} = "\
+FILES:${PN} = "\
   ${INIT_D_DIR}/load-firmware.py \
   /lib/firmware/zfpga_top.bit \
 "

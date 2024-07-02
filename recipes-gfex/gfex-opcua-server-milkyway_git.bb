@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=4d9db4b2970e8185b1a8c2e4dd416c7a"
 
 #PV = "1.0+git${SRCPV}"
 
-RDEPENDS_${PN} = "python3-milkyway"
+RDEPENDS:${PN} = "python3-milkyway"
 
 do_install () {
 	   install -d ${D}/software/opc-ua-gfex-milkyway-server/
@@ -19,4 +19,4 @@ do_install () {
 }
 
 PACKAGES = "${PN}"
-FILES_${PN}="/software/opc-ua-gfex-milkyway-server/"
+FILES:${PN}="/software/opc-ua-gfex-milkyway-server/"

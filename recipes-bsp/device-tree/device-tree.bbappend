@@ -1,12 +1,12 @@
 # Have bitbake include ${THISDIR}/files to the list of search paths
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-SYSTEM_USER_DTSI_gfex-production-p1 ?= "gfex-production.dtsi"
-SYSTEM_USER_DTSI_gfex-production-stf ?= "gfex-production.dtsi"
+SYSTEM_USER_DTSI:gfex-production-p1 ?= "gfex-production.dtsi"
+SYSTEM_USER_DTSI:gfex-production-stf ?= "gfex-production.dtsi"
 
-SRC_URI_append = " file://${SYSTEM_USER_DTSI}"
+SRC_URI:append = " file://${SYSTEM_USER_DTSI}"
 
-do_configure_append() {
+do_configure:append() {
 	cp ${WORKDIR}/${SYSTEM_USER_DTSI} ${B}/device-tree
 	echo "/include/ \"${SYSTEM_USER_DTSI}\"" >> ${B}/device-tree/system-top.dts
 }

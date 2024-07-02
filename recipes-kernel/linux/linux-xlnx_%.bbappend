@@ -1,9 +1,9 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-SRC_URI_append_gfex += " \
+SRC_URI:append:gfex = " \
   file://disable-cpu-idle.cfg \
 "
 
-SRC_URI_append_zynqmp += " \
+SRC_URI:append:zynqmp = " \
   file://add-trace-for-gator.cfg \
 "
