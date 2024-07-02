@@ -1,15 +1,27 @@
-require conf/machine/include/soc-zynqmp.inc
+# require conf/machine/include/soc-zynqmp.inc
 require conf/machine/include/tune-gfex.inc
 
 # add overrides for group of machines
 MACHINEOVERRIDES .= ":gfex-production"
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-xlnx"
-PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot-xlnx"
-PREFERRED_PROVIDER_virtual/pmu-firmware ?= "zynqmp-pmu-pmu-firmware"
+# PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot-xlnx"
+# PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot-zynq-scr"
+# PREFERRED_PROVIDER_virtual/pmu-firmware ?= "zynqmp-pmu-pmu-firmware"
+PREFERRED_PROVIDER_virtual/pmu-firmware ?= "pmufw"
 
+
+# U-Boot Configuration
+PREFERRED_PROVIDER_virtual/bootloader ??= "u-boot-xlnx"
+PREFERRED_PROVIDER_virtual/boot-bin ??= "xilinx-bootbin"
+PREFERRED_PROVIDER_u-boot-tools ??= "u-boot-tools-xlnx"
+PREFERRED_PROVIDER_u-boot-tools-native ??= "u-boot-tools-xlnx-native"
+PREFERRED_PROVIDER_nativesdk-u-boot-tools ??= "nativesdk-u-boot-tools-xlnx"
+
+
+#    u-boot-zynq-scr \ (from inside extra_imagedepends)
 EXTRA_IMAGEDEPENDS += " \
-    u-boot-zynq-scr \
+    u-boot-xlnx \
     arm-trusted-firmware \
     virtual/pmu-firmware \
     "
