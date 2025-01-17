@@ -1,4 +1,4 @@
-# require conf/machine/include/soc-zynqmp.inc
+require conf/machine/include/soc-zynqmp.inc
 require conf/machine/include/tune-gfex.inc
 
 # add overrides for group of machines
@@ -20,16 +20,29 @@ PREFERRED_PROVIDER_nativesdk-u-boot-tools ??= "nativesdk-u-boot-tools-xlnx"
 
 
 #    u-boot-zynq-scr \ (from inside extra_imagedepends)
+# EXTRA_IMAGEDEPENDS += " \
+#    u-boot-xlnx \
+#    arm-trusted-firmware \
+#    virtual/pmu-firmware \
+#   "
 EXTRA_IMAGEDEPENDS += " \
-    u-boot-xlnx \
-    arm-trusted-firmware \
-    virtual/pmu-firmware \
+    virtual/bootloader \
+    u-boot-xlnx-uenv \
+    u-boot-xlnx-scr \
     "
+
+IMAGE_BOOT_FILES += " \
+    boot.scr \
+    Image \
+    "
+
 
 YAML_ENABLE_DT_OVERLAY = "1"
 
 # image for SPI
 IMAGE_FSTYPES += "jffs2 ext4 wic"
+# updated 2024.2 xilix version of this line is more than ours, perhaps we need it
+# IMAGE_FSTYPES += "${@'wic.qemu-sd' if (d.getVar('INITRAMFS_IMAGE') or '') == '' else 'cpio.gz.u-boot'}"
 JFFS2_ERASEBLOCK = "0x20000"
 WKS_FILES = "gfex-sdimage.wks"
 

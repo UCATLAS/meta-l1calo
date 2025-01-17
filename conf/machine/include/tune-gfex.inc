@@ -1,14 +1,17 @@
 
-# require conf/machine/include/machine-xilinx-default.inc 
+require conf/machine/include/machine-xilinx-default.inc 
 # require conf/machine/include/xilinx-board.inc
 # require conf/machine/zynqmp-eg-generic.conf
-require conf/machine/zynqmp-generic.conf 
+# require conf/machine/zynqmp-generic.conf 
 include conf/machine/include/zynqmp-pmu-config.inc
 
 # this is usually something you don't touch, but specify a list of features/tunes
 MACHINE_FEATURES = "rtc ext2 ext3 vfat usbhost"
+# Updated 2024.2 xilix version of this line includes additional features, that perhaps dont affect us
+# MACHINE_FEATURES += "rtc ext2 ext3 vfat usbhost usbgadget wifi bluetooth"
 # serial connection with baud rate 115200
-SERIAL_CONSOLE = "115200 ttyPS0"
+# SERIAL_CONSOLE = "115200 ttyPS0"
+SERIAL_CONSOLES ?= "115200;ttyPS0 115200;ttyPS1"
 # erase kernel device tree because we want to build our own
 KERNEL_DEVICETREE = ""
 
