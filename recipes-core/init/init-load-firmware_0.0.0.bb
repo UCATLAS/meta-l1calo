@@ -21,12 +21,13 @@ RDEPENDS:${PN} = "python3-core"
 do_install() {
   install -d ${D}${INIT_D_DIR}
   install -m 0755 ${WORKDIR}/load-firmware.py ${D}${INIT_D_DIR}/load-firmware.py
-  install -d ${D}/lib/firmware
-  install -m 0755 ${WORKDIR}/zfpga_top.bit ${D}/lib/firmware/zfpga_top.bit
+  install -d ${D}/usr/firmware
+  install -m 0755 ${WORKDIR}/zfpga_top.bit ${D}/usr/firmware/zfpga_top.bit
 }
 
 # package it as it is not installed in a standard location
+mkdir /usr/firmware
 FILES:${PN} = "\
   ${INIT_D_DIR}/load-firmware.py \
-  /lib/firmware/zfpga_top.bit \
+  /usr/firmware/zfpga_top.bit \
 "
