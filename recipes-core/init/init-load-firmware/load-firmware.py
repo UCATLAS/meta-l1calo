@@ -15,7 +15,7 @@ if ENABLE_FIRMWARE_LOAD:
         load = subprocess.getoutput("echo zfpga_top.bit > /sys/class/fpga_manager/fpga0/firmware")
         print(load)
 
-    print("Loaded firmware on zFPGA using /lib/firmware/zfpga_top.bit")
+    print("Loaded firmware on zFPGA using /usr/firmware/zfpga_top.bit")
 
 else:
     print("Did not load any firmware on the zFPGA")
