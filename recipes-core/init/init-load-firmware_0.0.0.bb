@@ -26,7 +26,6 @@ do_install() {
 }
 
 # package it as it is not installed in a standard location
-mkdir /usr/firmware
 FILES:${PN} = "\
   ${INIT_D_DIR}/load-firmware.py \
   /usr/firmware/zfpga_top.bit \

@@ -8,6 +8,8 @@ S = "${WORKDIR}/git"
 
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=4d9db4b2970e8185b1a8c2e4dd416c7a"
+#LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=bb5c19407f788b73751fded179e3a840"
+
 
 #PV = "1.0+git${SRCPV}"
 
