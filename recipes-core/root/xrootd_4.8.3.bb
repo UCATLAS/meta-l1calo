@@ -9,7 +9,7 @@ SRC_URI[sha256sum] = "c722140045f1b0283b8d0bda4e56299ae4d698ae477333343fb302bf33
 
 inherit cmake
 
-DEPENDS += "python"
+DEPENDS:append = " python"
 
 PACKAGECONFIG ??= "crypto krb5"
 PACKAGECONFIG[crypto] = "-DENABLE_KRB5=TRUE,-DENABLE_KRB5=FALSE,openssl"
@@ -28,6 +28,6 @@ EXTRA_OECMAKE = " \
 # and skip the QA for this. This is an acceptable workaround but we will end up with .so symlinks
 # in the run-time package, which doesn't do much harm.
 # See archive for discussion: https://lists.yoctoproject.org/pipermail/yocto/2018-July/041728.html .
-INSANE_SKIP_${PN} += "dev-so"
+INSANE_SKIP_${PN}:append = " dev-so"
 FILES_SOLIBSDEV = ""
-FILES:${PN} += "${libdir}/*.so"
+FILES:${PN}:append = " ${libdir}/*.so"

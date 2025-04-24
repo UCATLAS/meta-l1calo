@@ -13,7 +13,7 @@ COMPATIBLE_MACHINE = "gfex-prototype4"
 # these 3 lines will have the script run on boot
 inherit update-rc.d
 INITSCRIPT_PACKAGES = "${PN}"
-INITSCRIPT_NAME = "run-init-ipmc-auto-shutdown.sh"
+INITSCRIPT_NAME = "run-init-ipmc-auto-shutdown"
 INITSCRIPT_PARAMS = "defaults 99"
 
 RDEPENDS:${PN} = "python3-core python3-fcntl python3-periphery"
