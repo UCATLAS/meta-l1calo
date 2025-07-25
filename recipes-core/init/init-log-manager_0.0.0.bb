@@ -1,5 +1,5 @@
 DESCRIPTION = "Manage gFEX log file size "
-SRC_URI:gfex-prototype4 = "\
+SRC_URI = "\
   file://run-init-log-manager.sh \
   file://log-manager.py \
   file://LICENSE \
@@ -7,7 +7,7 @@ SRC_URI:gfex-prototype4 = "\
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;beginline=1;endline=18;md5=b1aa6d414216b4e9f3ad6f491d8e4f70"
 
-COMPATIBLE_MACHINE = "gfex-prototype4"
+COMPATIBLE_MACHINE = "(gfex-prototype4|gfex-production-stf|gfex-production-p1)"
 
 # these 3 lines will have the script run on boot
 inherit update-rc.d

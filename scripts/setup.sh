@@ -16,5 +16,6 @@ printf "\nBB_NUMBER_THREADS = \"32\"\n" >> conf/local.conf
 #manually set machine in local.conf and add parallelizability
 
 cd ..
-cp sources/meta-l1calo/scripts/*.sh ./
-rm setup.sh
+cp sources/meta-l1calo/scripts/generate_device_tree.sh ./generate_device_tree.sh
+cp sources/meta-l1calo/scripts/copy_output.sh ./copy_output.sh
+cp sources/meta-l1calo/scripts/write_output_to_sd.sh ./write_output_to_sd.sh

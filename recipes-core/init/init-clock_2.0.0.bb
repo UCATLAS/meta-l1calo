@@ -1,13 +1,13 @@
 # see https://stackoverflow.com/a/40768781
 DESCRIPTION = "Clock Configuration via I2C"
-SRC_URI:gfex-prototype4 = "\
+SRC_URI = "\
   file://init-clock \
   file://si5345_GF240280-Registers.txt \
 "
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/init-clock;beginline=2;endline=19;md5=e740893593d6ecb2033496b85b82c742"
 
-COMPATIBLE_MACHINE = "gfex-prototype4"
+COMPATIBLE_MACHINE = "(gfex-prototype4|gfex-production-stf|gfex-production-p1)"
 
 # these 3 lines will have the script run on boot
 inherit update-rc.d

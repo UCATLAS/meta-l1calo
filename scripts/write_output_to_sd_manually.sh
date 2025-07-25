@@ -13,22 +13,31 @@ cd output
 if [ -d "gfex-prototype4" ]; then
   cd gfex-prototype4
 
-  sudo dd if=core-image-gfex-gfex-prototype4.rootfs.wic of="$sd_card_name" status=progress
-  cd ..
+  sudo dd if=ROOT/core-image-gfex-gfex-prototype4.rootfs.ext4 of="$sd_card_name"2 status=progress
 fi
 if [ -d "gfex-production-stf" ]; then
   cd gfex-production-stf
 
-  sudo dd if=core-image-gfex-gfex-production-stf.rootfs.wic of="$sd_card_name" status=progress
-  cd ..
+  sudo dd if=ROOT/core-image-gfex-gfex-production-stf.rootfs.ext4 of="$sd_card_name"2 status=progress
 fi
 if [ -d "gfex-production-p1" ]; then
   cd gfex-production-p1
 
-  sudo dd if=core-image-gfex-gfex-production-p1.rootfs.wic of="$sd_card_name" status=progress
-  cd ..
+  sudo dd if=ROOT/core-image-gfex-gfex-production-p1.rootfs.ext4 of="$sd_card_name"2 status=progress
 fi
 
-cd ..
+if [ -d "BOOT" ]; then
+  cd BOOT
+  sudo mkdir -p /media/BOOT
+  sudo mount "$sd_card_name"1 /media/BOOT
+  sudo cp boot.bin /media/BOOT
+  sudo cp system.dtb /media/BOOT
+  sudo cp Image /media/BOOT
+  sudo cp boot.scr /media/BOOT
+  sudo cp u-boot.bin /media/BOOT
+  sudo umount /media/BOOT
+
+  cd ../..
+fi
 
 sudo eject $sd_card_name

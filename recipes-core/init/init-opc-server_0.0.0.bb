@@ -1,12 +1,12 @@
 DESCRIPTION = "Run opc server on boot of the board"
-SRC_URI:gfex-production = "\
+SRC_URI = "\
   file://run-init-opc-server.sh \
   file://LICENSE \
 "
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;beginline=1;endline=18;md5=4d9db4b2970e8185b1a8c2e4dd416c7a"
 
-COMPATIBLE_MACHINE = "gfex-prototype4"
+COMPATIBLE_MACHINE = "(gfex-prototype4|gfex-production-stf|gfex-production-p1)"
 
 # these 3 lines will have the script run on boot
 inherit update-rc.d

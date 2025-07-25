@@ -1,5 +1,5 @@
 DESCRIPTION = "Automatic Shutdown Based on Temperature Sensor Readings"
-SRC_URI:gfex-prototype4 = "\
+SRC_URI = "\
   file://run-init-ipmc-auto-shutdown.sh \
   file://ipmc_auto_shutdown/gpio-dev-mem-test \
   file://ipmc_auto_shutdown/gpio_all_sensor_autoshutdown.py \
@@ -8,7 +8,7 @@ SRC_URI:gfex-prototype4 = "\
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/ipmc_auto_shutdown/gpio_all_sensor_autoshutdown.py;beginline=2;endline=19;md5=6f485c8366ff2b4b2fcaa5d957ea761a"
 
-COMPATIBLE_MACHINE = "gfex-prototype4"
+COMPATIBLE_MACHINE = "(gfex-prototype4|gfex-production-stf|gfex-production-p1)"
 
 # these 3 lines will have the script run on boot
 inherit update-rc.d

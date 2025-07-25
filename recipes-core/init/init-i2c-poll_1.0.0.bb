@@ -1,5 +1,5 @@
 DESCRIPTION = "Repeated polling of i2c sensor values"
-SRC_URI:gfex-prototype4 = "\
+SRC_URI = "\
   file://run-init-i2c-poll.sh \
   file://i2c_poll/init-i2c-poll.py \
   file://i2c_poll/gfex_temperature.py \
@@ -9,7 +9,7 @@ SRC_URI:gfex-prototype4 = "\
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/i2c_poll/init-i2c-poll.py;beginline=2;endline=19;md5=6f485c8366ff2b4b2fcaa5d957ea761a"
 
-COMPATIBLE_MACHINE = "gfex-prototype4"
+COMPATIBLE_MACHINE = "(gfex-prototype4|gfex-production-stf|gfex-production-p1)"
 
 # these 3 lines will have the script run on boot
 inherit update-rc.d

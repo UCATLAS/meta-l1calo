@@ -1,5 +1,5 @@
 DESCRIPTION = "Load user firmware on zFPGA"
-SRC_URI:gfex-production = "\
+SRC_URI = "\
   file://load-firmware.py \
   file://zfpga_top.bit \
   file://LICENSE \
@@ -7,7 +7,7 @@ SRC_URI:gfex-production = "\
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;beginline=1;endline=18;md5=470c8811ac7dbd16d782e1422760fad8"
 
-COMPATIBLE_MACHINE = "gfex-prototype4"
+COMPATIBLE_MACHINE = "(gfex-prototype4|gfex-production-stf|gfex-production-p1)"
 
 # these 3 lines will have the script run on boot
 inherit update-rc.d
