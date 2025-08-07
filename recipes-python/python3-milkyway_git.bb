@@ -12,9 +12,9 @@ S = "${WORKDIR}/git"
 RDEPENDS:${PN} = "python3-opcua"
 
 do_install () {
-           install -d ${D}/usr/lib/python3.7/site-packages/MilkyWay
-	   cp -R --no-dereference --preserve=mode,links -v ${S}/* ${D}/usr/lib/python3.7/site-packages/MilkyWay/
+           install -d ${D}/usr/lib/python3.12/site-packages/MilkyWay
+	   cp -R --no-dereference --preserve=mode,links -v ${S}/* ${D}/usr/lib/python3.12/site-packages/MilkyWay/
 }
 
 PACKAGES = "${PN}"
-FILES:${PN}="/usr/lib/python3.7/site-packages/MilkyWay"
+FILES:${PN}="/usr/lib/python3.12/site-packages/MilkyWay"

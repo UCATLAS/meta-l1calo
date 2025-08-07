@@ -1,0 +1,13 @@
+[Unit]
+Description=Auto-shutdown based on temperature sensors
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/gfex-programs/run-init-ipmc-auto-shutdown.sh
+WorkingDirectory=/software/misc/ipmc_auto_shutdown
+RemainAfterExit=true
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

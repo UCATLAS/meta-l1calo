@@ -1,0 +1,12 @@
+[Unit]
+Description=Run OPC Server on boot
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/gfex-programs/run-init-opc-server.sh
+RemainAfterExit=true
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -13,19 +13,19 @@ cd output
 if [ -d "gfex-prototype4" ]; then
   cd gfex-prototype4
 
-  sudo dd if=core-image-gfex-gfex-prototype4.rootfs.wic of="$sd_card_name" status=progress
+  sudo dd if=core-image-gfex-gfex-prototype4.wic of="$sd_card_name" status=progress
   cd ..
 fi
 if [ -d "gfex-production-stf" ]; then
   cd gfex-production-stf
 
-  sudo dd if=core-image-gfex-gfex-production-stf.rootfs.wic of="$sd_card_name" status=progress
+  sudo dd if=core-image-gfex-gfex-production-stf.wic of="$sd_card_name" status=progress
   cd ..
 fi
 if [ -d "gfex-production-p1" ]; then
   cd gfex-production-p1
 
-  sudo dd if=core-image-gfex-gfex-production-p1.rootfs.wic of="$sd_card_name" status=progress
+  sudo dd if=core-image-gfex-gfex-production-p1.wic of="$sd_card_name" status=progress
   cd ..
 fi
 
