@@ -14,7 +14,7 @@ inherit systemd
 SYSTEMD_SERVICE:${PN} = "init-ironman.service"
 GFEX_PROGRAMS_DIR = "${libdir}/gfex-programs"
 
-RDEPENDS:${PN} = "python3-core python3-ironman gfex-register-access gfex-management-scripts"
+RDEPENDS:${PN} = "python3-core python3-ironman gfex-register-access"
 
 # install it in the correct location
 do_install() {

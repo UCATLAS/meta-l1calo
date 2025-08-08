@@ -142,13 +142,18 @@
 
 / {
   aliases {
-    ethernet0 = &gem2;
-    ethernet1 = &gem3;
+    eth0 = &gem0;
+    eth1 = &gem1;
+    eth2 = &gem2;
     serial0 = &uart0;
     serial1 = &uart1;
     spi0 = &spi0;
     spi1 = &spi1;
     i2c0 = &i2c0;
     i2c1 = &i2c1;
-   };
+  };
+
+  chosen {
+  	bootargs = "earlycon clk_ignore_unused net.ifnames=0";
+  };
 };

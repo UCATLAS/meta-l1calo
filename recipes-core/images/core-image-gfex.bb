@@ -22,7 +22,7 @@ IMAGE_INSTALL:append = " htop"
 IMAGE_INSTALL:append = " openssh"
 IMAGE_INSTALL:append = " openssh-sshd"
 IMAGE_INSTALL:append = " openssh-sftp"
-MAGE_INSTALL:append = " packagegroup-core-ssh-openssh-sftp-server"
+# IMAGE_INSTALL:append = " packagegroup-core-ssh-openssh-sftp-server"
 
 # gFEX-specific boot-time scripts
 IMAGE_INSTALL:append = " init-clock"
@@ -33,6 +33,7 @@ IMAGE_INSTALL:append = " init-opc-server"
 IMAGE_INSTALL:append = " init-log-manager"
 IMAGE_INSTALL:append = " init-resize-rootfs"
 IMAGE_INSTALL:append = " init-load-firmware"
+IMAGE_INSTALL:append = " init-management-scripts"
 
 #IMAGE_INSTALL:append:zynqmp = " gator glew"
 
