@@ -37,4 +37,6 @@ IMAGE_INSTALL:append = " init-management-scripts"
 
 #IMAGE_INSTALL:append:zynqmp = " gator glew"
 
-EXTRA_USERS_PARAMS = "usermod -p '' root;"
+IMAGE_FEATURES:append = " allow-empty-password"
+IMAGE_FEATURES:append = " allow-root-login"
+IMAGE_FEATURES:append = " empty-root-password"
