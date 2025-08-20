@@ -115,7 +115,7 @@
         ti,tx-internal-delay = <0xa>;
         ti,fifo-depth = <0x1>;
         ti,rxctrl-strap-worka;
-	};  
+	};
     phy4: phy@4 {
         reg = <0x4>;
         ti,rx-internal-delay = <0x8>;
@@ -132,13 +132,13 @@
     pinctrl-0 = <&pinctrl_gem3_default>;
 };
                                                               
-                                                           
-&sdhci1 {                                                        
-  disable-wp;                                                    
-  disable-cd;                                                                                                           
-  broken-tuning;                                                 
-  no-1-8-v;                                                                                                               
-};                                                               
+
+&sdhci1 {
+  disable-wp;
+  disable-cd;
+  broken-tuning;
+  no-1-8-v;
+};
 
 / {
   aliases {

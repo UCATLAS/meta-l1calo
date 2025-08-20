@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitlab.cern.ch/atlas-l1calo/gfex/gfex-register-access"
 AUTHOR = "Emily Smith <emsmith@cern.ch>"
 
 SRC_URI = "git://git@gitlab.cern.ch:7999/atlas-l1calo/gfex/gfex-register-access.git;branch=master;protocol=ssh"
-SRCREV ?= "a3e2621cfa9e42ca070719eaf511de8e69413d55"
+SRCREV ?= "77945c1190fec8c14e2ebaac95b428c427e62226"
 
 S = "${WORKDIR}/git"
 

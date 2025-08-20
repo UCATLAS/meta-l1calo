@@ -20,7 +20,6 @@ Copy the script.sh file found at scripts/setup.sh onto your machine and run a te
     source setup.sh
     source generate_device_tree.sh
     bitbake core-image-gfex
-    cd ..
     source copy_output.sh
     source write_output_to_sd.sh
 ```

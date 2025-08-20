@@ -20,3 +20,7 @@ read -p "Please enter the name of your target machine (e.g. gfex-production-stf)
 echo ""
 
 ../sources/meta-xilinx/meta-xilinx-core/gen-machine-conf/gen-machineconf parse-sdt --hw-description ../tmp_sdt/std_outdir/ -c ../sources/meta-l1calo/conf/ -l ./conf/local.conf --machine-name "$TARGET_MACHINE_NAME"
+
+cd ..
+
+cat tmp_sdt/std_outdir/pl.dtsi >> sources/meta-l1calo/conf/dts/"$TARGET_MACHINE_NAME"/cortexa53-linux.dts
