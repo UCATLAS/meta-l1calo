@@ -1,5 +1,5 @@
 [Unit]
-Description=Run Startup Management Scripts at Boot
+Description=[gfex-init] Run Startup Management Scripts at Boot
 After=network.target
 
 [Service]

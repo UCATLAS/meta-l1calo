@@ -1,5 +1,5 @@
 [Unit]
-Description=Load user firmware onto zFPGA
+Description=[gfex-init] Load user firmware onto zFPGA
 DefaultDependencies=no
 Before=basic.target
 After=local-fs.target

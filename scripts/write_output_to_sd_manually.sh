@@ -1,3 +1,4 @@
+# List the currently connected sd cards
 echo -e "Look at the following sd cards and locate the one you wish to format:\n"
 sudo fdisk -l /dev/sd* 2>/dev/null | grep -E '^(Disk /dev/sd|/|Device|$)' | awk '
   /^Disk \/dev\/sd[a-z]+[0-9]+:/ { next }  # skip partition Disk lines like /dev/sda1:
@@ -10,6 +11,7 @@ echo "You inputted: $sd_card_name"
 
 cd output
 
+# Copy the Linux filesystem ".ext4" image
 if [ -d "gfex-prototype4" ]; then
   cd gfex-prototype4
 
@@ -26,6 +28,7 @@ if [ -d "gfex-production-p1" ]; then
   sudo dd if=ROOT/core-image-gfex-gfex-production-p1.rootfs.ext4 of="$sd_card_name"2 status=progress
 fi
 
+# Copy the boot partition files
 if [ -d "BOOT" ]; then
   cd BOOT
   sudo mkdir -p /media/BOOT
@@ -40,4 +43,5 @@ if [ -d "BOOT" ]; then
   cd ../..
 fi
 
+# Eject the sd card
 sudo eject $sd_card_name

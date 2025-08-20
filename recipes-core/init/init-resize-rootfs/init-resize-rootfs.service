@@ -1,5 +1,5 @@
 [Unit]
-Description=Resize Root Filesystem on First Boot
+Description=[gfex-init] Resize Root Filesystem on First Boot
 After=local-fs.target
 
 [Service]

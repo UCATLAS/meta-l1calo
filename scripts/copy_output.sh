@@ -1,3 +1,4 @@
+# Make an output folder and copy all the necessary OS files
 mkdir output
 
 if [ -d "build/tmp/deploy/images/gfex-prototype4" ]; then

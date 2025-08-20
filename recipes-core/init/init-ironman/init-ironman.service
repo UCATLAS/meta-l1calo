@@ -1,5 +1,5 @@
 [Unit]
-Description=Run Ironman I2C Polling Script
+Description=[gfex-init] Run Ironman I2C Polling Script
 After=multi-user.target
 
 [Service]

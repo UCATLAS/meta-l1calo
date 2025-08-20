@@ -1,5 +1,5 @@
 [Unit]
-Description=Manage gFEX log file size
+Description=[gfex-init] Manage gFEX log file size
 After=network.target
 
 [Service]

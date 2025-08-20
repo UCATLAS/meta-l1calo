@@ -1,5 +1,5 @@
 [Unit]
-Description=Clock Configuration via I2C
+Description=[gfex-init] Clock Configuration via I2C
 After=network.target
 
 [Service]

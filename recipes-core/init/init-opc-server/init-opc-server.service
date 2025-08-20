@@ -1,5 +1,5 @@
 [Unit]
-Description=Run OPC Server on boot
+Description=[gfex-init] Run OPC Server on boot
 After=network.target
 
 [Service]

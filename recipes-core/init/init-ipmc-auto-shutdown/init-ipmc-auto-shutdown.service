@@ -1,5 +1,5 @@
 [Unit]
-Description=Auto-shutdown based on temperature sensors
+Description=[gfex-init] Auto-shutdown based on temperature sensors
 After=multi-user.target
 
 [Service]

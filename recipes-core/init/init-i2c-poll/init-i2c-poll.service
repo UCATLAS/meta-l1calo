@@ -1,5 +1,5 @@
 [Unit]
-Description=Repeated polling of i2c sensor values
+Description=[gfex-init] Repeated polling of i2c sensor values
 After=multi-user.target
 
 [Service]
