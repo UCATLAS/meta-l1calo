@@ -1,3 +1,5 @@
+LICENSE = "CLOSED"
+
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
  
 HDF_BASE:gfex-production-p1= "file://"
