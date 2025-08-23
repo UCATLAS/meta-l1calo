@@ -11,7 +11,7 @@ repo init -u https://github.com/Xilinx/yocto-manifests.git -b rel-v2024.2 && rep
 
 # Clone the meta-l1calo layer repo into sources and add it as a layer to bitbake
 cd sources
-git clone --branch kmd-update-2024 git@github.com:UCATLAS/meta-l1calo.git
+git clone git@github.com:UCATLAS/meta-l1calo.git
 cd ../
 source setupsdk && bitbake-layers add-layer ../sources/meta-l1calo 
 

@@ -4,7 +4,7 @@ cp sources/meta-l1calo/scripts/sdt.tcl tmp_sdt/sdt.tcl
 
 # Enter the tmp_sdt folder and run the sdt.tcl script, generating the intermediate device trees
 cd tmp_sdt
-/local/code/Xilinx_2024.2/Vitis/2024.2/bin/xsct sdt.tcl ../sources/meta-l1calo/recipes-bsp/external-hdf/files/zfpga_top.xsa std_outdir
+xsct sdt.tcl ../sources/meta-l1calo/recipes-bsp/external-hdf/files/zfpga_top.xsa std_outdir
 
 # Enter the build folder and ask the user to choose their target machines
 cd ../build
