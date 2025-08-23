@@ -31,7 +31,7 @@ sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpat
 	1.  Create an SSH key pair with the  `ssh-keygen -t ed25519 -C "your_email@example.com"` command in a terminal. Choose the default file for saving this key, as well as a passphrase.
 	2. Use the `ssh-add` command in the terminal to add your new ssh key.
 	3.  Copy the value of the public SSH key (the output of the command `cat ~/.ssh/id_ed25519.pub`) to the clipboard
-	4. On Github.com, go to Settings → Access → SSH and GPG keys. Click the "New SSH key" button, and add a label for and the contents of your ssh key.
+	4. On [Github](github.com), go to Settings → Access → SSH and GPG keys. Click the "New SSH key" button, and add a label for and the contents of your ssh key.
 	5. Set your name and email for git:
 	```sh
 	git config --global user.email "you@example.com"
@@ -44,8 +44,8 @@ sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpat
 - **Set up SSH for CERN's Gitlab**:
 
 	1.  Copy the value of the same public SSH key generated in the previous Github ssh step (the output of the command `cat ~/.ssh/id_ed25519.pub`) to the clipboard
-	2. Sign in to gitlab.cern.ch, go to Preferences → SSH keys. Click the "Add new key" button, and add a title for and the contents of your ssh key.
-	- In order to test if you have this set up correctly, try `ssh  git@gitlab.cern.ch  -T  -p  7999`. You should see:
+	2. Sign in to [gitlab.cern.ch](gitlab.cern.ch), go to Preferences → SSH keys. Click the "Add new key" button, and add a title for and the contents of your ssh key.
+	- In order to test if you have this set up correctly, try `ssh git@gitlab.cern.ch -T -p 7999`. You should see:
 ```shell
 > Welcome to GitLab, USERNAME!
 ```

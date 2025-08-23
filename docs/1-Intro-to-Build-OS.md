@@ -85,9 +85,9 @@ Once the OS image is built, we need to have it so that the SoC can boot into the
 | 1 | boot | FAT32 | 0x0c | <li>boot.bin</li><li>system.dtb</li><li>Image</li><li>boot.scr</li><li>u-boot.bin</li>| The *boot* partition, which includes the instructions for the OS (specifically, the kernel) to boot |
 | 2 | root | Linux | 0x83 | Everything in the \<MACHINE\>.rootfs.ext4 filesystem | The partition which stores the filesystem that the user manipulates when the OS is running |
 
-The `bitbake` process creates all the necessary files list in the table above. Then, you can either manually partition the SD cards (see [format_sd_card.sh](../scripts/format_sd_card.sh)) and copy the correct files into the correct partition (see [write_output_to_sd_manually.sh](../scripts/write_output_to_sd_manually.sh)), or you can just use the .wic image. When bitbake finishes, it creates a .wic file that already includes both partitions and the correct files within them. This image can just be written directly to the sd card (see [write_output_to_sd.sh](../scripts/write_output_to_sd.sh)).
+The `bitbake` process creates all the necessary files listed in the table above. Then, you can either manually partition the SD cards (see [format_sd_card.sh](../scripts/format_sd_card.sh)) and copy the correct files into the correct partition (see [write_output_to_sd_manually.sh](../scripts/write_output_to_sd_manually.sh)), or you can just use the .wic image. When bitbake finishes, it creates a .wic file that already includes both partitions and the correct files within them. This image can just be written directly to the sd card (see [write_output_to_sd.sh](../scripts/write_output_to_sd.sh)).
 
-Then, all you need to do is put the SD card into the board and power it on. Good luck!
+Then, all you need to do is to put the SD card into the board and power it on. Good luck!
 
 ### Home: [Documentation Overview](README.md)
 ### Next article: [Compiling and Building Steps](2-Compiling-and-Building-Steps.md)

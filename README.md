@@ -26,7 +26,7 @@ Copy the script.sh file found at scripts/setup.sh onto your machine and run a te
 
 The ```source setup.sh``` commmand should create the xilinx_bitbake folder and automatically download all the necessary layers for yocto into the xilinx_bitbake/sources folder (including the meta-l1calo layer found in this repo). Note that when running for the first time, generate_device_tree.sh can take many minutes and bitbake core-image-gfex will take a very long time (i.e. multiple hours).
 
-For more information on the specifics of the OS build, visit [this repo's documentation](https://github.com/UCATLAS/meta-l1calo/blob/update/docs/docs/Building-an-OS.md)
+**For more in-depth instructions of the building process, visit [this repo's documentation](docs/2-Compiling-and-Building-Steps.md)**
 
 
 ## Dependencies

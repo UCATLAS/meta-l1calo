@@ -8,15 +8,15 @@ It's categorized into the following documentation files for easier future refere
 - Source Code
 	- [Compiling and Building Steps](2-Compiling-and-Building-Steps.md)
 	- [Structure of the Source Code, including this layer](3-Source-Code-Structure.md)
-	- [Useful Linux Commands]()
+	- [Useful Linux Commands](4-Useful-Linux-Commands.md)
 - Hardware Setup
-	- [Physical Hardware Setup with an ACTA shelf]()
-	- [Useful ACTA Commands]()
+	- [Physical Hardware Setup with an ATCA shelf](5-Physical-Hardware-Setup.md)
+	- [Useful ATCA Commands](6-Useful-ATCA-Commands.md)
 - Final OS
-	- [Structure of the OS, including custom programs]()
-	- [Useful OS Commands]()
+	- [Structure of the OS, including custom programs](7-Final-OS-Structure.md)
+	- [Useful OS Commands](8-Useful-OS-Commands.md)
 - Notes on Development
-	- [Description of then Vivado 2024.1 Upgrade]()
-	- [TODOs for future upgrades]()
+	- [Description of the Xilinx 2024.2 Upgrade](9-Describe-OS-Upgrade-2024.md)
+	- [TODOs for future upgrades](10-TODO-for-future.md)
 
-For archiving purposes, the documentation from before the 2024.1 Upgrade is kept in the [docs_pre2025 foder]().
+For archiving purposes, the documentation from before the 2024.2 Upgrade is kept in the [docs_pre2025 folder](docs_pre2025).
