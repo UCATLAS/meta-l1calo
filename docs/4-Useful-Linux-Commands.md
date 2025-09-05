@@ -30,7 +30,7 @@ As someone who has not used Linux before, I thought it would be helpful to share
 ### Bitbake Commands
 
 | Command Name | Notes |
-|:--|:--|:--|
+|:--|:--|
 | `bitbake <TARGET>` | Used to begin the build process for a given target. |
 | `bitbake-layers show-layers` | Displays all of the yocto layers used in the project. |
 | `bitbake -c menuconfig virtual/kernel` | Shows a graphical menu for kernel options.  |

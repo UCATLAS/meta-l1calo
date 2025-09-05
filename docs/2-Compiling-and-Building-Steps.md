@@ -4,7 +4,7 @@ In the words of the previous doc writer, "So you want to build an OS huh? Shit's
 
 ## Host Operating System
 
-Right now, the build process only has been tested for Ubuntu Linux computers (The only Linux distros Vitis supports are Ubuntu and Redhat). These versions have been tested:
+Right now, the build process only has been tested for Ubuntu Linux computers (The only Linux distros Vitis supports are Ubuntu, Red Hat, AlmaLinux, Rocky Linux). These versions have been tested:
 
 | Host Operating System | Version | Works? | Notes |  
 | :--- | :-- | :-- | :-- 
@@ -20,8 +20,8 @@ The following must be downloaded and set up before beginning the build process:
 		1. Get the Linux Self-Extracting Vivado 2024.2 installer from [AMD's website](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/2024-2.html)
 		2. Using a terminal, write `sudo chmod a+x <Vivado_Installer>.bin` replacing what's in the brackets with the name of the installer, and then run it with `sudo ./<Vivado_Installer>.bin`
 		3. Authenticate your AMD account, choose your corresponding installation (e.g. Vitis Embedded), and then where you want to install it (for example, I had it installed in `/local/code`). Once you hit install, the process for Vitis Embedded can take around an hour (and use around 40 GB).
-		4. Just like you are prompted, run `/<Path_to_Vitis>/Xilinx_2024.2/Vitis/2024.2/scripts/installLibs.sh`
-		5. Then edit ~/.bashrc (by using the command `open ~/.bashrc`) and add this line to the end: `source "/<Path_to_Vitis>/Xilinx_2024.2/Vitis/2024.2/settings64.sh"`. This will add the Vitis commands to your PATH for every terminal session.
+		4. Just like you are prompted, run `sudo /<Path_to_Vitis>/Vitis/2024.2/scripts/installLibs.sh`
+		5. Then edit ~/.bashrc (by using the command `open ~/.bashrc`) and add this line to the end: `source "/<Path_to_Vitis>/Vitis/2024.2/settings64.sh"`. This will add the Vitis commands to your PATH for every terminal session.
 	- In order to test if you have this installed correctly, run `xsct` in a newly-opened terminal. If it runs correctly and you are in an interactive terminal, you're all set! (type `exit` to leave this interactive `xsct` session)
 - **Install the correct package dependencies**: in a terminal, run:
 ```shell
@@ -44,7 +44,7 @@ sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpat
 - **Set up SSH for CERN's Gitlab**:
 
 	1.  Copy the value of the same public SSH key generated in the previous Github ssh step (the output of the command `cat ~/.ssh/id_ed25519.pub`) to the clipboard
-	2. Sign in to [gitlab.cern.ch](gitlab.cern.ch), go to Preferences → SSH keys. Click the "Add new key" button, and add a title for and the contents of your ssh key.
+	2. Sign in to [gitlab.cern.ch](https://gitlab.cern.ch), go to Preferences → SSH keys. Click the "Add new key" button, and add a title for and the contents of your ssh key.
 	- In order to test if you have this set up correctly, try `ssh git@gitlab.cern.ch -T -p 7999`. You should see:
 ```shell
 > Welcome to GitLab, USERNAME!

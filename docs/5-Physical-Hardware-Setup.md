@@ -7,7 +7,7 @@ The gFEX board complies to the [ATCA board](https://en.wikipedia.org/wiki/Advanc
 I have highlighted the relevant connections to both the board and the shelf with colored circles:
 
 - **Red Circle**: a JTAG connection to the FPGA on the board. This allows FPGA programming access using Vivado's hardware manager.
-- **Orange Circle**: a microSD card slot on the board. This is where the OS SoC boots from should be located.
+- **Orange Circle**: a microSD card slot on the board. This is where the OS the SoC boots from should be located.
 - **Yellow Circle**: the ethernet connection to the SoC on the board.
 - **Green Circle**: a USB serial connection to the SoC on the board. It contains the interface to the OS as soon as it starts booting, accessible with the `minicom` command.
 - **Blue Circle**: the USB serial connection to the ATCA shelf. It contains the interface to the shelf commands, and is also accessible with the `minicom` command.

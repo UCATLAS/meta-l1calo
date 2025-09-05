@@ -20,8 +20,8 @@ Once the OS has booted, you can use the following commands:
 | `systemctl list-units --type=service --legend=false` | List systemd processes running. |
 | `journalctl -u [proc].service` | See log of systemd process output. |
 | `ifconfig` | Check status of network ports (like ethernet). |
-| `strings /proc/device-tree/axi/M00_AXI@a0010000/status` | Check status property of Linux device tree node. |
-| `zcat /proc/config.gz` | grep CONFIG_ARCH_HAS_DEVMEM_IS_ALLOWED` | Check if linux configuration is present. |
+| `strings /proc/device-tree/axi/M00_AXI@a0010000/status` | Check status property of a Linux device tree node. |
+| `zcat /proc/config.gz \| grep CONFIG_ARCH_HAS_DEVMEM_IS_ALLOWED` | Check if linux kernel configuration is present (in this case, the configuration `CONFIG_ARCH_HAS_DEVMEM_IS_ALLOWED`). |
 | `cat /proc/iomem` | Displays a map of the system's physical memory, showing which memory address ranges are reserved and by what. |
 | `cd /sys/class/` | Looking into device driver files. |
 | `cat /sys/kernel/debug/clk/clk_summary` | Shows a summary of the active clocks. |
