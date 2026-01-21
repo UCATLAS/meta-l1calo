@@ -1,0 +1,11 @@
+[Unit]
+Description=[gfex-init] Clock Configuration via I2C
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/gfex-programs/init-clock
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

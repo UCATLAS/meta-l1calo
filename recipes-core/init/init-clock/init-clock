@@ -28,7 +28,7 @@ import sys, os, csv, argparse
 #args = parser.parse_args()
 #conf = args.conf
 
-conf = '/etc/init.d/si5345_GF240280-Registers.txt'
+conf = '/usr/lib/gfex-programs/init-clock-config/si5345_GF240280-Registers.txt'
 
 i2c = I2C("/dev/i2c-0")
 

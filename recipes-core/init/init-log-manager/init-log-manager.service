@@ -1,0 +1,13 @@
+[Unit]
+Description=[gfex-init] Manage gFEX log file size
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/gfex-programs/run-init-log-manager.sh
+RemainAfterExit=true
+Restart=on-failure
+WorkingDirectory=/software/misc
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+[Unit]
+Description=[gfex-init] Load user firmware onto zFPGA
+DefaultDependencies=no
+Before=basic.target
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/gfex-programs/load-firmware.py
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

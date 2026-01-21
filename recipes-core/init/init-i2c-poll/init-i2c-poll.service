@@ -1,0 +1,13 @@
+[Unit]
+Description=[gfex-init] Repeated polling of i2c sensor values
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/lib/gfex-programs/run-init-i2c-poll.sh
+WorkingDirectory=/software/misc/i2c_poll
+RemainAfterExit=true
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

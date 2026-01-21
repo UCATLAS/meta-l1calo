@@ -26,13 +26,13 @@ import subprocess
 from periphery import I2C
 
 def check_temp(temp_sensor):
-    raw = subprocess.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_raw")
+    raw = subprocess.getoutput("cat /sys/bus/iio/devices/iio:device0/in_" + temp_sensor + "_temp_raw")
     raw_value = float(raw)
 
-    offset = subprocess.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_offset")
+    offset = subprocess.getoutput("cat /sys/bus/iio/devices/iio:device0/in_" + temp_sensor + "_temp_offset")
     offset_value = float(offset)
 
-    scale = subprocess.getoutput("cat /sys/bus/iio/devices/iio\:device0/in_" + temp_sensor + "_temp_scale")
+    scale = subprocess.getoutput("cat /sys/bus/iio/devices/iio:device0/in_" + temp_sensor + "_temp_scale")
     scale_value = float(scale)
 
     temp = (raw_value + offset_value)*scale_value/1024
