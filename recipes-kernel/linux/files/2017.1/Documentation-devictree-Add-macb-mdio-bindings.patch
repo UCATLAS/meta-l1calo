@@ -1,0 +1,53 @@
+From bbe0c3005205c702db129882625bb3c05bee8623 Mon Sep 17 00:00:00 2001
+From: Harini Katakam <harinik@xilinx.com>
+Date: Fri, 13 May 2016 13:16:37 +0530
+Subject: [LINUX PATCH 2/2] Documentation: devictree: Add macb mdio bindings
+
+Add documentations for macb mdio driver.
+
+Signed-off-by: Harini Katakam <harinik@xilinx.com>
+---
+ .../devicetree/bindings/net/macb-mdio.txt          | 31 ++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/macb-mdio.txt
+
+diff --git a/Documentation/devicetree/bindings/net/macb-mdio.txt b/Documentation/devicetree/bindings/net/macb-mdio.txt
+new file mode 100644
+index 0000000..11c70a3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/macb-mdio.txt
+@@ -0,0 +1,31 @@
++* Cadence MACB MDIO controller
++
++Required properties:
++- compatible: Should be "cdns,macb-mdio"
++- reg: Address and length of the register set of MAC to be used
++- clock-names: Tuple listing input clock names.
++	Required elements: 'pclk', 'hclk'
++	Optional elements: 'tx_clk'
++- clocks: Phandles to input clocks.
++
++Examples:
++
++	mdio {
++		compatible = "cdns,macb-mdio";
++		reg = <0x0 0xff0b0000 0x0 0x1000>;
++		clocks = <&clk125>, <&clk125>, <&clk125>;
++		clock-names = "pclk", "hclk", "tx_clk";
++		ethernet_phyC: ethernet-phy@C {
++			reg = <C>;
++		};
++		ethernet_phy7: ethernet-phy@7 {
++			reg = <7>;
++		};
++		ethernet_phy3: ethernet-phy@3 {
++			reg = <3>;
++		};
++		ethernet_phy8: ethernet-phy@8 {
++			reg = <8>;
++		};
++	};
++
+-- 
+2.1.1
+
